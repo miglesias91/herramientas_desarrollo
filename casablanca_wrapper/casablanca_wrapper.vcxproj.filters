@@ -24,12 +24,18 @@
     <ClCompile Include="source\HTTPCliente.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="source\HTTPRespuesta.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\HTTPSolicitud.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="include\HTTPCliente.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HTTPRespuesta.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

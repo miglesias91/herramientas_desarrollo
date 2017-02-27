@@ -1,6 +1,10 @@
 #pragma once
 
 // stl
+#include <string>
+
+// casablanca
+#include <cpprest/http_client.h>
 
 // casablanca wrapper
 #include <herramientas_desarrollo/casablanca_wrapper/include/HTTPSolicitud.h>
@@ -9,11 +13,11 @@ namespace HerramientasDesarrollo
 {
 namespace CasablancaWrapper
 {
-
+	/// \brief wrapper de los http_client's
 	class HTTPCliente
 	{
 	public:
-		HTTPCliente(std::string cliente);
+		HTTPCliente(std::string nombre_cliente);
 		virtual ~HTTPCliente();
 
 		// GETTERS
@@ -26,7 +30,8 @@ namespace CasablancaWrapper
 
 	private:
 
-		std::string cliente;
+		web::http::client::http_client cliente;
+		std::string nombre_cliente;
 	};
 
 }

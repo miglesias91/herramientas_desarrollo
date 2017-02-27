@@ -114,10 +114,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\HTTPRespuesta.h" />
     <ClInclude Include="include\HTTPCliente.h" />
     <ClInclude Include="include\HTTPSolicitud.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\HTTPRespuesta.cpp" />
     <ClCompile Include="source\HTTPCliente.cpp" />
     <ClCompile Include="source\HTTPSolicitud.cpp" />
   </ItemGroup>

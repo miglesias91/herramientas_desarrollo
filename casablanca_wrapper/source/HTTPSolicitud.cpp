@@ -48,6 +48,11 @@ void HTTPSolicitud::setPUT()
 	this->metodo_http = web::http::methods::PUT;
 }
 
+void HTTPSolicitud::setRespuesta(HTTPRespuesta respuesta)
+{
+	this->respuesta = respuesta;
+}
+
 // METODOS
 
 void HTTPSolicitud::agregarEncabezado(std::string nombre_encabezado, std::string contenido_encabezado)
