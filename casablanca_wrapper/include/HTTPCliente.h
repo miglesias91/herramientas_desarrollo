@@ -7,7 +7,8 @@
 #include <cpprest/http_client.h>
 
 // casablanca wrapper
-#include <herramientas_desarrollo/casablanca_wrapper/include/HTTPSolicitud.h>
+#include <casablanca_wrapper/include/HTTPSolicitud.h>
+#include <casablanca_wrapper/include/HTTPRespuesta.h>
 
 namespace herramientas
 {

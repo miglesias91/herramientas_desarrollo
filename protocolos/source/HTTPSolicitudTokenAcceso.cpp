@@ -1,4 +1,4 @@
-#include <herramientas_desarrollo/protocolos/include/HTTPSolicitudTokenAcceso.h>
+#include <protocolos/include/HTTPSolicitudTokenAcceso.h>
 
 using namespace herramientas::protocolos;
 

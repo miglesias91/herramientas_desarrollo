@@ -1,7 +1,7 @@
-#include <herramientas_desarrollo/casablanca_wrapper/include/HTTPCliente.h>
+#include <casablanca_wrapper/include/HTTPCliente.h>
 
 // casablanca wrapper
-#include <herramientas_desarrollo/casablanca_wrapper/include/HTTPRespuesta.h>
+#include <casablanca_wrapper/include/HTTPRespuesta.h>
 
 using namespace herramientas::cpprest;
 

@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "protocolos", "protocolos\protocolos.vcxproj", "{89C905C3-792E-48B3-BE8A-64F61AF5231B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "casablanca_wrapper", "casablanca_wrapper\casablanca_wrapper.vcxproj", "{109A47B8-339A-45AD-B667-3F8F47ECB954}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "utiles", "utiles\utiles.vcxproj", "{8995A391-0ACC-4EED-9BAB-E31F4FD21756}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testing", "testing\testing.vcxproj", "{9DF5AD40-6E39-403A-A323-97FEA474106E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,19 @@ Global
 		{8995A391-0ACC-4EED-9BAB-E31F4FD21756}.Release|x64.Build.0 = Release|x64
 		{8995A391-0ACC-4EED-9BAB-E31F4FD21756}.Release|x86.ActiveCfg = Release|Win32
 		{8995A391-0ACC-4EED-9BAB-E31F4FD21756}.Release|x86.Build.0 = Release|Win32
+		{9DF5AD40-6E39-403A-A323-97FEA474106E}.Debug|x64.ActiveCfg = Debug|x64
+		{9DF5AD40-6E39-403A-A323-97FEA474106E}.Debug|x64.Build.0 = Debug|x64
+		{9DF5AD40-6E39-403A-A323-97FEA474106E}.Debug|x86.ActiveCfg = Debug|Win32
+		{9DF5AD40-6E39-403A-A323-97FEA474106E}.Debug|x86.Build.0 = Debug|Win32
+		{9DF5AD40-6E39-403A-A323-97FEA474106E}.Release|x64.ActiveCfg = Release|x64
+		{9DF5AD40-6E39-403A-A323-97FEA474106E}.Release|x64.Build.0 = Release|x64
+		{9DF5AD40-6E39-403A-A323-97FEA474106E}.Release|x86.ActiveCfg = Release|Win32
+		{9DF5AD40-6E39-403A-A323-97FEA474106E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {480BEFA9-B7AE-46CA-821C-45C5B8EA9F4A}
 	EndGlobalSection
 EndGlobal

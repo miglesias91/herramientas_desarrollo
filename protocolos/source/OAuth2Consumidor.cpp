@@ -1,4 +1,4 @@
-#include <herramientas_desarrollo/protocolos/include/OAuth2Consumidor.h>
+#include <protocolos/include/OAuth2Consumidor.h>
 
 using namespace herramientas::protocolos;
 

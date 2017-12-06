@@ -5,6 +5,9 @@
 // casablanca
 #include <cpprest/http_client.h>
 
+// utiles
+#include <utiles/include/Json.h>
+
 namespace herramientas
 {
 namespace cpprest
@@ -23,13 +26,20 @@ public:
 
 	web::http::http_response getRespuesta();
 
+    Json * getJson();
+
 	// SETTERS
+
+    void setJson(Json * json);
 
 	// METODOS
 
 private:
+    // ATRIBUTOS
 
 	web::http::http_response http_respuesta;
+
+    Json * json;
 };
 
 }

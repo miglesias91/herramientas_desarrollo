@@ -1,4 +1,4 @@
-#include <herramientas_desarrollo/casablanca_wrapper/include/HTTPSolicitud.h>
+#include <casablanca_wrapper/include/HTTPSolicitud.h>
 
 using namespace herramientas::cpprest;
 

@@ -4,7 +4,7 @@
 #include <string>
 
 // casablanca wrapper
-#include <herramientas_desarrollo/casablanca_wrapper/include/HTTPRespuesta.h>
+#include <casablanca_wrapper/include/HTTPRespuesta.h>
 
 // casablanca
 #include <cpprest/http_client.h>

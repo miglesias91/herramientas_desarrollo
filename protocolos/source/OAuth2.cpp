@@ -1,10 +1,11 @@
-#include <herramientas_desarrollo/protocolos/include/OAuth2.h>
+#include <protocolos/include/OAuth2.h>
 
 // casablanca wrapper
-#include <herramientas_desarrollo/casablanca_wrapper/include/HTTPCliente.h>
+#include <casablanca_wrapper/include/HTTPCliente.h>
+#include <casablanca_wrapper/include/HTTPRespuesta.h>
 
 // protocolos
-#include <herramientas_desarrollo/protocolos/include/HTTPSolicitudTokenAcceso.h>
+#include <protocolos/include/HTTPSolicitudTokenAcceso.h>
 
 using namespace herramientas::protocolos;
 
@@ -16,7 +17,7 @@ OAuth2::~OAuth2()
 {
 }
 
-std::string OAuth2::getTokenAcceso(OAuth2Consumidor * consumidor)
+bool OAuth2::solicitarTokenAcceso(OAuth2Consumidor * consumidor)
 {
 	std::string clave_publica = consumidor->getClavePublica();
 	std::string clave_privada = consumidor->getClavePrivada();
@@ -26,11 +27,20 @@ std::string OAuth2::getTokenAcceso(OAuth2Consumidor * consumidor)
 
 	herramientas::cpprest::HTTPCliente cliente_http_api(servidor_api);
 
-	cliente_http_api.solicitar(solicitud_token_acceso);
+	herramientas::cpprest::HTTPRespuesta * http_respuesta = cliente_http_api.solicitar(solicitud_token_acceso);
 
-	std::string token_acceso = solicitud_token_acceso.getTokenAcceso();
+    std::string token_acceso;
+    
+    try
+    {
+        token_acceso = http_respuesta->getJson()->getAtributoValorString("access_token");
+    }
+    catch (...)
+    {// si entra aca, es porq no reconoce el campo "access_token", osea que no se obtuvo ningun token.
+        return false;
+    }
 
     consumidor->setTokenAcceso(token_acceso);
 
-	return token_acceso;
+    return true;;
 }
