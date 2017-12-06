@@ -15,24 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\HTTPSolicitud.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="source\HTTPCliente.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="source\HTTPRespuesta.cpp">
+    <ClCompile Include="source\Json.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\HTTPSolicitud.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="include\HTTPCliente.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="include\HTTPRespuesta.h">
+    <ClInclude Include="include\Json.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

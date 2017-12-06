@@ -9,30 +9,30 @@
 // casablanca wrapper
 #include <herramientas_desarrollo/casablanca_wrapper/include/HTTPSolicitud.h>
 
-namespace HerramientasDesarrollo
+namespace herramientas
 {
-namespace CasablancaWrapper
+namespace cpprest
 {
 	/// \brief wrapper de los http_client's
-	class HTTPCliente
-	{
-	public:
-		HTTPCliente(std::string nombre_cliente);
-		virtual ~HTTPCliente();
+class HTTPCliente
+{
+public:
+	HTTPCliente(std::string nombre_cliente);
+	virtual ~HTTPCliente();
 
-		// GETTERS
+	// GETTERS
 
-		// SETTERS
+	// SETTERS
 
-		// METODOS
+	// METODOS
 
-		void solicitar(HTTPSolicitud& solicitud);
+	HTTPRespuesta * solicitar(HTTPSolicitud& solicitud);
 
-	private:
+private:
 
-		web::http::client::http_client cliente;
-		std::string nombre_cliente;
-	};
+	web::http::client::http_client cliente;
+	std::string nombre_cliente;
+};
 
 }
 }

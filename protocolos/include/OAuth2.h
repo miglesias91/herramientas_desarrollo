@@ -6,9 +6,9 @@
 // protocolos
 #include <herramientas_desarrollo/protocolos/include/OAuth2Consumidor.h>
 
-namespace HerramientasDesarrollo
+namespace herramientas
 {
-namespace Protocolos
+namespace protocolos
 {
 	class OAuth2
 	{
@@ -16,7 +16,7 @@ namespace Protocolos
 		OAuth2();
 		virtual ~OAuth2();
 
-		static std::string getTokenAcceso(OAuth2Consumidor consumidor);
+		static std::string getTokenAcceso(OAuth2Consumidor * consumidor);
 	};
 }
 }

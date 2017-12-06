@@ -5,30 +5,32 @@
 // casablanca
 #include <cpprest/http_client.h>
 
-namespace HerramientasDesarrollo
+namespace herramientas
 {
-namespace CasablancaWrapper
+namespace cpprest
 {
-	/// \brief wrapper de las http_response's
-	class HTTPRespuesta
-	{
-	public:
-		HTTPRespuesta();
 
-		HTTPRespuesta(web::http::http_response http_respuesta);
-		virtual ~HTTPRespuesta();
+/// \brief wrapper de las http_response's
+class HTTPRespuesta
+{
+public:
+	HTTPRespuesta();
 
-		// GETTERS
+	HTTPRespuesta(web::http::http_response http_respuesta);
+	virtual ~HTTPRespuesta();
 
-		web::http::http_response getRespuesta();
+	// GETTERS
 
-		// SETTERS
+	web::http::http_response getRespuesta();
 
-		// METODOS
+	// SETTERS
 
-	private:
+	// METODOS
 
-		web::http::http_response http_respuesta;
-	};
+private:
+
+	web::http::http_response http_respuesta;
+};
+
 }
 }

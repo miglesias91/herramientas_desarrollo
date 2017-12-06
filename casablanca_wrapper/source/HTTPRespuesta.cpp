@@ -1,6 +1,6 @@
 #include <herramientas_desarrollo/casablanca_wrapper/include/HTTPRespuesta.h>
 
-using namespace HerramientasDesarrollo::CasablancaWrapper;
+using namespace herramientas::cpprest;
 
 HTTPRespuesta::HTTPRespuesta()
 {

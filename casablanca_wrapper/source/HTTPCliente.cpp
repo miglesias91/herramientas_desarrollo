@@ -3,7 +3,7 @@
 // casablanca wrapper
 #include <herramientas_desarrollo/casablanca_wrapper/include/HTTPRespuesta.h>
 
-using namespace HerramientasDesarrollo::CasablancaWrapper;
+using namespace herramientas::cpprest;
 
 HTTPCliente::HTTPCliente(std::string cliente) : cliente( web::uri( utility::conversions::to_string_t(cliente) ) )
 {
@@ -19,7 +19,7 @@ HTTPCliente::~HTTPCliente()
 
 // METODOS
 
-void HTTPCliente::solicitar(HTTPSolicitud& solicitud)
+HTTPRespuesta * HTTPCliente::solicitar(HTTPSolicitud& solicitud)
 {
 	web::http::http_request http_solicitud = solicitud.getSolicitud();
 
@@ -30,7 +30,5 @@ void HTTPCliente::solicitar(HTTPSolicitud& solicitud)
 	// por ahora obtengo directamente la respuesta, forzando a que se comporte como una llamada sincronica.
 	web::http::http_response http_respuesta = http_solicitud_tarea.get();
 
-	HTTPRespuesta respuesta(http_respuesta);
-
-	solicitud.setRespuesta(respuesta);
+	return new HTTPRespuesta(http_respuesta);
 }

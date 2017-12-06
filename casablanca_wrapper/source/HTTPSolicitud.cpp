@@ -1,6 +1,6 @@
 #include <herramientas_desarrollo/casablanca_wrapper/include/HTTPSolicitud.h>
 
-using namespace HerramientasDesarrollo::CasablancaWrapper;
+using namespace herramientas::cpprest;
 
 HTTPSolicitud::HTTPSolicitud()
 {
@@ -46,11 +46,6 @@ void HTTPSolicitud::setGET()
 void HTTPSolicitud::setPUT()
 {
 	this->metodo_http = web::http::methods::PUT;
-}
-
-void HTTPSolicitud::setRespuesta(HTTPRespuesta respuesta)
-{
-	this->respuesta = respuesta;
 }
 
 // METODOS

@@ -3,38 +3,46 @@
 // stl
 #include <string>
 
-namespace HerramientasDesarrollo
+namespace herramientas
 {
-namespace Protocolos
+namespace protocolos
 {
-	class OAuth2Consumidor
-	{
-	public:
-		OAuth2Consumidor(std::string clave_publica, std::string clave_privada, std::string servidor_api);
-		virtual ~OAuth2Consumidor();
 
-		// GETTERS
+class OAuth2Consumidor
+{
+public:
+	OAuth2Consumidor(std::string clave_publica, std::string clave_privada, std::string servidor_api);
+	virtual ~OAuth2Consumidor();
 
-		std::string getClavePublica();
+	// GETTERS
 
-		std::string getClavePrivada();
+	std::string getClavePublica();
 
-		std::string getServidorAPI();
+	std::string getClavePrivada();
 
-		// SETTERS
+	std::string getServidorAPI();
 
-		void getClavePublica(std::string clave_publica);
+    std::string getTokenAcceso();
 
-		void getClavePrivada(std::string clave_privada);
+	// SETTERS
 
-		void getServidorAPI(std::string servidor_api);
+	void setClavePublica(std::string clave_publica);
 
-	private:
+	void setClavePrivada(std::string clave_privada);
 
-		std::string clave_publica;
-		std::string clave_privada;
-		std::string servidor_api;
-	};
+	void setServidorAPI(std::string servidor_api);
+
+    void setTokenAcceso(std::string token_acceso);
+
+private:
+
+	std::string clave_publica;
+	std::string clave_privada;
+	std::string servidor_api;
+
+    std::string token_acceso;
+};
+
 }
 }
 
