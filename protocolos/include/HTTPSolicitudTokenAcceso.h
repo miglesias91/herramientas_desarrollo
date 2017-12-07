@@ -11,27 +11,27 @@ namespace herramientas
 namespace protocolos
 {
 
-	class HTTPSolicitudTokenAcceso : public herramientas::cpprest::HTTPSolicitud
-	{
-	public:
-		HTTPSolicitudTokenAcceso(std::string clave_publica, std::string clave_privada);
+class HTTPSolicitudTokenAcceso : public herramientas::cpprest::HTTPSolicitud
+{
+public:
+	HTTPSolicitudTokenAcceso(std::string clave_publica, std::string clave_privada);
 
-		virtual ~HTTPSolicitudTokenAcceso();
+	virtual ~HTTPSolicitudTokenAcceso();
 
-		// GETTERS
+	// GETTERS
 
-		std::string getTokenAcceso();
+	std::string getTokenAcceso();
 
-		// SETTERS
+	// SETTERS
 
-		// METODOS
+	// METODOS
 
-	private:
+private:
 
-		std::string clave_publica;
-		std::string clave_privada;
-		std::string token_acceso;
-	};
+	std::string clave_publica;
+	std::string clave_privada;
+	std::string token_acceso;
+};
 
 
 }

@@ -2,26 +2,41 @@
 
 using namespace herramientas::cpprest;
 
-HTTPSolicitud::HTTPSolicitud()
+HTTPSolicitud::HTTPSolicitud() : solicitud(NULL)
 {
 }
 
 HTTPSolicitud::~HTTPSolicitud()
 {
+    if (NULL != this->solicitud)
+    {
+        delete this->solicitud;
+        this->solicitud = NULL;
+    }
 }
 
 // GETTERS
 
-web::http::http_request HTTPSolicitud::getSolicitud()
+web::http::http_request * HTTPSolicitud::getSolicitud()
 {
+    if (NULL == this->solicitud)
+    {
+        this->solicitud = new web::http::http_request();
+    }
+
 	return this->solicitud;
 }
 
 // SETTERS
 
+void HTTPSolicitud::setSolicitud(web::http::http_request * solicitud)
+{
+    this->solicitud = solicitud;
+}
+
 void HTTPSolicitud::setCuerpo(std::string cuerpo)
 {
-	this->solicitud.set_body(cuerpo);
+	this->solicitud->set_body(cuerpo);
 }
 
 void HTTPSolicitud::setURI(std::string uri)
@@ -30,22 +45,22 @@ void HTTPSolicitud::setURI(std::string uri)
 
 	web::uri web_uri(uri_t);
 
-	this->solicitud.set_request_uri(web_uri);
+	this->solicitud->set_request_uri(web_uri);
 }
 
 void HTTPSolicitud::setPOST()
 {
-	this->metodo_http = web::http::methods::POST;
+    this->solicitud->set_method(web::http::methods::POST);
 }
 
 void HTTPSolicitud::setGET()
 {
-	this->metodo_http = web::http::methods::GET;
+    this->solicitud->set_method(web::http::methods::GET);
 }
 
 void HTTPSolicitud::setPUT()
 {
-	this->metodo_http = web::http::methods::PUT;
+    this->solicitud->set_method(web::http::methods::PUT);
 }
 
 // METODOS
@@ -56,5 +71,5 @@ void HTTPSolicitud::agregarEncabezado(std::string nombre_encabezado, std::string
 
 	utility::string_t contenido_encabezado_t = utility::conversions::to_string_t(contenido_encabezado);
 
-	this->solicitud.headers().add(nombre_encabezado_t, contenido_encabezado_t);
+	this->solicitud->headers().add(nombre_encabezado_t, contenido_encabezado_t);
 }

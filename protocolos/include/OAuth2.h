@@ -16,7 +16,7 @@ namespace protocolos
 		OAuth2();
 		virtual ~OAuth2();
 
-		static bool solicitarTokenAcceso(OAuth2Consumidor * consumidor);
+		static bool solicitarTokenAcceso(OAuth2Consumidor * consumidor, std::string servidor_api);
 	};
 }
 }

@@ -18,21 +18,27 @@ namespace cpprest
 class HTTPCliente
 {
 public:
-	HTTPCliente(std::string nombre_cliente);
+	HTTPCliente(std::string uri);
 	virtual ~HTTPCliente();
 
 	// GETTERS
 
+    std::string getURI();
+
 	// SETTERS
+
+    void setURI(std::string uri);
 
 	// METODOS
 
-	HTTPRespuesta * solicitar(HTTPSolicitud& solicitud);
+	HTTPRespuesta * solicitar(HTTPSolicitud * solicitud);
+
+    // CONSULTAS
 
 private:
 
 	web::http::client::http_client cliente;
-	std::string nombre_cliente;
+	std::string uri;
 };
 
 }

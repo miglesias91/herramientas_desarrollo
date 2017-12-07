@@ -2,24 +2,19 @@
 
 using namespace herramientas::cpprest;
 
-HTTPRespuesta::HTTPRespuesta() : json(NULL)
+HTTPRespuesta::HTTPRespuesta() : IContieneJson()
 {
 }
 
-HTTPRespuesta::HTTPRespuesta(web::http::http_response http_respuesta) : http_respuesta(http_respuesta), json(NULL)
+HTTPRespuesta::HTTPRespuesta(web::http::http_response http_respuesta) : http_respuesta(http_respuesta), IContieneJson()
 {
-    std::string respuesta_string = utility::conversions::to_utf8string(http_respuesta.extract_string().get());
+    std::string respuesta_json_string = utility::conversions::to_utf8string(http_respuesta.extract_string().get());
 
-    this->json = new Json(respuesta_string);
+    this->setJson(new herramientas::utiles::Json(respuesta_json_string));
 }
 
 HTTPRespuesta::~HTTPRespuesta()
 {
-    if (NULL != this->json)
-    {
-        delete this->json;
-        this->json = NULL;
-    }
 }
 
 // GETTERS
@@ -27,16 +22,6 @@ HTTPRespuesta::~HTTPRespuesta()
 web::http::http_response HTTPRespuesta::getRespuesta()
 {
 	return this->http_respuesta;
-}
-
-Json * HTTPRespuesta::getJson()
-{
-    return this->json;
-}
-
-void HTTPRespuesta::setJson(Json * json)
-{
-    this->json = json;
 }
 
 // SETTERS

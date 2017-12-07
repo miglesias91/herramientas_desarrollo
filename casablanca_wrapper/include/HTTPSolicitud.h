@@ -23,9 +23,11 @@ public:
 
 	// GETTERS
 		
-	web::http::http_request getSolicitud();
+	web::http::http_request * getSolicitud();
 
 	// SETTERS
+    
+    void setSolicitud(web::http::http_request * solicitud);
 
 	void setCuerpo(std::string cuerpo);
 
@@ -43,8 +45,7 @@ public:
 
 private:
 
-	web::http::method metodo_http;
-	web::http::http_request solicitud;
+	web::http::http_request * solicitud;
 };
 
 }

@@ -6,6 +6,11 @@
 // rapidjson
 #include <rapidjson/document.h>
 
+namespace herramientas
+{
+namespace utiles
+{
+
 class Json
 {
 public:
@@ -54,3 +59,5 @@ private:
     std::vector<Json*> copia_atributos_json;
 };
 
+};
+};

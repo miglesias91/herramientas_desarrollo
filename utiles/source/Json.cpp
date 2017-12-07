@@ -8,6 +8,7 @@
 #include <rapidjson/ostreamwrapper.h>
 #include <rapidjson/prettywriter.h>
 
+using namespace herramientas::utiles;
 
 Json::Json() : valor(new rapidjson::Value(rapidjson::kObjectType)), documento_alocador(new rapidjson::Document())
 {
