@@ -116,11 +116,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\Conversiones.h" />
+    <ClInclude Include="include\Fecha.h" />
     <ClInclude Include="include\IContieneJson.h" />
     <ClInclude Include="include\Json.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Conversiones.cpp" />
+    <ClCompile Include="source\Fecha.cpp" />
     <ClCompile Include="source\IContieneJson.cpp" />
     <ClCompile Include="source\Json.cpp" />
   </ItemGroup>

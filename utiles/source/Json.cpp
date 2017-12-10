@@ -40,6 +40,7 @@ Json::~Json()
     {
         delete *it;
     }
+
     this->copia_atributos_json.clear();
 }
 
@@ -154,7 +155,16 @@ std::vector<unsigned long long int> Json::getAtributoArrayUint(std::string clave
 {
     std::vector<unsigned long long int> valores;
 
-    rapidjson::Value* vector = &(*this->valor)[clave.c_str()];
+    rapidjson::Value* vector = NULL;
+
+    if (clave.empty())
+    {
+        vector = &(*this->valor);
+    }
+    else
+    {
+        vector = &(*this->valor)[clave.c_str()];
+    }
 
     for (rapidjson::Value::ValueIterator it = vector->Begin(); it != vector->End(); it++)
     {
@@ -169,12 +179,52 @@ std::vector<std::string> Json::getAtributoArrayString(std::string clave)
 {
     std::vector<std::string> valores;
 
-    rapidjson::Value* vector = &(*this->valor)[clave.c_str()];
+    rapidjson::Value* vector = NULL;
+
+    if (clave.empty())
+    {
+        vector = &(*this->valor);
+    }
+    else
+    {
+        vector = &(*this->valor)[clave.c_str()];
+    }
 
     for (rapidjson::Value::ValueIterator it = vector->Begin(); it != vector->End(); it++)
     {
         std::string valor = it->GetString();
         valores.push_back(valor);
+    }
+
+    return valores;
+}
+
+std::vector<Json*> Json::getAtributoArrayJson(std::string clave)
+{
+    std::vector<Json*> valores;
+    
+    rapidjson::Value* vector = NULL;
+
+    if (clave.empty())
+    {
+        vector = &(*this->valor);
+    }
+    else
+    {
+        vector = &(*this->valor)[clave.c_str()];
+    }
+
+    for (rapidjson::Value::ValueIterator it = vector->Begin(); it != vector->End(); it++)
+    {
+        rapidjson::Value* valor = &(*it);
+
+        rapidjson::Value* valor_nuevo = new rapidjson::Value(rapidjson::kObjectType);
+
+        valor_nuevo->CopyFrom(*valor, this->documento_alocador->GetAllocator());
+
+        Json* json = new Json(valor_nuevo);
+
+        valores.push_back(json);
     }
 
     return valores;

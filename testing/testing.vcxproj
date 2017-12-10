@@ -123,6 +123,7 @@
   <ItemGroup>
     <ClCompile Include="main_testing.cpp" />
     <ClCompile Include="test_protocolos.cpp" />
+    <ClCompile Include="test_utiles.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

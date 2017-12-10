@@ -42,6 +42,7 @@ public:
 
     std::vector<unsigned long long int> getAtributoArrayUint(std::string clave);
     std::vector<std::string> getAtributoArrayString(std::string clave);
+    std::vector<Json*> getAtributoArrayJson(std::string clave = "");
 
     rapidjson::Value* getValor();
 
