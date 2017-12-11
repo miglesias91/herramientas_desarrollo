@@ -90,7 +90,7 @@ TEST(modelo, GettersYSettersJsonArray)
 
 TEST(modelo, GettersYSettersCodificaciones)
 {
-    std::string json_tweets = "{\"id_tweet\":\"Jerusal\u00e9n: suenan sirenas de alarma en el sur de Israel tras el disparo de un cohete desde Gaza\u2026 https:\/\/t.co\/eqSJm9AkQB\"}";
+    std::string json_tweets = "{\"id_tweet\":\"Jerusal\\u00e9n: suenan sirenas de alarma en el sur de Israel tras el disparo de un cohete desde Gaza\u2026 https:\/\/t.co\/eqSJm9AkQB\"}";
 
     Json* json = new Json(json_tweets);
 
