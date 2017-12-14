@@ -27,9 +27,6 @@
     <ClCompile Include="source\Fecha.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="source\JsonUTF16.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Json.h">
@@ -42,9 +39,6 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="include\Fecha.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="include\JsonUTF16.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

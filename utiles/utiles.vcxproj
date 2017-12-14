@@ -29,7 +29,7 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -119,14 +119,12 @@
     <ClInclude Include="include\Fecha.h" />
     <ClInclude Include="include\IContieneJson.h" />
     <ClInclude Include="include\Json.h" />
-    <ClInclude Include="include\JsonUTF16.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Conversiones.cpp" />
     <ClCompile Include="source\Fecha.cpp" />
     <ClCompile Include="source\IContieneJson.cpp" />
     <ClCompile Include="source\Json.cpp" />
-    <ClCompile Include="source\JsonUTF16.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

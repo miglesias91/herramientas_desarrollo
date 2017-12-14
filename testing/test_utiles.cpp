@@ -1,6 +1,9 @@
 // gtest
 #include <gtest/gtest.h>
 
+// cpprestsdk
+#include <cpprest/http_client.h>
+
 // utiles
 #include <utiles/include/Json.h>
 
@@ -90,7 +93,21 @@ TEST(modelo, GettersYSettersJsonArray)
 
 TEST(modelo, GettersYSettersCodificaciones)
 {
-    std::string json_tweets = "{\"id_tweet\":\"Jerusal\\u00e9n: suenan sirenas de alarma en el sur de Israel tras el disparo de un cohete desde Gaza\u2026 https:\/\/t.co\/eqSJm9AkQB\"}";
+//    ******** NOTA ********
+//        cuando le pasamos al Json un code unit (codigo en formato unicode de la forma '\uXXXX'), rapidjson lo procesa internamente en formato UTF8, es decir que
+//        lo traduce a sus caracteres correspondientes. Por eso cuando recuperamos un valor como String, en la posicion de codeunit vamos a ver la secuencia de caracteres
+//        que corresponden al codeunit.
+//        En este caso particular,
+//        - '\u00e9' (que representa al caracter '�') se traduce como 'é' (C3 A9), y 
+//        - '\u2026' (que representa al caracter '�') se traduce como '…' (E2 80 A6)
+//
+//        mas info:
+//  https://r12a.github.io/apps/conversion/
+//  http://www.weblogism.com/item/270/why-does-e-become-a
+//  https://developer.twitter.com/en/docs/basics/counting-characters
+//  http://rapidjson.org/md_doc_encoding.html
+
+    std::string json_tweets = "{\"id_tweet\":\"Jerusal\\u00e9n: suenan sirenas de alarma en el sur de Israel tras el disparo de un cohete desde Gaza\\u2026 https:\/\/t.co\/eqSJm9AkQB\"}";
 
     Json* json = new Json(json_tweets);
 
@@ -98,5 +115,7 @@ TEST(modelo, GettersYSettersCodificaciones)
 
     delete json;
 
-    ASSERT_STREQ("Jerusal\u00e9n: suenan sirenas de alarma en el sur de Israel tras el disparo de un cohete desde Gaza\u2026 https:\/\/t.co\/eqSJm9AkQB", json_tweets_1.c_str());
+    std::string correcto = "Jerusalén: suenan sirenas de alarma en el sur de Israel tras el disparo de un cohete desde Gaza… https://t.co/eqSJm9AkQB";
+
+    ASSERT_STREQ(correcto.c_str(), json_tweets_1.c_str());
 }

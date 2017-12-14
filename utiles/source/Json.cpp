@@ -28,17 +28,6 @@ Json::Json(std::string json) : valor(NULL), documento_alocador(NULL)
     this->documento_alocador = documento;
 }
 
-Json::Json(utility::string_t json) : valor(NULL), documento_alocador(NULL)
-{
-    rapidjson::GenericDocument< rapidjson::UTF16< >> * documento = new rapidjson::GenericDocument<rapidjson::UTF16<>>();
-
-    documento->Parse(json.c_str());
-
-    this->valor = new rapidjson::Value(*documento, documento->GetAllocator());
-
-    this->documento_alocador = documento;
-}
-
 Json::~Json()
 {
     delete this->valor;

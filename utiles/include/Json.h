@@ -20,40 +20,39 @@ public:
     Json();
     Json(rapidjson::Value* valor);
     Json(std::string json);
-    Json(utility::string_t json);
 
     virtual ~Json();
 
     // METODOS
 
-    void reset();
+    virtual void reset();
 
-    void agregarAtributoValor(std::string clave, std::string valor);
-    void agregarAtributoValor(std::string clave, unsigned int valor);
+    virtual void agregarAtributoValor(std::string clave, std::string valor);
+    virtual void agregarAtributoValor(std::string clave, unsigned int valor);
 
-    void agregarAtributoArray(std::string clave, std::vector<unsigned long long int> array_valores);
-    void agregarAtributoArray(std::string clave, std::vector<std::string> array_valores);
+    virtual void agregarAtributoArray(std::string clave, std::vector<unsigned long long int> array_valores);
+    virtual void agregarAtributoArray(std::string clave, std::vector<std::string> array_valores);
 
-    void agregarAtributoJson(std::string clave, Json* json);
+    virtual void agregarAtributoJson(std::string clave, Json* json);
 
-    Json * clonar();
+    virtual Json * clonar();
 
     // GETTERS
 
-    unsigned long long int getAtributoValorUint(std::string clave);
-    std::string getAtributoValorString(std::string clave);
-    Json* getAtributoValorJson(std::string clave);
+    virtual unsigned long long int getAtributoValorUint(std::string clave);
+    virtual std::string getAtributoValorString(std::string clave);
+    virtual Json* getAtributoValorJson(std::string clave);
 
-    std::vector<unsigned long long int> getAtributoArrayUint(std::string clave);
-    std::vector<std::string> getAtributoArrayString(std::string clave);
-    std::vector<Json*> getAtributoArrayJson(std::string clave = "");
+    virtual std::vector<unsigned long long int> getAtributoArrayUint(std::string clave);
+    virtual std::vector<std::string> getAtributoArrayString(std::string clave);
+    virtual std::vector<Json*> getAtributoArrayJson(std::string clave = "");
 
-    rapidjson::Value* getValor();
+    virtual rapidjson::Value* getValor();
 
-    std::string jsonString();
+    virtual std::string jsonString();
 
     // SETTERS
-    void setValor(rapidjson::Value* valor);
+    virtual void setValor(rapidjson::Value* valor);
 
 private:
 
