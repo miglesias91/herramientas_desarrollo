@@ -2,8 +2,10 @@
 // gtest
 #include <gtest/gtest.h>
 
+#ifdef DEBUG | _DEBUG
 // vld
 #include <vld.h>
+#endif
 
 int main(int argc, char **argv)
 {
