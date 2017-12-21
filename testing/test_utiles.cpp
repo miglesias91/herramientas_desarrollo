@@ -174,7 +174,7 @@ TEST(utiles, FuncionesStringReemplazarOcurrencias)
 
     std::string string_utf8_a_modificar = u8"me tomo un café.";
 
-    cantidad_de_ocurrencias = FuncionesString::reemplazarOcurrencias(string_utf8_a_modificar, u8"café", "cafe");
+    cantidad_de_ocurrencias = FuncionesString::reemplazarOcurrencias(string_utf8_a_modificar, u8"é", "e");
 
     ASSERT_EQ(1, cantidad_de_ocurrencias);
     ASSERT_STREQ("me tomo un cafe.", string_utf8_a_modificar.c_str());
