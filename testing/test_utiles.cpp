@@ -179,3 +179,67 @@ TEST(utiles, FuncionesStringReemplazarOcurrencias)
     ASSERT_EQ(1, cantidad_de_ocurrencias);
     ASSERT_STREQ("me tomo un cafe.", string_utf8_a_modificar.c_str());
 }
+
+TEST(utiles, FuncionesStringEliminarOcurrencias)
+{
+    std::string string_a_modificar = "el puerco esta en el barro.";
+
+    unsigned int cantidad_de_ocurrencias = FuncionesString::eliminarOcurrencias(string_a_modificar, " barro");
+
+    ASSERT_EQ(1, cantidad_de_ocurrencias);
+    ASSERT_STREQ("el puerco esta en el.", string_a_modificar.c_str());
+
+    cantidad_de_ocurrencias = FuncionesString::eliminarOcurrencias(string_a_modificar, "el");
+
+    ASSERT_EQ(2, cantidad_de_ocurrencias);
+    ASSERT_STREQ(" puerco esta en .", string_a_modificar.c_str());
+
+    std::string string_utf8_a_modificar = u8"me tomo un café.";
+
+    cantidad_de_ocurrencias = FuncionesString::eliminarOcurrencias(string_utf8_a_modificar, u8" café");
+
+    ASSERT_EQ(1, cantidad_de_ocurrencias);
+    ASSERT_STREQ("me tomo un.", string_utf8_a_modificar.c_str());
+}
+
+TEST(utiles, todoMinuscula)
+{
+    std::string oracion_con_mayusculas = "HabIa uNa veZ un CafE qUE uSaBa UnA cAmArA CoN MuChA EmOCiOn.";
+    std::string oracion_sin_mayusculas = "habia una vez un cafe que usaba una camara con mucha emocion.";
+
+    FuncionesString::todoMinuscula(oracion_con_mayusculas);
+
+    ASSERT_STREQ(oracion_sin_mayusculas.c_str(), oracion_con_mayusculas.c_str());
+}
+
+TEST(utiles, eliminarSignosYPuntuacion)
+{
+    std::string oracion_con_simbolos_no_caracteres = "y matori dijo: \"me quedan $20,35.-\". habia (mal)gastado el premio -que no habia ganado- en un monton de m&m y demas basuras.";
+    std::string oracion_sin_simbolos_no_caracteres = "y matori dijo me quedan 20 35 habia mal gastado el premio que no habia ganado en un monton de m m y demas basuras ";
+
+    FuncionesString::eliminarSignosYPuntuacion(oracion_con_simbolos_no_caracteres);
+
+    ASSERT_STREQ(oracion_con_simbolos_no_caracteres.c_str(), oracion_sin_simbolos_no_caracteres.c_str());
+}
+
+TEST(utiles, FuncionesStringEliminarCaracteresDeControl)
+{
+    std::string string_a_modificar = "\tel puerco esta en el barro.\nel zorro no sabe donde ir.\rel pato hace cuak.\a";
+    std::string string_modificado = " el puerco esta en el barro. el zorro no sabe donde ir. el pato hace cuak. ";
+
+    unsigned int cantidad_de_caracteres_de_control_eliminados = FuncionesString::eliminarCaracteresDeControl(string_a_modificar);
+    
+    ASSERT_EQ(4, cantidad_de_caracteres_de_control_eliminados);
+    ASSERT_STREQ(string_modificado.c_str(), string_a_modificar.c_str());
+}
+
+TEST(utiles, FuncionesStringEliminarEspaciosRedundantes)
+{
+    std::string string_a_modificar = "   el      puerco    esta en    el barro.     el zorro   no     sabe   donde  ir.   el    pato  hace   cuak.     ";
+    std::string string_modificado = " el puerco esta en el barro. el zorro no sabe donde ir. el pato hace cuak. ";
+
+    unsigned int cantidad_de_espacios_redundantes_eliminados = FuncionesString::eliminarEspaciosRedundantes(string_a_modificar);
+
+    ASSERT_EQ(38, cantidad_de_espacios_redundantes_eliminados);
+    ASSERT_STREQ(string_modificado.c_str(), string_a_modificar.c_str());
+}
