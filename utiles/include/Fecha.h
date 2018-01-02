@@ -50,6 +50,12 @@ public:
 
     // METODOS
 
+    static Fecha parsearFormatoAAAAMMDD(std::string string_fecha, std::string separador = "");
+    
+    static Fecha parsearFormatoDDmesAAAA(std::string string_fecha, std::string separador = "");
+
+    static Fecha parsearFormatoDDMMAAAA(std::string string_fecha, std::string separador = "");
+
     // CONSULTAS
 
     // OPERADORES
