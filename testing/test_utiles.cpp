@@ -18,8 +18,11 @@ TEST(utiles, GettersYSettersJson)
     std::string etiqueta = json->getAtributoValorString("etiqueta");
 
     Json* contenido = json->getAtributoValorJson("contenido");
-
+    
     std::string json_original = contenido->jsonString();
+
+    float peso_nuevo = 3.456f;
+    contenido->agregarAtributoValor("peso", peso_nuevo);
 
     unsigned long long int id_periodo = contenido->getAtributoValorUint("id_periodo");
     unsigned long long int id_reporte = contenido->getAtributoValorUint("id_reporte");
@@ -27,6 +30,7 @@ TEST(utiles, GettersYSettersJson)
     std::vector<unsigned long long int> ids_medios = contenido->getAtributoArrayUint("ids_medios");
     std::vector<unsigned long long int> ids_secciones = contenido->getAtributoArrayUint("ids_secciones");
     std::vector<Json*> tweets = json->getAtributoArrayJson("tweets");
+    float peso = contenido->getAtributoValorFloat("peso");
 
     std::string json_sin_modificar = contenido->jsonString();
 
@@ -44,9 +48,11 @@ TEST(utiles, GettersYSettersJson)
 
     ASSERT_STREQ("primavera_2017", etiqueta.c_str());
 
+    ASSERT_EQ(peso_nuevo, peso);
+
     ASSERT_STREQ("{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18]}", json_original.c_str());
 
-    ASSERT_STREQ("{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18]}", json_sin_modificar.c_str());
+    ASSERT_STREQ("{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18],\"peso\":3.4560000896453859}", json_sin_modificar.c_str());
 
     ASSERT_STREQ("{\"id_tweet\":1}", json_tweets_1.c_str());
 

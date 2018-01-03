@@ -28,7 +28,8 @@ public:
     virtual void reset();
 
     virtual void agregarAtributoValor(std::string clave, std::string valor);
-    virtual void agregarAtributoValor(std::string clave, unsigned int valor);
+    virtual void agregarAtributoValor(std::string clave, unsigned long long int valor);
+    virtual void agregarAtributoValor(std::string clave, float valor);
 
     virtual void agregarAtributoArray(std::string clave, std::vector<unsigned long long int> array_valores);
     virtual void agregarAtributoArray(std::string clave, std::vector<std::string> array_valores);
@@ -39,8 +40,9 @@ public:
 
     // GETTERS
 
-    virtual unsigned long long int getAtributoValorUint(std::string clave);
     virtual std::string getAtributoValorString(std::string clave);
+    virtual unsigned long long int getAtributoValorUint(std::string clave);
+    virtual float getAtributoValorFloat(std::string clave);
     virtual Json* getAtributoValorJson(std::string clave);
 
     virtual std::vector<unsigned long long int> getAtributoArrayUint(std::string clave);

@@ -71,7 +71,16 @@ void Json::agregarAtributoValor(std::string clave, std::string valor)
     this->valor->AddMember(tag, json_valor, *alocador);
 }
 
-void Json::agregarAtributoValor(std::string clave, unsigned int valor)
+void Json::agregarAtributoValor(std::string clave, unsigned long long int valor)
+{
+    rapidjson::Document::AllocatorType* alocador = &this->documento_alocador->GetAllocator();
+
+    rapidjson::Value tag(clave.c_str(), *alocador);
+    rapidjson::Value json_valor(valor);
+    this->valor->AddMember(tag, json_valor, *alocador);
+}
+
+void Json::agregarAtributoValor(std::string clave, float valor)
 {
     rapidjson::Document::AllocatorType* alocador = &this->documento_alocador->GetAllocator();
 
@@ -131,6 +140,13 @@ unsigned long long int Json::getAtributoValorUint(std::string clave)
     return valor;
 }
 
+float Json::getAtributoValorFloat(std::string clave)
+{
+    float valor = (*this->valor)[clave.c_str()].GetFloat();
+
+    return valor;
+}
+
 std::string Json::getAtributoValorString(std::string clave)
 {
     std::string valor = (*this->valor)[clave.c_str()].GetString();
@@ -142,11 +158,15 @@ Json * Json::getAtributoValorJson(std::string clave)
 {
     rapidjson::Value* valor = &(*this->valor)[clave.c_str()];
 
-    rapidjson::Value* valor_nuevo = new rapidjson::Value(rapidjson::kObjectType);
+    std::stringstream sstream;
+    rapidjson::OStreamWrapper osw(sstream);
 
-    valor_nuevo->CopyFrom(*valor, this->documento_alocador->GetAllocator());
+    rapidjson::Writer<rapidjson::OStreamWrapper> writer(osw);
+    valor->Accept(writer);
 
-    Json* json = new Json(valor_nuevo);
+    writer.Flush();
+
+    Json* json = new Json(sstream.str());
 
     return json;
 }

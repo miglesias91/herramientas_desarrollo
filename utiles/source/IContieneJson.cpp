@@ -14,6 +14,11 @@ IContieneJson::~IContieneJson()
 
 Json * IContieneJson::getJson()
 {
+    if (NULL == this->json)
+    {
+        this->json = new Json();
+    }
+
     return this->json;
 }
 
