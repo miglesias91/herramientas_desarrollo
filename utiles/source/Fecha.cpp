@@ -5,7 +5,7 @@
 
 using namespace herramientas::utiles;
 
-std::string Fecha::nombres_meses[] = { "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre" };
+std::vector<std::string> Fecha::nombres_meses = { "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre" };
 
 // CONSTRUCTORES
 
@@ -136,10 +136,8 @@ Fecha Fecha::parsearFormatoDDmesAAAA(std::string string_fecha, std::string separ
     std::string string_mes = string_fecha.substr(2, string_fecha.size() - 6);
     std::string string_anio = string_fecha.substr(string_fecha.size() - 4, 4);
 
-    unsigned int mes = std::distance(nombres_meses->begin(), std::find(nombres_meses->begin(), nombres_meses->end(), string_mes);
-
     unsigned int anio = std::stoul(string_anio);
-    unsigned int mes = std::stoul(string_mes);
+    unsigned int mes = std::distance(nombres_meses.begin(), std::find(nombres_meses.begin(), nombres_meses.end(), string_mes)) + 1;
     unsigned int dia = std::stoul(string_dia);
 
     return Fecha(dia, mes, anio);
@@ -152,7 +150,15 @@ Fecha Fecha::parsearFormatoDDMMAAAA(std::string string_fecha, std::string separa
         FuncionesString::eliminarOcurrencias(string_fecha, separador);
     }
 
-    return Fecha();
+    std::string string_anio = string_fecha.substr(4, 4);
+    std::string string_mes = string_fecha.substr(2, 2);
+    std::string string_dia = string_fecha.substr(0, 2);
+
+    unsigned int anio = std::stoul(string_anio);
+    unsigned int mes = std::stoul(string_mes);
+    unsigned int dia = std::stoul(string_dia);
+
+    return Fecha(dia, mes, anio);
 }
 
 // CONSULTAS

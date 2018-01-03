@@ -2,6 +2,7 @@
 
 // stl
 #include <string>
+#include <vector>
 
 namespace herramientas
 {
@@ -68,7 +69,7 @@ public:
 
 private:
 
-    static std::string nombres_meses[];
+    static std::vector<std::string> nombres_meses;
 
     std::string etiqueta;
 

@@ -24,6 +24,16 @@ web::http::http_response HTTPRespuesta::getRespuesta()
 	return this->http_respuesta;
 }
 
+bool HTTPRespuesta::armarJson()
+{
+    return true;
+}
+
+bool HTTPRespuesta::parsearJson()
+{
+    return true;
+}
+
 // SETTERS
 
 // METODOS

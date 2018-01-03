@@ -7,6 +7,7 @@
 // utiles
 #include <utiles/include/Json.h>
 #include <utiles/include/FuncionesString.h>
+#include <utiles/include/Fecha.h>
 
 using namespace herramientas::utiles;
 
@@ -242,4 +243,63 @@ TEST(utiles, FuncionesStringEliminarEspaciosRedundantes)
 
     ASSERT_EQ(38, cantidad_de_espacios_redundantes_eliminados);
     ASSERT_STREQ(string_modificado.c_str(), string_a_modificar.c_str());
+}
+
+TEST(utiles, FechaParsearAAAAMMDD)
+{
+    std::string string_fecha_sin_separador = "20180102";
+    std::string string_fecha_con_separador = "2018 01 02";
+
+    Fecha fecha_sin_separador = Fecha::parsearFormatoAAAAMMDD(string_fecha_sin_separador);
+    Fecha fecha_con_separador = Fecha::parsearFormatoAAAAMMDD(string_fecha_con_separador, " ");
+
+    ASSERT_EQ(2018, fecha_sin_separador.getAnio());
+    ASSERT_EQ(2018, fecha_con_separador.getAnio());
+
+    ASSERT_EQ(01, fecha_sin_separador.getMes());
+    ASSERT_EQ(01, fecha_con_separador.getMes());
+
+    ASSERT_EQ(02, fecha_sin_separador.getDia());
+    ASSERT_EQ(02, fecha_con_separador.getDia());
+}
+
+TEST(utiles, FechaParsearDDmesAAAA)
+{
+    std::string string_fecha_sin_separador_1 = "02enero2018";
+    std::string string_fecha_sin_separador_2 = "02diciembre2018";
+    std::string string_fecha_con_separador = "02 enero 2018";
+
+    Fecha fecha_sin_separador_1 = Fecha::parsearFormatoDDmesAAAA(string_fecha_sin_separador_1);
+    Fecha fecha_sin_separador_2 = Fecha::parsearFormatoDDmesAAAA(string_fecha_sin_separador_2);
+    Fecha fecha_con_separador = Fecha::parsearFormatoDDmesAAAA(string_fecha_con_separador, " ");
+
+    ASSERT_EQ(2018, fecha_sin_separador_1.getAnio());
+    ASSERT_EQ(2018, fecha_sin_separador_2.getAnio());
+    ASSERT_EQ(2018, fecha_con_separador.getAnio());
+
+    ASSERT_EQ(01, fecha_sin_separador_1.getMes());
+    ASSERT_EQ(12, fecha_sin_separador_2.getMes());
+    ASSERT_EQ(01, fecha_con_separador.getMes());
+
+    ASSERT_EQ(02, fecha_sin_separador_1.getDia());
+    ASSERT_EQ(02, fecha_sin_separador_2.getDia());
+    ASSERT_EQ(02, fecha_con_separador.getDia());
+}
+
+TEST(utiles, FechaParsearDDMMAAAA)
+{
+    std::string string_fecha_sin_separador = "02012018";
+    std::string string_fecha_con_separador = "02 01 2018";
+
+    Fecha fecha_sin_separador = Fecha::parsearFormatoDDMMAAAA(string_fecha_sin_separador);
+    Fecha fecha_con_separador = Fecha::parsearFormatoDDMMAAAA(string_fecha_con_separador, " ");
+
+    ASSERT_EQ(2018, fecha_sin_separador.getAnio());
+    ASSERT_EQ(2018, fecha_con_separador.getAnio());
+
+    ASSERT_EQ(01, fecha_sin_separador.getMes());
+    ASSERT_EQ(01, fecha_con_separador.getMes());
+
+    ASSERT_EQ(02, fecha_sin_separador.getDia());
+    ASSERT_EQ(02, fecha_con_separador.getDia());
 }
