@@ -52,7 +52,7 @@ TEST(utiles, GettersYSettersJson)
 
     ASSERT_STREQ("{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18]}", json_original.c_str());
 
-    ASSERT_STREQ("{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18],\"peso\":3.456}", json_sin_modificar.c_str());
+    ASSERT_STREQ("{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18],\"peso\":3.4567}", json_sin_modificar.c_str());
 
     ASSERT_STREQ("{\"id_tweet\":1}", json_tweets_1.c_str());
 
