@@ -21,7 +21,7 @@ TEST(utiles, GettersYSettersJson)
     
     std::string json_original = contenido->jsonString();
 
-    float peso_nuevo = 3.456f;
+    float peso_nuevo = 3.45674345f;
     contenido->agregarAtributoValor("peso", peso_nuevo);
 
     unsigned long long int id_periodo = contenido->getAtributoValorUint("id_periodo");
@@ -52,7 +52,7 @@ TEST(utiles, GettersYSettersJson)
 
     ASSERT_STREQ("{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18]}", json_original.c_str());
 
-    ASSERT_STREQ("{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18],\"peso\":3.4560000896453859}", json_sin_modificar.c_str());
+    ASSERT_STREQ("{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18],\"peso\":3.456}", json_sin_modificar.c_str());
 
     ASSERT_STREQ("{\"id_tweet\":1}", json_tweets_1.c_str());
 

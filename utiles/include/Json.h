@@ -43,6 +43,8 @@ public:
     virtual std::string getAtributoValorString(std::string clave);
     virtual unsigned long long int getAtributoValorUint(std::string clave);
     virtual float getAtributoValorFloat(std::string clave);
+
+    // Devuelve una copia. Cuando se termine de usar, se tiene que destruir (usando 'delete').
     virtual Json* getAtributoValorJson(std::string clave);
 
     virtual std::vector<unsigned long long int> getAtributoArrayUint(std::string clave);
@@ -54,7 +56,10 @@ public:
     virtual std::string jsonString();
 
     // SETTERS
+
     virtual void setValor(rapidjson::Value* valor);
+
+    virtual void setCantidadMaximaDecimales(unsigned int cantidad_maxima_decimales);
 
 private:
 
@@ -63,6 +68,8 @@ private:
     rapidjson::Document * documento_alocador;
 
     std::vector<Json*> copia_atributos_json;
+
+    unsigned int cantidad_maxima_decimales;
 };
 
 };

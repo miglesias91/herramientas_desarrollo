@@ -10,15 +10,15 @@
 
 using namespace herramientas::utiles;
 
-Json::Json() : valor(new rapidjson::Value(rapidjson::kObjectType)), documento_alocador(new rapidjson::Document())
+Json::Json() : valor(new rapidjson::Value(rapidjson::kObjectType)), documento_alocador(new rapidjson::Document()), cantidad_maxima_decimales(4)
 {
 }
 
-Json::Json(rapidjson::Value* valor) : valor(valor), documento_alocador(new rapidjson::Document())
+Json::Json(rapidjson::Value* valor) : valor(valor), documento_alocador(new rapidjson::Document()), cantidad_maxima_decimales(4)
 {
 }
 
-Json::Json(std::string json) : valor(NULL), documento_alocador(NULL)
+Json::Json(std::string json) : valor(NULL), documento_alocador(NULL), cantidad_maxima_decimales(4)
 {
     rapidjson::Document* documento = new rapidjson::Document();
     documento->Parse(json.c_str());
@@ -162,6 +162,8 @@ Json * Json::getAtributoValorJson(std::string clave)
     rapidjson::OStreamWrapper osw(sstream);
 
     rapidjson::Writer<rapidjson::OStreamWrapper> writer(osw);
+    writer.SetMaxDecimalPlaces(this->cantidad_maxima_decimales);
+
     valor->Accept(writer);
 
     writer.Flush();
@@ -255,6 +257,11 @@ void Json::setValor(rapidjson::Value * valor)
     this->valor = valor;
 }
 
+void Json::setCantidadMaximaDecimales(unsigned int cantidad_maxima_decimales)
+{
+    this->cantidad_maxima_decimales = cantidad_maxima_decimales;
+}
+
 rapidjson::Value* Json::getValor()
 {
     return this->valor;
@@ -266,6 +273,8 @@ std::string Json::jsonString()
     rapidjson::OStreamWrapper osw(sstream);
 
     rapidjson::Writer<rapidjson::OStreamWrapper> writer(osw);
+    writer.SetMaxDecimalPlaces(this->cantidad_maxima_decimales);
+
     this->getValor()->Accept(writer);
 
     writer.Flush();
