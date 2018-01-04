@@ -119,15 +119,19 @@
   <ItemGroup>
     <ClInclude Include="include\Conversiones.h" />
     <ClInclude Include="include\Fecha.h" />
+    <ClInclude Include="include\FuncionesSistemaArchivos.h" />
     <ClInclude Include="include\FuncionesString.h" />
     <ClInclude Include="include\IContieneJson.h" />
+    <ClInclude Include="include\ISerializable.h" />
     <ClInclude Include="include\Json.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Conversiones.cpp" />
     <ClCompile Include="source\Fecha.cpp" />
+    <ClCompile Include="source\FuncionesSistemaArchivos.cpp" />
     <ClCompile Include="source\FuncionesString.cpp" />
     <ClCompile Include="source\IContieneJson.cpp" />
+    <ClCompile Include="source\ISerializable.cpp" />
     <ClCompile Include="source\Json.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
