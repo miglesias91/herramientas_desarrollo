@@ -8,6 +8,8 @@
 #include <utiles/include/Json.h>
 #include <utiles/include/FuncionesString.h>
 #include <utiles/include/Fecha.h>
+#include <utiles/include/ID.h>
+#include <utiles/include/GestorIDs.h>
 
 using namespace herramientas::utiles;
 
@@ -308,4 +310,47 @@ TEST(utiles, FechaParsearDDMMAAAA)
 
     ASSERT_EQ(02, fecha_sin_separador.getDia());
     ASSERT_EQ(02, fecha_con_separador.getDia());
+}
+
+
+TEST(utiles, AsignacionIDs)
+{
+    GestorIDs gestor_ids;
+
+    unsigned long long int id_actual = gestor_ids.getIdActual();
+
+    ASSERT_EQ(0, id_actual);
+
+    ID * id_1 = gestor_ids.nuevoID();
+    ID * id_2 = gestor_ids.nuevoID();
+
+    ASSERT_EQ(0, id_1->numero());
+    ASSERT_EQ("0", id_1->string());
+
+    ASSERT_EQ(1, id_2->numero());
+    ASSERT_EQ("1", id_2->string());
+
+    id_actual = gestor_ids.getIdActual();
+
+    ASSERT_EQ(2, id_actual);
+
+    gestor_ids.setIdActual(150);
+
+    id_actual = gestor_ids.getIdActual();
+
+    ASSERT_EQ(150, id_actual);
+
+    ID * id_3 = gestor_ids.nuevoID();
+    ID * id_4 = gestor_ids.nuevoID();
+
+    ASSERT_EQ(150, id_3->numero());
+    ASSERT_EQ("150", id_3->string());
+
+    ASSERT_EQ(151, id_4->numero());
+    ASSERT_EQ("151", id_4->string());
+
+    delete id_1;
+    delete id_2;
+    delete id_3;
+    delete id_4;
 }

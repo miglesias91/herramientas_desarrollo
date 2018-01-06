@@ -121,7 +121,9 @@
     <ClInclude Include="include\Fecha.h" />
     <ClInclude Include="include\FuncionesSistemaArchivos.h" />
     <ClInclude Include="include\FuncionesString.h" />
+    <ClInclude Include="include\GestorIDs.h" />
     <ClInclude Include="include\IContieneJson.h" />
+    <ClInclude Include="include\ID.h" />
     <ClInclude Include="include\ISerializable.h" />
     <ClInclude Include="include\Json.h" />
   </ItemGroup>
@@ -130,7 +132,9 @@
     <ClCompile Include="source\Fecha.cpp" />
     <ClCompile Include="source\FuncionesSistemaArchivos.cpp" />
     <ClCompile Include="source\FuncionesString.cpp" />
+    <ClCompile Include="source\GestorIDs.cpp" />
     <ClCompile Include="source\IContieneJson.cpp" />
+    <ClCompile Include="source\ID.cpp" />
     <ClCompile Include="source\ISerializable.cpp" />
     <ClCompile Include="source\Json.cpp" />
   </ItemGroup>
