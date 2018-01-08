@@ -1,18 +1,18 @@
-#include <utiles/include/IContieneJson.h>
+#include <utiles/include/ISerializable.h>
 
 using namespace herramientas::utiles;
 
-IContieneJson::IContieneJson(Json * json) : json(json)
+ISerializable::ISerializable(Json * json) : json(json)
 {
 }
 
-IContieneJson::~IContieneJson()
+ISerializable::~ISerializable()
 {
     delete this->json;
     this->json = NULL;
 }
 
-Json * IContieneJson::getJson()
+Json * ISerializable::getJson()
 {
     if (NULL == this->json)
     {
@@ -22,7 +22,7 @@ Json * IContieneJson::getJson()
     return this->json;
 }
 
-void IContieneJson::setJson(Json * json)
+void ISerializable::setJson(Json * json)
 {
     delete this->json;
 

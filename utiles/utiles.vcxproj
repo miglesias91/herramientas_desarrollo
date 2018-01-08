@@ -133,9 +133,9 @@
     <ClCompile Include="source\FuncionesSistemaArchivos.cpp" />
     <ClCompile Include="source\FuncionesString.cpp" />
     <ClCompile Include="source\GestorIDs.cpp" />
-    <ClCompile Include="source\IContieneJson.cpp" />
-    <ClCompile Include="source\ID.cpp" />
     <ClCompile Include="source\ISerializable.cpp" />
+    <ClCompile Include="source\ID.cpp" />
+    <ClCompile Include="source\IContieneJson.cpp" />
     <ClCompile Include="source\Json.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

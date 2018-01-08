@@ -3,9 +3,6 @@
 // stl
 #include <vector>
 
-// cpprest
-#include <cpprest/details/basic_types.h>
-
 // rapidjson
 #include <rapidjson/document.h>
 
