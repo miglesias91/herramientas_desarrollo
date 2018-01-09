@@ -109,6 +109,11 @@ void Fecha::setAnio(unsigned int anio)
 
 Fecha Fecha::parsearFormatoAAAAMMDD(std::string string_fecha, std::string separador)
 {
+    if (8 != string_fecha.size())
+    {
+        return Fecha(0, 0, 0);
+    }
+
     if (separador.size() > 0)
     {
         FuncionesString::eliminarOcurrencias(string_fecha, separador);
@@ -127,6 +132,11 @@ Fecha Fecha::parsearFormatoAAAAMMDD(std::string string_fecha, std::string separa
 
 Fecha Fecha::parsearFormatoDDmesAAAA(std::string string_fecha, std::string separador)
 {
+    if (8 != string_fecha.size())
+    {
+        return Fecha(0, 0, 0);
+    }
+
     if (separador.size() > 0)
     {
         FuncionesString::eliminarOcurrencias(string_fecha, separador);
@@ -145,6 +155,11 @@ Fecha Fecha::parsearFormatoDDmesAAAA(std::string string_fecha, std::string separ
 
 Fecha Fecha::parsearFormatoDDMMAAAA(std::string string_fecha, std::string separador)
 {
+    if (8 != string_fecha.size())
+    {
+        return Fecha(0, 0, 0);
+    }
+
     if (separador.size() > 0)
     {
         FuncionesString::eliminarOcurrencias(string_fecha, separador);
