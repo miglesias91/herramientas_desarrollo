@@ -121,6 +121,24 @@ void Json::agregarAtributoArray(std::string clave, std::vector<std::string> arra
     this->valor->AddMember(tag, json_valores, *alocador);
 }
 
+void Json::agregarAtributoArray(std::string clave, std::vector<Json*> array_valores)
+{
+    rapidjson::Document::AllocatorType* alocador = &this->documento_alocador->GetAllocator();
+
+    rapidjson::Value json_valores(rapidjson::kArrayType);
+
+    for (std::vector<Json*>::iterator it = array_valores.begin(); it != array_valores.end(); it++)
+    {
+        Json * copia_atributo = (*it)->clonar();
+
+        rapidjson::Value valor((*it).c_str(), *alocador);
+        json_valores.PushBack(valor, *alocador);
+    }
+
+    rapidjson::Value tag(clave.c_str(), *alocador);
+    this->valor->AddMember(tag, json_valores, *alocador);
+}
+
 void Json::agregarAtributoJson(std::string clave, Json * json)
 {
     Json * copia_atributo = json->clonar();

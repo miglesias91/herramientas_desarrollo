@@ -30,6 +30,7 @@ public:
 
     virtual void agregarAtributoArray(std::string clave, std::vector<unsigned long long int> array_valores);
     virtual void agregarAtributoArray(std::string clave, std::vector<std::string> array_valores);
+    virtual void agregarAtributoArray(std::string clave, std::vector<Json*> array_valores);
 
     virtual void agregarAtributoJson(std::string clave, Json* json);
 

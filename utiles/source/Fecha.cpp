@@ -109,14 +109,14 @@ void Fecha::setAnio(unsigned int anio)
 
 Fecha Fecha::parsearFormatoAAAAMMDD(std::string string_fecha, std::string separador)
 {
-    if (8 != string_fecha.size())
-    {
-        return Fecha(0, 0, 0);
-    }
-
     if (separador.size() > 0)
     {
         FuncionesString::eliminarOcurrencias(string_fecha, separador);
+    }
+    
+    if (8 != string_fecha.size())
+    {
+        return Fecha(0, 0, 0);
     }
 
     std::string string_anio = string_fecha.substr(0, 4);
@@ -126,17 +126,17 @@ Fecha Fecha::parsearFormatoAAAAMMDD(std::string string_fecha, std::string separa
     unsigned int anio = std::stoul(string_anio);
     unsigned int mes = std::stoul(string_mes);
     unsigned int dia = std::stoul(string_dia);
+    
+    if (mes > 12 || dia > 31)
+    {
+        return Fecha(0, 0, 0);
+    }
 
     return Fecha(dia, mes, anio);
 }
 
 Fecha Fecha::parsearFormatoDDmesAAAA(std::string string_fecha, std::string separador)
 {
-    if (8 != string_fecha.size())
-    {
-        return Fecha(0, 0, 0);
-    }
-
     if (separador.size() > 0)
     {
         FuncionesString::eliminarOcurrencias(string_fecha, separador);
@@ -150,19 +150,24 @@ Fecha Fecha::parsearFormatoDDmesAAAA(std::string string_fecha, std::string separ
     unsigned int mes = std::distance(nombres_meses.begin(), std::find(nombres_meses.begin(), nombres_meses.end(), string_mes)) + 1;
     unsigned int dia = std::stoul(string_dia);
 
+    if (mes > 12 || dia > 31)
+    {
+        return Fecha(0, 0, 0);
+    }
+
     return Fecha(dia, mes, anio);
 }
 
 Fecha Fecha::parsearFormatoDDMMAAAA(std::string string_fecha, std::string separador)
 {
-    if (8 != string_fecha.size())
-    {
-        return Fecha(0, 0, 0);
-    }
-
     if (separador.size() > 0)
     {
         FuncionesString::eliminarOcurrencias(string_fecha, separador);
+    }
+
+    if (8 != string_fecha.size())
+    {
+        return Fecha(0, 0, 0);
     }
 
     std::string string_anio = string_fecha.substr(4, 4);
@@ -172,6 +177,11 @@ Fecha Fecha::parsearFormatoDDMMAAAA(std::string string_fecha, std::string separa
     unsigned int anio = std::stoul(string_anio);
     unsigned int mes = std::stoul(string_mes);
     unsigned int dia = std::stoul(string_dia);
+    
+    if (mes > 12 || dia > 31)
+    {
+        return Fecha(0, 0, 0);
+    }
 
     return Fecha(dia, mes, anio);
 }
