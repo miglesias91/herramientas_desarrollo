@@ -93,11 +93,33 @@ TEST(utiles, GettersYSettersJsonArray)
 
     delete json;
 
+    tweets.clear();
+
     ASSERT_STREQ("{\"id_tweet\":1}", json_tweets_1.c_str());
 
     ASSERT_STREQ("{\"id_tweet\":2}", json_tweets_2.c_str());
 
     ASSERT_STREQ("{\"id_tweet\":3}", json_tweets_3.c_str());
+
+    Json * json_1 = new Json("{\"id_tweet\":1}");
+    Json * json_2 = new Json("{\"id_tweet\":2}");
+    Json * json_3 = new Json("{\"id_tweet\":3}");
+
+    tweets.push_back(json_1);
+    tweets.push_back(json_2);
+    tweets.push_back(json_3);
+
+    Json * json_array = new Json();
+
+    json_array->agregarAtributoArray("tweets", tweets);
+
+    ASSERT_EQ("{\"tweets\":[{\"id_tweet\":1},{\"id_tweet\":2},{\"id_tweet\":3}]}", json_array->jsonString());
+
+    delete json_1;
+    delete json_2;
+    delete json_3;
+
+    delete json_array;
 }
 
 
