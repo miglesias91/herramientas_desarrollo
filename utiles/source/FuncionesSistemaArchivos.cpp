@@ -26,4 +26,13 @@ bool FuncionesSistemaArchivos::leer(std::string path, std::vector<unsigned char>
 	return false;
 }
 
+bool FuncionesSistemaArchivos::eliminar(std::string path)
+{
+    if (0 == std::remove(path.c_str()))
+    {
+        return true;
+    }
+    return false;
+}
+
 

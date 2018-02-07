@@ -124,6 +124,7 @@
     <ClInclude Include="include\GestorIDs.h" />
     <ClInclude Include="include\IContieneJson.h" />
     <ClInclude Include="include\ID.h" />
+    <ClInclude Include="include\IHashable.h" />
     <ClInclude Include="include\ISerializable.h" />
     <ClInclude Include="include\Json.h" />
   </ItemGroup>
@@ -133,6 +134,7 @@
     <ClCompile Include="source\FuncionesSistemaArchivos.cpp" />
     <ClCompile Include="source\FuncionesString.cpp" />
     <ClCompile Include="source\GestorIDs.cpp" />
+    <ClCompile Include="source\IHashable.cpp" />
     <ClCompile Include="source\ISerializable.cpp" />
     <ClCompile Include="source\ID.cpp" />
     <ClCompile Include="source\IContieneJson.cpp" />

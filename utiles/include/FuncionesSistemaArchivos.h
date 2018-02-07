@@ -25,6 +25,9 @@ public:
 	// - contenido: tira de bytes leida.
 	static bool leer(std::string path, std::vector<unsigned char> & contenido);
 
+    // elimina el archivo ubicado en el path indicado.
+    static bool eliminar(std::string path);
+
 };
 
 };
