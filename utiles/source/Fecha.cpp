@@ -1,5 +1,10 @@
 #include <utiles/include/Fecha.h>
 
+// stl
+#include <iomanip>
+#include <sstream>
+#include <time.h>
+
 // funciones string
 #include <utiles/include/FuncionesString.h>
 
@@ -22,6 +27,20 @@ Fecha::~Fecha()
 }
 
 // GETTERS
+
+Fecha Fecha::getFechaActual()
+{
+    time_t tiempo = std::time(nullptr);
+    tm tm;
+    localtime_s(&tm, &tiempo);
+
+    Fecha fecha_actual;
+    fecha_actual.setAnio(tm.tm_year + 1900);
+    fecha_actual.setMes(tm.tm_mon + 1);
+    fecha_actual.setDia(tm.tm_mday);
+
+    return fecha_actual;
+}
 
 unsigned int Fecha::getDia()
 {

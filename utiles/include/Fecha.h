@@ -23,6 +23,8 @@ public:
 
     // GETTERS
 
+    static Fecha getFechaActual();
+
 	unsigned int getDia();
 	unsigned int getMes();
 	unsigned int getAnio();
