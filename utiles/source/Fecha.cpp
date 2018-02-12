@@ -59,17 +59,29 @@ unsigned int Fecha::getAnio()
 
 std::string Fecha::getStringDia()
 {
-	return std::to_string(this->dia);
+    char buffer[10];
+
+    sprintf_s(buffer, "%02d", this->dia);
+
+	return std::string(buffer);
 }
 
 std::string Fecha::getStringMes()
 {
-	return std::to_string(this->mes);
+    char buffer[10];
+
+    sprintf_s(buffer, "%02d", this->mes);
+
+    return std::string(buffer);
 }
 
 std::string Fecha::getStringAnio()
 {
-	return std::to_string(this->anio);
+    char buffer[10];
+
+    sprintf_s(buffer, "%04d", this->anio);
+
+    return std::string(buffer);
 }
 
 std::string Fecha::getNombreMes()

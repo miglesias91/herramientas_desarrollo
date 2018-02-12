@@ -349,6 +349,44 @@ TEST(utiles, FechaParsearDDMMAAAA)
     ASSERT_EQ(0, fecha_invalida.getDia());
 }
 
+TEST(utiles, FechaArmarAAAAMMDD)
+{
+    Fecha fecha_1(1, 2, 2018);
+    Fecha fecha_2(10, 2, 2018);
+    Fecha fecha_3(1, 12, 2018);
+    Fecha fecha_4(10, 12, 2018);
+
+    ASSERT_EQ("20180201", fecha_1.getStringAAAAMMDD());
+    ASSERT_EQ("20180210", fecha_2.getStringAAAAMMDD());
+    ASSERT_EQ("20181201", fecha_3.getStringAAAAMMDD());
+    ASSERT_EQ("20181210", fecha_4.getStringAAAAMMDD());
+}
+
+TEST(utiles, FechaArmarDDmesAAAA)
+{
+    Fecha fecha_1(1, 2, 2018);
+    Fecha fecha_2(10, 2, 2018);
+    Fecha fecha_3(1, 12, 2018);
+    Fecha fecha_4(10, 12, 2018);
+
+    ASSERT_EQ("01febrero2018", fecha_1.getStringDDmesAAAA());
+    ASSERT_EQ("10febrero2018", fecha_2.getStringDDmesAAAA());
+    ASSERT_EQ("01diciembre2018", fecha_3.getStringDDmesAAAA());
+    ASSERT_EQ("10diciembre2018", fecha_4.getStringDDmesAAAA());
+}
+
+TEST(utiles, FechaArmarDDMMAAAA)
+{
+    Fecha fecha_1(1, 2, 2018);
+    Fecha fecha_2(10, 2, 2018);
+    Fecha fecha_3(1, 12, 2018);
+    Fecha fecha_4(10, 12, 2018);
+
+    ASSERT_EQ("01022018", fecha_1.getStringDDMMAAAA());
+    ASSERT_EQ("10022018", fecha_2.getStringDDMMAAAA());
+    ASSERT_EQ("01122018", fecha_3.getStringDDMMAAAA());
+    ASSERT_EQ("10122018", fecha_4.getStringDDMMAAAA());
+}
 
 TEST(utiles, AsignacionIDs)
 {

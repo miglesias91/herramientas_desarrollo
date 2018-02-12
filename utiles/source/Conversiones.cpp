@@ -25,6 +25,8 @@ std::string Conversiones::string2base64(std::string tira_de_bytes_como_string)
 
     utility::string_t bytes_decodificados = utility::conversions::to_base64(vector_tira_de_bytes);
 
+    delete[] tira_bytes;
+
     return utility::conversions::to_utf8string(bytes_decodificados);
 }
 
