@@ -27,6 +27,7 @@ public:
     virtual void agregarAtributoValor(std::string clave, std::string valor);
     virtual void agregarAtributoValor(std::string clave, unsigned long long int valor);
     virtual void agregarAtributoValor(std::string clave, float valor);
+    virtual void agregarAtributoValor(std::string clave, bool valor);
 
     virtual void agregarAtributoArray(std::string clave, std::vector<unsigned long long int> array_valores);
     virtual void agregarAtributoArray(std::string clave, std::vector<std::string> array_valores);
@@ -41,6 +42,7 @@ public:
     virtual std::string getAtributoValorString(std::string clave);
     virtual unsigned long long int getAtributoValorUint(std::string clave);
     virtual float getAtributoValorFloat(std::string clave);
+    virtual bool getAtributoValorBool(std::string clave);
 
     // Devuelve una copia. Cuando se termine de usar, se tiene que destruir (usando 'delete').
     virtual Json* getAtributoValorJson(std::string clave);
@@ -49,7 +51,7 @@ public:
     virtual std::vector<std::string> getAtributoArrayString(std::string clave);
     virtual std::vector<Json*> getAtributoArrayJson(std::string clave = "");
 
-    virtual rapidjson::Value* getValor();
+    virtual rapidjson::Value * getValor();
 
     virtual std::string jsonString();
 

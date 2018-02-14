@@ -15,7 +15,7 @@ using namespace herramientas::utiles;
 
 TEST(utiles, GettersYSettersJson)
 {
-    Json* json = new Json("{\"etiqueta\":\"primavera_2017\",\"contenido\":{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18]}, \"tweets\":[{\"id_tweet\":1},{\"id_tweet\":2},{\"id_tweet\":3}]}");
+    Json* json = new Json("{\"etiqueta\":\"primavera_2017\",\"contenido\":{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18]},\"tweets\":[{\"id_tweet\":1},{\"id_tweet\":2},{\"id_tweet\":3}]}");
 
     std::string etiqueta = json->getAtributoValorString("etiqueta");
 
@@ -25,6 +25,7 @@ TEST(utiles, GettersYSettersJson)
 
     float peso_nuevo = 3.45674345f;
     contenido->agregarAtributoValor("peso", peso_nuevo);
+    contenido->agregarAtributoValor("es_retweet", true);
 
     unsigned long long int id_periodo = contenido->getAtributoValorUint("id_periodo");
     unsigned long long int id_reporte = contenido->getAtributoValorUint("id_reporte");
@@ -33,6 +34,7 @@ TEST(utiles, GettersYSettersJson)
     std::vector<unsigned long long int> ids_secciones = contenido->getAtributoArrayUint("ids_secciones");
     std::vector<Json*> tweets = json->getAtributoArrayJson("tweets");
     float peso = contenido->getAtributoValorFloat("peso");
+    bool es_retweet = contenido->getAtributoValorBool("es_retweet");
 
     std::string json_sin_modificar = contenido->jsonString();
 
@@ -54,7 +56,7 @@ TEST(utiles, GettersYSettersJson)
 
     ASSERT_STREQ("{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18]}", json_original.c_str());
 
-    ASSERT_STREQ("{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18],\"peso\":3.4567}", json_sin_modificar.c_str());
+    ASSERT_STREQ("{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18],\"peso\":3.4567,\"es_retweet\":true}", json_sin_modificar.c_str());
 
     ASSERT_STREQ("{\"id_tweet\":1}", json_tweets_1.c_str());
 
