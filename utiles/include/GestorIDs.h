@@ -14,7 +14,7 @@ class GestorIDs
 {
 public:
 
-	GestorIDs(unsigned long long int id_mas_alto = 0);
+	GestorIDs(unsigned long long int id_mas_alto = 1);
 	virtual ~GestorIDs();
 
 	// GETTERS
