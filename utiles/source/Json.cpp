@@ -80,6 +80,15 @@ void Json::agregarAtributoValor(std::string clave, unsigned long long int valor)
     this->valor->AddMember(tag, json_valor, *alocador);
 }
 
+void Json::agregarAtributoValor(std::string clave, unsigned int valor)
+{
+    rapidjson::Document::AllocatorType* alocador = &this->documento_alocador->GetAllocator();
+
+    rapidjson::Value tag(clave.c_str(), *alocador);
+    rapidjson::Value json_valor(valor);
+    this->valor->AddMember(tag, json_valor, *alocador);
+}
+
 void Json::agregarAtributoValor(std::string clave, float valor)
 {
     rapidjson::Document::AllocatorType* alocador = &this->documento_alocador->GetAllocator();

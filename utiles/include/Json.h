@@ -26,6 +26,7 @@ public:
 
     virtual void agregarAtributoValor(std::string clave, std::string valor);
     virtual void agregarAtributoValor(std::string clave, unsigned long long int valor);
+    virtual void agregarAtributoValor(std::string clave, unsigned int valor);
     virtual void agregarAtributoValor(std::string clave, float valor);
     virtual void agregarAtributoValor(std::string clave, bool valor);
 
