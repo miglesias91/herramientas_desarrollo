@@ -77,6 +77,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(repos)googletest\googletest\include;$(repos)rapidjson\include;$(SolutionDir);$(repos)cpprestsdk\Release\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(repos)googletest\googletest\build_x86\Debug;$(SolutionDir)Debug;$(repos)cpprestsdk\Binaries\Win32\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -90,6 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(repos)googletest\googletest\include;$(repos)rapidjson\include;$(SolutionDir);$(repos)cpprestsdk\Release\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(repos)googletest\googletest\build_x64\Debug;$(SolutionDir)x64\Debug;$(repos)cpprestsdk\Binaries\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

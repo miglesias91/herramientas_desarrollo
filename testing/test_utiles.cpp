@@ -396,20 +396,20 @@ TEST(utiles, AsignacionIDs)
 
     unsigned long long int id_actual = gestor_ids.getIdActual();
 
-    ASSERT_EQ(0, id_actual);
+    ASSERT_EQ(1, id_actual);
 
     ID * id_1 = gestor_ids.nuevoID();
     ID * id_2 = gestor_ids.nuevoID();
 
-    ASSERT_EQ(0, id_1->numero());
-    ASSERT_EQ("0", id_1->string());
+    ASSERT_EQ(1, id_1->numero());
+    ASSERT_EQ("1", id_1->string());
 
-    ASSERT_EQ(1, id_2->numero());
-    ASSERT_EQ("1", id_2->string());
+    ASSERT_EQ(2, id_2->numero());
+    ASSERT_EQ("2", id_2->string());
 
     id_actual = gestor_ids.getIdActual();
 
-    ASSERT_EQ(2, id_actual);
+    ASSERT_EQ(3, id_actual);
 
     gestor_ids.setIdActual(150);
 
