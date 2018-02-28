@@ -50,6 +50,8 @@ public:
 
     virtual std::vector<unsigned long long int> getAtributoArrayUint(std::string clave);
     virtual std::vector<std::string> getAtributoArrayString(std::string clave);
+
+    // Devuelve una copia de los valores. Cuando se terminen de usar, se tienen que destruir (usando 'delete').
     virtual std::vector<Json*> getAtributoArrayJson(std::string clave = "");
 
     virtual rapidjson::Value * getValor();
