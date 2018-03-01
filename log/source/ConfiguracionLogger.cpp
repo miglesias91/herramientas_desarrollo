@@ -7,10 +7,8 @@ using namespace herramientas::log;
 #include <sstream>
 
 // utiles
+#include <utiles/include/Fecha.h>
 #include <utiles/include/Json.h>
-
-// rapidjson
-#include <rapidjson/document.h>
 
 ConfiguracionLogger::ConfiguracionLogger(std::string path_archivo_configuracion)
 {
@@ -43,8 +41,8 @@ void ConfiguracionLogger::leerConfiguracion(std::string path_archivo_configuraci
 
     this->nombre_logger = config_log_json->getAtributoValorString(ConfiguracionLogger::tagNombreLogger());
     this->tamanio_cola_async = config_log_json->getAtributoValorUint(ConfiguracionLogger::tagTamanioColaAsync());
-    this->nivel = config_log_json->getAtributoValorString(ConfiguracionLogger::tagNivel().c_str());
-    this->flush = config_log_json->getAtributoValorString(ConfiguracionLogger::tagFlush().c_str());
+    this->nivel_log = config_log_json->getAtributoValorString(ConfiguracionLogger::tagNivelLog().c_str());
+    this->nivel_flush = config_log_json->getAtributoValorString(ConfiguracionLogger::tagNivelFlush().c_str());
     this->patron = config_log_json->getAtributoValorString(ConfiguracionLogger::tagPatron());
     this->agrupar_por_fecha = config_log_json->getAtributoValorBool(ConfiguracionLogger::tagAgruparPorFecha());
     this->salidas_logger = config_log_json->getAtributoArrayString(ConfiguracionLogger::tagSalidas());
@@ -69,14 +67,14 @@ bool ConfiguracionLogger::getAgruparPorFecha()
     return this->agrupar_por_fecha;
 }
 
-std::string ConfiguracionLogger::getNivel()
+std::string ConfiguracionLogger::getNivelLog()
 {
-    return this->nivel;
+    return this->nivel_log;
 }
 
-std::string ConfiguracionLogger::getFlush()
+std::string ConfiguracionLogger::getNivelFlush()
 {
-    return this->flush;
+    return this->nivel_flush;
 }
 
 std::string ConfiguracionLogger::getPatron()
@@ -86,7 +84,19 @@ std::string ConfiguracionLogger::getPatron()
 
 std::vector<std::string> ConfiguracionLogger::getSalidas()
 {
-    return this->salidas_logger;
+    std::vector<std::string> salidas = this->salidas_logger;
+
+    if (this->getAgruparPorFecha())
+    {
+        std::string string_fecha_actual = herramientas::utiles::Fecha::getFechaActual().getStringAAAAMMDD();
+
+        for (std::vector<std::string>::iterator it = salidas.begin(); it != salidas.end(); it++)
+        {
+            *it = string_fecha_actual + "_" + *it;
+        }
+    }
+
+    return salidas;
 }
 
 // TAGS
@@ -101,14 +111,19 @@ std::string ConfiguracionLogger::tagTamanioColaAsync()
     return "tamanio_cola_async";
 }
 
-std::string ConfiguracionLogger::tagNivel()
+std::string ConfiguracionLogger::tagAgruparPorFecha()
 {
-    return "nivel";
+    return "agrupar_por_fecha";
 }
 
-std::string ConfiguracionLogger::tagFlush()
+std::string ConfiguracionLogger::tagNivelLog()
 {
-    return "flush";
+    return "nivel_log";
+}
+
+std::string ConfiguracionLogger::tagNivelFlush()
+{
+    return "nivel_flush";
 }
 
 std::string ConfiguracionLogger::tagPatron()
@@ -116,22 +131,7 @@ std::string ConfiguracionLogger::tagPatron()
     return "patron";
 }
 
-std::string ConfiguracionLogger::tagAgruparPorFecha()
-{
-    return "agrupar_por_fecha";
-}
-
 std::string ConfiguracionLogger::tagSalidas()
 {
     return "salidas";
-}
-
-std::string ConfiguracionLogger::tagSalidaTipo()
-{
-    return "tipo";
-}
-
-std::string ConfiguracionLogger::tagSalidaPath()
-{
-    return "path";
 }

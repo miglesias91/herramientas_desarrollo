@@ -34,7 +34,7 @@ Logger * AdministradorLog::iniciarNuevo(std::string path_configuracion)
 
         delete config;
 
-        return 0;
+        return NULL;
     }
 
     // creo y guardo las salidas. si ya existen, las recupero.
@@ -125,19 +125,10 @@ Logger * AdministradorLog::getLogger(std::string nombre)
 {
     if (loggerIniciado(nombre))
     {
-        return mapa_administradores[handler];
+        return mapa_loggers[nombre];
     }
     else
     {
         throw std::exception("Logger no inicializado.");
     }
-}
-
-AdministradorLog * AdministradorLog::getInstancia(std::string path_db)
-{
-    std::hash<std::string> hasheador;
-
-    unsigned long long int handler = hasheador(path_db);
-
-    return getInstancia(handler);
 }

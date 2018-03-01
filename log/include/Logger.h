@@ -21,7 +21,19 @@ public:
 
     // GETTERS
 
+    spdlog::level::level_enum getNivelLog();
+    spdlog::level::level_enum getNivelFlush();
+
     // SETTERS
+
+    // METODOS
+
+    void marca(std::string mensaje);
+    void debug(std::string mensaje);
+    void info(std::string mensaje);
+    void advertencia(std::string mensaje);
+    void error(std::string mensaje);
+    void critico(std::string mensaje);
 
     // CONSULTAS
 
@@ -34,6 +46,8 @@ private:
     std::vector<SalidaLogger*> salidas;
 
     std::shared_ptr<spdlog::logger> logger_ptr;
+
+    static std::vector<std::string> nombres_niveles;
 };
 
 };

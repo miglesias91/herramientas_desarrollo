@@ -27,10 +27,10 @@ public:
 
     std::string getNombreLogger();
     unsigned long long int  getTamanioColaAsync();
-    std::string getNivel();
-    std::string getFlush();
-    std::string getPatron();
     bool getAgruparPorFecha();
+    std::string getNivelLog();
+    std::string getNivelFlush();
+    std::string getPatron();
     std::vector<std::string> getSalidas();
 
     // TAGS
@@ -38,20 +38,18 @@ public:
     std::string tagNombreLogger();
     std::string tagTamanioColaAsync();
     std::string tagAgruparPorFecha();
-    std::string tagNivel();
-    std::string tagFlush();
+    std::string tagNivelLog();
+    std::string tagNivelFlush();
     std::string tagPatron();
     std::string tagSalidas();
-    std::string tagSalidaTipo();
-    std::string tagSalidaPath();
 
 private:
 
     std::string nombre_logger;
     unsigned long long int tamanio_cola_async;
     bool agrupar_por_fecha;
-    std::string nivel;
-    std::string flush;
+    std::string nivel_log;
+    std::string nivel_flush;
     std::string patron;
     std::vector<std::string> salidas_logger;
 };

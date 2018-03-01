@@ -19,12 +19,12 @@ SalidaLogger::~SalidaLogger()
 
 std::string SalidaLogger::getTipo()
 {
-
+    return this->tipo;
 }
 
 std::string SalidaLogger::getPathSalidaLog()
 {
-
+    return this->path_salida_log;
 }
 
 spdlog::sink_ptr SalidaLogger::getSPDSink()
