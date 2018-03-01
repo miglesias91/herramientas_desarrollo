@@ -122,12 +122,14 @@
     <ClInclude Include="include\AdministradorLog.h" />
     <ClInclude Include="include\ConfiguracionLogger.h" />
     <ClInclude Include="include\Logger.h" />
+    <ClInclude Include="include\LoggerIniciadoPreviamente.h" />
     <ClInclude Include="include\SalidaLogger.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\AdministradorLog.cpp" />
     <ClCompile Include="source\ConfiguracionLogger.cpp" />
     <ClCompile Include="source\Logger.cpp" />
+    <ClCompile Include="source\LoggerIniciadoPreviamente.cpp" />
     <ClCompile Include="source\SalidaLogger.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

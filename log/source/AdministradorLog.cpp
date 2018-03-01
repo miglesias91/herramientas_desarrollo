@@ -6,6 +6,9 @@ using namespace herramientas::log;
 #include <algorithm>
 #include <iostream>
 
+// log
+#include <log/include/LoggerIniciadoPreviamente.h>
+
 std::unordered_map<std::string, Logger*> AdministradorLog::mapa_loggers;
 std::unordered_map<std::string, SalidaLogger*> AdministradorLog::mapa_salidas;
 
@@ -27,14 +30,13 @@ Logger * AdministradorLog::iniciarNuevo(std::string path_configuracion)
     // levanto config
 
     ConfiguracionLogger * config = new ConfiguracionLogger(path_configuracion);
+    std::string nombre_logger = config->getNombreLogger();
 
-    if (loggerIniciado(config->getNombreLogger()))
+    if (loggerIniciado(nombre_logger))
     {
-        std::cout << "Logger " + config->getNombreLogger() + " ya fue iniciado." << std::endl;
-
         delete config;
 
-        return NULL;
+        throw excepciones::LoggerIniciadoPreviamente(nombre_logger);
     }
 
     // creo y guardo las salidas. si ya existen, las recupero.
@@ -50,13 +52,6 @@ Logger * AdministradorLog::iniciarNuevo(std::string path_configuracion)
     }
 
     // creo el logger.
-
-    std::string nombre_logger = config->getNombreLogger();
-    if (loggerIniciado(nombre_logger))
-    {
-        std::string mensaje = "Logger '" + nombre_logger + "' ya fue creado.";
-        throw std::exception(mensaje.c_str());
-    }
 
     mapa_loggers[nombre_logger] = new Logger(salidas_logger, config);
     return mapa_loggers[nombre_logger];

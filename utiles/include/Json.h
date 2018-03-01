@@ -6,6 +6,10 @@
 // rapidjson
 #include <rapidjson/document.h>
 
+// utiles
+#include <utiles/include/JsonMalFormado.h>
+#include <utiles/include/JsonNoExisteClave.h>
+
 namespace herramientas
 {
 namespace utiles

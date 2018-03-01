@@ -3,6 +3,7 @@
 
 // log
 #include <log/include/AdministradorLog.h>
+#include <log/include/LoggerIniciadoPreviamente.h>
 
 using namespace herramientas::log;
 
@@ -23,9 +24,15 @@ TEST(log, CrearEscribirYCerrar)
 TEST(log, CrearDosIguales)
 {
     Logger * logger = AdministradorLog::iniciarNuevo("log_testing.json");
-    Logger * logger_duplicado = AdministradorLog::iniciarNuevo("log_testing.json");
 
-    ASSERT_EQ(NULL, logger_duplicado);
+    try
+    {
+        Logger * logger_duplicado = AdministradorLog::iniciarNuevo("log_testing.json");
+    }
+    catch (excepciones::LoggerIniciadoPreviamente & e)
+    {
+        ASSERT_EQ(true, true);
+    }
 
     logger->marca("marca2: se supone que se tiene que registrar.");
     logger->debug("debug2: se supone que se tiene que registrar.");

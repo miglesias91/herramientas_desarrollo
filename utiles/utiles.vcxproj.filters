@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Archivos de código fuente\excepciones">
+      <UniqueIdentifier>{c8e996cf-90a1-4be8-af87-077108c43fa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\excepciones">
+      <UniqueIdentifier>{e6be0616-e96c-4b5c-9d86-6116f85aa847}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Json.cpp">
@@ -48,6 +54,18 @@
     <ClCompile Include="source\IReferenciable.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="source\Excepcion.cpp">
+      <Filter>Archivos de código fuente\excepciones</Filter>
+    </ClCompile>
+    <ClCompile Include="source\JsonMalFormado.cpp">
+      <Filter>Archivos de código fuente\excepciones</Filter>
+    </ClCompile>
+    <ClCompile Include="source\JsonNoExisteClave.cpp">
+      <Filter>Archivos de código fuente\excepciones</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ImposibleAbrirArchivo.cpp">
+      <Filter>Archivos de código fuente\excepciones</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Json.h">
@@ -82,6 +100,18 @@
     </ClInclude>
     <ClInclude Include="include\IReferenciable.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Excepcion.h">
+      <Filter>Archivos de encabezado\excepciones</Filter>
+    </ClInclude>
+    <ClInclude Include="include\JsonMalFormado.h">
+      <Filter>Archivos de encabezado\excepciones</Filter>
+    </ClInclude>
+    <ClInclude Include="include\JsonNoExisteClave.h">
+      <Filter>Archivos de encabezado\excepciones</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ImposibleAbrirArchivo.h">
+      <Filter>Archivos de encabezado\excepciones</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

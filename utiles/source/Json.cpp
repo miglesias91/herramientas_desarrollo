@@ -21,7 +21,15 @@ Json::Json(rapidjson::Value* valor) : valor(valor), documento_alocador(new rapid
 Json::Json(std::string json) : valor(NULL), documento_alocador(NULL), cantidad_maxima_decimales(4)
 {
     rapidjson::Document* documento = new rapidjson::Document();
-    documento->Parse(json.c_str());
+
+    try
+    {
+        documento->Parse(json.c_str());
+    }
+    catch (...)
+    {
+        throw excepciones::JsonMalFormado();
+    }
 
     this->valor = new rapidjson::Value(*documento, documento->GetAllocator());
 
@@ -173,35 +181,75 @@ void Json::agregarAtributoJson(std::string clave, Json * json)
 
 unsigned long long int Json::getAtributoValorUint(std::string clave)
 {
-    unsigned long long int valor = (*this->valor)[clave.c_str()].GetUint64();
+    unsigned long long int valor = 0;
+    try
+    {
+        valor = (*this->valor)[clave.c_str()].GetUint64();
+    }
+    catch (...)
+    {
+        throw excepciones::JsonNoExisteClave(clave + " (uint)");
+    }
 
     return valor;
 }
 
 float Json::getAtributoValorFloat(std::string clave)
 {
-    float valor = (*this->valor)[clave.c_str()].GetFloat();
+    float valor = 0.0f;
+    try
+    {
+        valor = (*this->valor)[clave.c_str()].GetFloat();
+    }
+    catch (...)
+    {
+        throw excepciones::JsonNoExisteClave(clave + " (float)");
+    }
 
     return valor;
 }
 
 bool Json::getAtributoValorBool(std::string clave)
 {
-    bool valor = (*this->valor)[clave.c_str()].GetBool();
+    bool valor = false;
+    try
+    {
+        valor = (*this->valor)[clave.c_str()].GetBool();
+    }
+    catch (...)
+    {
+        throw excepciones::JsonNoExisteClave(clave + " (bool)");
+    }
 
     return valor;
 }
 
 std::string Json::getAtributoValorString(std::string clave)
 {
-    std::string valor = (*this->valor)[clave.c_str()].GetString();
+    std::string valor = "";
+    try
+    {
+        valor = (*this->valor)[clave.c_str()].GetString();
+    }
+    catch (...)
+    {
+        throw excepciones::JsonNoExisteClave(clave + " (string)");
+    }
 
     return valor;
 }
 
 Json * Json::getAtributoValorJson(std::string clave)
 {
-    rapidjson::Value* valor = &(*this->valor)[clave.c_str()];
+    rapidjson::Value* valor = NULL;
+    try
+    {
+        valor = &(*this->valor)[clave.c_str()];
+    }
+    catch (...)
+    {
+        throw excepciones::JsonNoExisteClave(clave + " (json)");
+    }
 
     std::stringstream sstream;
     rapidjson::OStreamWrapper osw(sstream);
@@ -230,7 +278,14 @@ std::vector<unsigned long long int> Json::getAtributoArrayUint(std::string clave
     }
     else
     {
-        vector = &(*this->valor)[clave.c_str()];
+        try
+        {
+            vector = &(*this->valor)[clave.c_str()];
+        }
+        catch (...)
+        {
+            throw excepciones::JsonNoExisteClave(clave + " (array uint)");
+        }
     }
 
     for (rapidjson::Value::ValueIterator it = vector->Begin(); it != vector->End(); it++)
@@ -254,7 +309,14 @@ std::vector<std::string> Json::getAtributoArrayString(std::string clave)
     }
     else
     {
-        vector = &(*this->valor)[clave.c_str()];
+        try
+        {
+            vector = &(*this->valor)[clave.c_str()];
+        }
+        catch (...)
+        {
+            throw excepciones::JsonNoExisteClave(clave + " (array string)");
+        }
     }
 
     for (rapidjson::Value::ValueIterator it = vector->Begin(); it != vector->End(); it++)
@@ -278,7 +340,14 @@ std::vector<Json*> Json::getAtributoArrayJson(std::string clave)
     }
     else
     {
-        vector = &(*this->valor)[clave.c_str()];
+        try
+        {
+            vector = &(*this->valor)[clave.c_str()];
+        }
+        catch (...)
+        {
+            throw excepciones::JsonNoExisteClave(clave + " (array json)");
+        }
     }
 
     for (rapidjson::Value::ValueIterator it = vector->Begin(); it != vector->End(); it++)

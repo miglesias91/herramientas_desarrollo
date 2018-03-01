@@ -122,6 +122,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\Conversiones.h" />
+    <ClInclude Include="include\Excepcion.h" />
     <ClInclude Include="include\Fecha.h" />
     <ClInclude Include="include\FuncionesSistemaArchivos.h" />
     <ClInclude Include="include\FuncionesString.h" />
@@ -129,22 +130,29 @@
     <ClInclude Include="include\IContieneJson.h" />
     <ClInclude Include="include\ID.h" />
     <ClInclude Include="include\IHashable.h" />
+    <ClInclude Include="include\ImposibleAbrirArchivo.h" />
     <ClInclude Include="include\IReferenciable.h" />
     <ClInclude Include="include\ISerializable.h" />
     <ClInclude Include="include\Json.h" />
+    <ClInclude Include="include\JsonMalFormado.h" />
+    <ClInclude Include="include\JsonNoExisteClave.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Conversiones.cpp" />
+    <ClCompile Include="source\Excepcion.cpp" />
     <ClCompile Include="source\Fecha.cpp" />
     <ClCompile Include="source\FuncionesSistemaArchivos.cpp" />
     <ClCompile Include="source\FuncionesString.cpp" />
     <ClCompile Include="source\GestorIDs.cpp" />
     <ClCompile Include="source\IHashable.cpp" />
+    <ClCompile Include="source\ImposibleAbrirArchivo.cpp" />
     <ClCompile Include="source\IReferenciable.cpp" />
     <ClCompile Include="source\ISerializable.cpp" />
     <ClCompile Include="source\ID.cpp" />
     <ClCompile Include="source\IContieneJson.cpp" />
     <ClCompile Include="source\Json.cpp" />
+    <ClCompile Include="source\JsonMalFormado.cpp" />
+    <ClCompile Include="source\JsonNoExisteClave.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
