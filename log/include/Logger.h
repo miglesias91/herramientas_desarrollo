@@ -21,6 +21,8 @@ public:
 
     // GETTERS
 
+    std::string getNombre();
+
     spdlog::level::level_enum getNivelLog();
     spdlog::level::level_enum getNivelFlush();
 

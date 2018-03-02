@@ -64,5 +64,8 @@ TEST(log, VariosLoggerAUnaMismaSalida)
     logger_2->error("logger2 error2: se supone que se tiene que registrar.");
     logger_2->critico("logger2 critical2: se supone que se tiene que registrar.");
 
+    AdministradorLog::liberarLogger(logger->getNombre());
+    AdministradorLog::liberarLogger(logger_2->getNombre());
+
     AdministradorLog::liberarTodo();
 }

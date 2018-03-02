@@ -16,20 +16,23 @@ Logger::Logger(std::vector<SalidaLogger*> salidas, ConfiguracionLogger * configu
         sinks.push_back((*it)->getSPDSink());
     }
 
-     this->logger_ptr = std::make_shared<spdlog::logger>(configuracion->getNombreLogger(), sinks.begin(), sinks.end());
+    this->logger_ptr = std::make_shared<spdlog::logger>(this->configuracion->getNombreLogger(), sinks.begin(), sinks.end());
 
-     this->logger_ptr->set_level(this->getNivelLog());
+    this->logger_ptr->set_level(this->getNivelLog());
 
-     this->logger_ptr->flush_on(this->getNivelFlush());
+    this->logger_ptr->flush_on(this->getNivelFlush());
 
-     if(false == this->configuracion->getPatron().empty())
-     {
-         this->logger_ptr->set_pattern(this->configuracion->getPatron());
-     }
+    if(false == this->configuracion->getPatron().empty())
+    {
+        this->logger_ptr->set_pattern(this->configuracion->getPatron());
+    }
+
+    this->info("INICIO LOGGER");
 }
 
 Logger::~Logger()
 {
+    this->info("LIBERO LOGGER");
     spdlog::drop(this->configuracion->getNombreLogger());
 
     if (NULL != this->configuracion)
@@ -40,6 +43,11 @@ Logger::~Logger()
 }
 
 // GETTERS
+
+std::string Logger::getNombre()
+{
+    return this->configuracion->getNombreLogger();
+}
 
 spdlog::level::level_enum Logger::getNivelLog()
 {
@@ -58,7 +66,6 @@ spdlog::level::level_enum Logger::getNivelFlush()
 // SETTERS
 
 // METODOS
-
 
 void Logger::marca(std::string mensaje)
 {
