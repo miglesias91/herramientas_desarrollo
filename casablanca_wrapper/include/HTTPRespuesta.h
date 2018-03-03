@@ -26,6 +26,12 @@ public:
 
 	web::http::http_response getRespuesta();
 
+    std::string getRazon();
+
+    std::string getCodigo();
+
+    std::string getCuerpo();
+
 	// SETTERS
 
 	// METODOS

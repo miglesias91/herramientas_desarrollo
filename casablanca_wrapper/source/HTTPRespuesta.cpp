@@ -24,6 +24,19 @@ web::http::http_response HTTPRespuesta::getRespuesta()
 	return this->http_respuesta;
 }
 
+std::string HTTPRespuesta::getRazon()
+{
+    return utility::conversions::to_utf8string(this->http_respuesta.reason_phrase().c_str());
+}
+
+std::string HTTPRespuesta::getCodigo()
+{
+}
+
+std::string HTTPRespuesta::getCuerpo()
+{
+}
+
 bool HTTPRespuesta::armarJson()
 {
     return true;

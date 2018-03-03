@@ -25,6 +25,14 @@ public:
 		
 	web::http::http_request * getSolicitud();
 
+    std::string getCuerpo();
+
+    std::string getMetodo();
+
+    std::string getURI();
+
+    std::vector<std::string> getEncabezados();
+
 	// SETTERS
     
     void setSolicitud(web::http::http_request * solicitud);
@@ -46,6 +54,12 @@ public:
 private:
 
 	web::http::http_request * solicitud;
+
+    std::string metodo;
+    std::string cuerpo;
+    std::string uri;
+
+    std::vector<std::string> encabezados;
 };
 
 }
