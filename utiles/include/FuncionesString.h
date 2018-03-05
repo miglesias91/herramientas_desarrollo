@@ -15,6 +15,8 @@ public:
     FuncionesString();
     virtual ~FuncionesString();
 
+    static std::string unir(std::vector<std::string> strings_a_unir, std::string separador = "");
+
     // parametro 'separador' tiene que ser un string de 1 SOLO CARACTER.
     static std::vector<std::string> separar(std::string string_a_separar, std::string separador = " ");
 

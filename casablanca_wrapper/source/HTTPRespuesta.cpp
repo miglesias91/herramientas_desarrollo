@@ -31,10 +31,12 @@ std::string HTTPRespuesta::getRazon()
 
 std::string HTTPRespuesta::getCodigo()
 {
+    return "";
 }
 
 std::string HTTPRespuesta::getCuerpo()
 {
+    return "";
 }
 
 bool HTTPRespuesta::armarJson()

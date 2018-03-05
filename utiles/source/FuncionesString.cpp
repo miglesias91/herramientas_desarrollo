@@ -14,6 +14,23 @@ FuncionesString::~FuncionesString()
 {
 }
 
+
+std::string FuncionesString::unir(std::vector<std::string> strings_a_unir, std::string separador)
+{
+    if (0 == strings_a_unir.size())
+    {
+        return "";
+    }
+
+    std::string strings_unidos = *strings_a_unir.begin();
+    for (std::vector<std::string>::iterator it = (strings_a_unir.begin() + 1); it != strings_a_unir.end(); it++)
+    {
+        strings_unidos += separador + *it;
+    }
+
+    return strings_unidos;
+}
+
 std::vector<std::string> FuncionesString::separar(std::string string_a_separar, std::string separador)
 {
     std::stringstream string_stream(string_a_separar);

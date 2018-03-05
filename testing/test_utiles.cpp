@@ -154,6 +154,29 @@ TEST(utiles, GettersYSettersCodificaciones)
     ASSERT_STREQ(correcto.c_str(), json_tweets_1.c_str());
 }
 
+TEST(utiles, FuncionesStringUnir)
+{
+    std::vector<std::string> strings_a_unir_vacio;
+    std::vector<std::string> strings_a_unir_1 = { "" };
+    std::vector<std::string> strings_a_unir_2 = { "", "" };
+    std::vector<std::string> strings_a_unir_3 = { "hola" };
+    std::vector<std::string> strings_a_unir_4 = { "hola", "como", "estas", "amigo" };
+
+
+    std::string string_unido_1 = FuncionesString::unir(strings_a_unir_1, ", ");
+    std::string string_unido_2 = FuncionesString::unir(strings_a_unir_2, ", ");
+    std::string string_unido_3 = FuncionesString::unir(strings_a_unir_3, ", ");
+    std::string string_unido_4 = FuncionesString::unir(strings_a_unir_4, "; ");
+    std::string string_unido_5 = FuncionesString::unir(strings_a_unir_4);
+    std::string string_unido_vacio = FuncionesString::unir(strings_a_unir_vacio, "; ");
+
+    ASSERT_EQ("", string_unido_vacio);
+    ASSERT_EQ("", string_unido_1);
+    ASSERT_EQ(", ", string_unido_2);
+    ASSERT_EQ("hola", string_unido_3);
+    ASSERT_EQ("hola; como; estas; amigo", string_unido_4);
+    ASSERT_EQ("holacomoestasamigo", string_unido_5);
+}
 TEST(utiles, FuncionesStringSeparar)
 {
     std::string string_a_separar_1 = "hola,como,estas,amigo";
