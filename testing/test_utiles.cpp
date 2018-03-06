@@ -323,6 +323,35 @@ TEST(utiles, FechaParsearAAAAMMDD)
     ASSERT_EQ(0, fecha_invalida.getDia());
 }
 
+TEST(utiles, FechaParsearAAAAMMDDHHmmSS)
+{
+    std::string string_fecha_sin_separador = "20180102235959";
+    std::string string_fecha_con_separador = "2018 01 02-22:58:57";
+    std::string string_fecha_invalida = "2018 12 0224-60-59";
+
+    Fecha fecha_sin_separador = Fecha::parsearFormatoAAAAMMDDHHmmSS(string_fecha_sin_separador);
+    Fecha fecha_con_separador = Fecha::parsearFormatoAAAAMMDDHHmmSS(string_fecha_con_separador, " ", "-", ":");
+    Fecha fecha_invalida = Fecha::parsearFormatoAAAAMMDDHHmmSS(string_fecha_invalida, " ", "", "-");
+
+    ASSERT_EQ(2018, fecha_sin_separador.getAnio());
+    ASSERT_EQ(2018, fecha_con_separador.getAnio());
+    ASSERT_EQ(23, fecha_sin_separador.getHoras());
+    ASSERT_EQ(22, fecha_con_separador.getHoras());
+    ASSERT_EQ(0, fecha_invalida.getAnio());
+
+    ASSERT_EQ(01, fecha_sin_separador.getMes());
+    ASSERT_EQ(01, fecha_con_separador.getMes());
+    ASSERT_EQ(59, fecha_sin_separador.getMinutos());
+    ASSERT_EQ(58, fecha_con_separador.getMinutos());
+    ASSERT_EQ(0, fecha_invalida.getMes());
+
+    ASSERT_EQ(02, fecha_sin_separador.getDia());
+    ASSERT_EQ(02, fecha_con_separador.getDia());
+    ASSERT_EQ(59, fecha_sin_separador.getSegundos());
+    ASSERT_EQ(57, fecha_con_separador.getSegundos());
+    ASSERT_EQ(0, fecha_invalida.getDia());
+}
+
 TEST(utiles, FechaParsearDDmesAAAA)
 {
     std::string string_fecha_sin_separador_1 = "02enero2018";
@@ -387,6 +416,19 @@ TEST(utiles, FechaArmarAAAAMMDD)
     ASSERT_EQ("20181210", fecha_4.getStringAAAAMMDD());
 }
 
+TEST(utiles, FechaArmarAAAAMMDDHHmmSS)
+{
+    Fecha fecha_1(1, 2, 2018, 23, 59, 59);
+    Fecha fecha_2(10, 2, 2018, 00, 00, 00);
+    Fecha fecha_3(1, 12, 2018, 12, 13, 14);
+    Fecha fecha_4(10, 12, 2018, 14, 13, 12);
+
+    ASSERT_EQ("20180201235959", fecha_1.getStringAAAAMMDDHHmmSS());
+    ASSERT_EQ("20180210000000", fecha_2.getStringAAAAMMDDHHmmSS());
+    ASSERT_EQ("20181201121314", fecha_3.getStringAAAAMMDDHHmmSS());
+    ASSERT_EQ("20181210141312", fecha_4.getStringAAAAMMDDHHmmSS());
+}
+
 TEST(utiles, FechaArmarDDmesAAAA)
 {
     Fecha fecha_1(1, 2, 2018);
@@ -411,6 +453,33 @@ TEST(utiles, FechaArmarDDMMAAAA)
     ASSERT_EQ("10022018", fecha_2.getStringDDMMAAAA());
     ASSERT_EQ("01122018", fecha_3.getStringDDMMAAAA());
     ASSERT_EQ("10122018", fecha_4.getStringDDMMAAAA());
+}
+
+TEST(utiles, FechaOperadoresSobrecargados)
+{
+    Fecha fecha_1(1, 1, 2018, 23, 59, 59);
+    Fecha fecha_2(1, 1, 2018, 23, 59 ,59);
+    Fecha fecha_3(1, 1, 2017, 23, 59, 59);
+    Fecha fecha_4(1, 1, 2017, 22, 59, 59);
+
+    ASSERT_EQ(true, fecha_1 == fecha_2);
+    ASSERT_EQ(false, fecha_1 != fecha_2);
+    ASSERT_EQ(true, fecha_1 <= fecha_2);
+    ASSERT_EQ(true, fecha_1 >= fecha_2);
+    ASSERT_EQ(false, fecha_1 < fecha_2);
+    ASSERT_EQ(false, fecha_1 > fecha_2);
+
+    ASSERT_EQ(false, fecha_1 == fecha_3);
+    ASSERT_EQ(true, fecha_1 != fecha_3);
+    ASSERT_EQ(false, fecha_1 <= fecha_3);
+    ASSERT_EQ(true, fecha_1 >= fecha_3);
+    ASSERT_EQ(false, fecha_1 < fecha_3);
+    ASSERT_EQ(true, fecha_1 > fecha_3);
+
+    ASSERT_EQ(false, fecha_3 <= fecha_4);
+    ASSERT_EQ(true, fecha_3 >= fecha_4);
+    ASSERT_EQ(false, fecha_3 < fecha_4);
+    ASSERT_EQ(true, fecha_3 > fecha_4);
 }
 
 TEST(utiles, AsignacionIDs)

@@ -9,8 +9,8 @@
     	"patron" : "",
     	"salidas" :
     	[
-    		"log_general_testing.txt",
-    		"log_testing_log.txt"
+    		"log_general_testing.log",
+    		"log_testing_log.log"
     	]
     }
 }
