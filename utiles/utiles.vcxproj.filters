@@ -66,6 +66,9 @@
     <ClCompile Include="source\ImposibleAbrirArchivo.cpp">
       <Filter>Archivos de código fuente\excepciones</Filter>
     </ClCompile>
+    <ClCompile Include="source\JsonNoEsArray.cpp">
+      <Filter>Archivos de código fuente\excepciones</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Json.h">
@@ -111,6 +114,9 @@
       <Filter>Archivos de encabezado\excepciones</Filter>
     </ClInclude>
     <ClInclude Include="include\ImposibleAbrirArchivo.h">
+      <Filter>Archivos de encabezado\excepciones</Filter>
+    </ClInclude>
+    <ClInclude Include="include\JsonNoEsArray.h">
       <Filter>Archivos de encabezado\excepciones</Filter>
     </ClInclude>
   </ItemGroup>

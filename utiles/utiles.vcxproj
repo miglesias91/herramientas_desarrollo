@@ -134,6 +134,7 @@
     <ClInclude Include="include\IReferenciable.h" />
     <ClInclude Include="include\ISerializable.h" />
     <ClInclude Include="include\Json.h" />
+    <ClInclude Include="include\JsonNoEsArray.h" />
     <ClInclude Include="include\JsonMalFormado.h" />
     <ClInclude Include="include\JsonNoExisteClave.h" />
   </ItemGroup>
@@ -151,6 +152,7 @@
     <ClCompile Include="source\ID.cpp" />
     <ClCompile Include="source\IContieneJson.cpp" />
     <ClCompile Include="source\Json.cpp" />
+    <ClCompile Include="source\JsonNoEsArray.cpp" />
     <ClCompile Include="source\JsonMalFormado.cpp" />
     <ClCompile Include="source\JsonNoExisteClave.cpp" />
   </ItemGroup>

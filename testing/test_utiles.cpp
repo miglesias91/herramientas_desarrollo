@@ -36,6 +36,20 @@ TEST(utiles, GettersYSettersJson)
     float peso = contenido->getAtributoValorFloat("peso");
     bool es_retweet = contenido->getAtributoValorBool("es_retweet");
 
+    bool no_existe = contenido->contieneAtributo("atributo-inexistente");
+    bool existe = contenido->contieneAtributo("es_retweet");
+    bool es_array = contenido->esArray();
+
+    bool excepcion_atrapada = false;
+    try
+    {
+        contenido->getAtributoValorBool("atributo-inexistente");
+    }
+    catch (excepciones::JsonNoExisteClave & e)
+    {
+        excepcion_atrapada = true;
+    }
+
     std::string json_sin_modificar = contenido->jsonString();
 
     std::string json_tweets_1 = tweets[0]->jsonString();
@@ -49,6 +63,11 @@ TEST(utiles, GettersYSettersJson)
 
     delete json;
     delete contenido;
+
+    ASSERT_EQ(true, existe);
+    ASSERT_EQ(false, no_existe);
+    ASSERT_EQ(false, es_array);
+    ASSERT_EQ(true, excepcion_atrapada);
 
     ASSERT_STREQ("primavera_2017", etiqueta.c_str());
 
@@ -82,6 +101,8 @@ TEST(utiles, GettersYSettersJsonArray)
 {
     Json* json = new Json("[{\"id_tweet\":1},{\"id_tweet\":2},{\"id_tweet\":3}]");
 
+    bool es_array = json->esArray();
+
     std::vector<Json*> tweets = json->getAtributoArrayJson();
 
     std::string json_tweets_1 = tweets[0]->jsonString();
@@ -96,6 +117,8 @@ TEST(utiles, GettersYSettersJsonArray)
     delete json;
 
     tweets.clear();
+
+    ASSERT_EQ(true, es_array);
 
     ASSERT_STREQ("{\"id_tweet\":1}", json_tweets_1.c_str());
 
@@ -114,6 +137,35 @@ TEST(utiles, GettersYSettersJsonArray)
     Json * json_array = new Json();
 
     json_array->agregarAtributoArray("tweets", tweets);
+
+    bool atributo_es_array = json_array->esArray("tweets");
+    bool no_es_array = json_array->esArray();
+
+    bool excepcion_no_es_array = false;
+    try
+    {
+        json_1->getAtributoArrayString("id_tweet");
+    }
+    catch (excepciones::JsonNoEsArray & e)
+    {
+        excepcion_no_es_array = true;
+    }
+
+    bool excepcion_no_existe_array = false;
+    try
+    {
+        json_array->getAtributoArrayString("no-es-array");
+    }
+    catch (excepciones::JsonNoExisteClave & e)
+    {
+        excepcion_no_existe_array = true;
+    }
+
+    ASSERT_EQ(true, atributo_es_array);
+    ASSERT_EQ(false, no_es_array);
+
+    ASSERT_EQ(true, excepcion_no_es_array);
+    ASSERT_EQ(true, excepcion_no_existe_array);
 
     ASSERT_EQ("{\"tweets\":[{\"id_tweet\":1},{\"id_tweet\":2},{\"id_tweet\":3}]}", json_array->jsonString());
 

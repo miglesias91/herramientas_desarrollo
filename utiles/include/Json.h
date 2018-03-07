@@ -9,6 +9,7 @@
 // utiles
 #include <utiles/include/JsonMalFormado.h>
 #include <utiles/include/JsonNoExisteClave.h>
+#include <utiles/include/JsonNoEsArray.h>
 
 namespace herramientas
 {
@@ -67,6 +68,12 @@ public:
     virtual void setValor(rapidjson::Value* valor);
 
     virtual void setCantidadMaximaDecimales(unsigned int cantidad_maxima_decimales);
+
+    // CONSULTA
+
+    virtual bool contieneAtributo(std::string atributo);
+
+    virtual bool esArray(std::string atributo = "");
 
 private:
 
