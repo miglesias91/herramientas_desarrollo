@@ -352,6 +352,44 @@ TEST(utiles, FuncionesStringEliminarEspaciosRedundantes)
     ASSERT_STREQ(string_modificado.c_str(), string_a_modificar.c_str());
 }
 
+TEST(utiles, FuncionesStringEmpiezaCon)
+{
+    std::string string_a_consultar = "hola como estas?";
+    std::string string_a_buscar = "hola com";
+
+    ASSERT_EQ(true, FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
+
+    string_a_buscar = "chau";
+
+    ASSERT_EQ(false, FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
+
+    string_a_buscar = "como";
+
+    ASSERT_EQ(false, FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
+
+    string_a_buscar = "como estas?";
+
+    ASSERT_EQ(false, FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
+
+    string_a_buscar = "hola como estas?";
+
+    ASSERT_EQ(true, FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
+
+    string_a_buscar = "hola como estas? todo bien?";
+
+    ASSERT_EQ(false, FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
+}
+
+TEST(utiles, FuncionesStringToString)
+{
+    double numero = 12345.6789101112;
+    std::string string_numero_dos_decimales = "12345.68";
+    std::string string_numero_cuatro_decimales = "12345.6789";
+
+    ASSERT_EQ(string_numero_dos_decimales, FuncionesString::toString(numero));
+    ASSERT_EQ(string_numero_cuatro_decimales, FuncionesString::toString(numero, 4));
+}
+
 TEST(utiles, FechaParsearAAAAMMDD)
 {
     std::string string_fecha_sin_separador = "20180102";

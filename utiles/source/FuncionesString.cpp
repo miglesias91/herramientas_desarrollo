@@ -3,6 +3,7 @@
 // stl
 #include <algorithm>
 #include <sstream>
+#include <iomanip>
 
 using namespace herramientas::utiles;
 
@@ -14,6 +15,12 @@ FuncionesString::~FuncionesString()
 {
 }
 
+std::string FuncionesString::toString(double numero, unsigned int cantidad_de_decimales)
+{
+    std::stringstream stream;
+    stream << std::fixed << std::setprecision(cantidad_de_decimales) << numero;
+    return stream.str();
+}
 
 std::string FuncionesString::unir(std::vector<std::string> strings_a_unir, std::string separador)
 {
@@ -127,4 +134,9 @@ unsigned int FuncionesString::eliminarEspaciosRedundantes(std::string & string_a
 
 
     return cantidad_de_espacios_redundantes_eliminados;
+}
+
+bool FuncionesString::empiezaCon(const std::string & string_a_chequear, const std::string & string_a_buscar)
+{
+    return string_a_buscar.length() <= string_a_chequear.length() && std::equal(string_a_buscar.begin(), string_a_buscar.end(), string_a_chequear.begin());
 }

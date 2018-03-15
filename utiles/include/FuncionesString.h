@@ -15,6 +15,8 @@ public:
     FuncionesString();
     virtual ~FuncionesString();
 
+    static std::string toString(double numero, unsigned int cantidad_de_decimales = 2);
+
     static std::string unir(std::vector<std::string> strings_a_unir, std::string separador = "");
 
     // parametro 'separador' tiene que ser un string de 1 SOLO CARACTER.
@@ -34,6 +36,7 @@ public:
     // reemplaza 2 o mas espacios por 1 solo espacio.
     static unsigned int eliminarEspaciosRedundantes(std::string & string_a_modificar);
 
+    static bool empiezaCon(const std::string & string_a_chequear, const std::string & string_a_buscar);
 };
 
 };
