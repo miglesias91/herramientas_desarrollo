@@ -2,7 +2,11 @@
 
 // stl
 #include <algorithm>
+#include <fstream>
 #include <sstream>
+
+// utiles
+#include <utiles/include/ImposibleAbrirArchivo.h>
 
 using namespace herramientas::utiles;
 
@@ -20,10 +24,20 @@ bool FuncionesSistemaArchivos::escribir(std::string path, std::vector<unsigned c
 	return false;
 }
 
-bool FuncionesSistemaArchivos::leer(std::string path, std::vector<unsigned char>& contenido)
+bool FuncionesSistemaArchivos::leer(std::string path, std::string & contenido)
 {
-	// TO DO
-	return false;
+    std::ifstream archivo(path);
+
+    if (false == archivo.good())
+    {
+        throw herramientas::utiles::excepciones::ImposibleAbrirArchivo(path);
+    }
+
+    std::ostringstream sstream;
+    sstream << archivo.rdbuf();
+    contenido = sstream.str();
+
+    return true;
 }
 
 bool FuncionesSistemaArchivos::eliminar(std::string path)

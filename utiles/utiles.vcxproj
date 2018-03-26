@@ -85,8 +85,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(repos)cpprestsdk\Release\include;$(repos)rapidjson\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG;_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(repos)cpprestsdk\Release\include;$(repos)rapidjson\include;$(repos)oleander-stemming-lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -137,6 +137,7 @@
     <ClInclude Include="include\JsonNoEsArray.h" />
     <ClInclude Include="include\JsonMalFormado.h" />
     <ClInclude Include="include\JsonNoExisteClave.h" />
+    <ClInclude Include="include\Stemming.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Conversiones.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="source\JsonNoEsArray.cpp" />
     <ClCompile Include="source\JsonMalFormado.cpp" />
     <ClCompile Include="source\JsonNoExisteClave.cpp" />
+    <ClCompile Include="source\Stemming.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

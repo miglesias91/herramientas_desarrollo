@@ -23,7 +23,7 @@ public:
 	// lee un archivo en disco. devuelve true/false en caso de leer correcta/incorrectamente.
 	// - path: path del archivo (path = <dir/del/archivo/><nombre_archivo>.<extension>).
 	// - contenido: tira de bytes leida.
-	static bool leer(std::string path, std::vector<unsigned char> & contenido);
+	static bool leer(std::string path, std::string & contenido);
 
     // elimina el archivo ubicado en el path indicado.
     static bool eliminar(std::string path);

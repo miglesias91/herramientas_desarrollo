@@ -80,6 +80,12 @@ unsigned int FuncionesString::eliminarOcurrencias(std::string & string_a_modific
 
 bool FuncionesString::todoMinuscula(std::string & string_a_modificar)
 {
+    reemplazarOcurrencias(string_a_modificar, "Á", "á");
+    reemplazarOcurrencias(string_a_modificar, "É", "é");
+    reemplazarOcurrencias(string_a_modificar, "Í", "í");
+    reemplazarOcurrencias(string_a_modificar, "Ó", "ó");
+    reemplazarOcurrencias(string_a_modificar, "Ú", "ú");
+
     std::transform(string_a_modificar.begin(), string_a_modificar.end(), string_a_modificar.begin(), ::tolower);
     return true;
 }

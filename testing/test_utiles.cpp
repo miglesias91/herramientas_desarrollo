@@ -10,6 +10,7 @@
 #include <utiles/include/Fecha.h>
 #include <utiles/include/ID.h>
 #include <utiles/include/GestorIDs.h>
+#include <utiles/include/Stemming.h>
 
 using namespace herramientas::utiles;
 
@@ -310,17 +311,17 @@ TEST(utiles, FuncionesStringEliminarOcurrencias)
     ASSERT_STREQ("me tomo un.", string_utf8_a_modificar.c_str());
 }
 
-TEST(utiles, todoMinuscula)
+TEST(utiles, FuncionesStringTodoMinuscula)
 {
-    std::string oracion_con_mayusculas = "HabIa uNa veZ un CafE qUE uSaBa UnA cAmArA CoN MuChA EmOCiOn.";
-    std::string oracion_sin_mayusculas = "habia una vez un cafe que usaba una camara con mucha emocion.";
+    std::string oracion_con_mayusculas = "HabÍa uNa veZ un CafÉ qUE uSaBa UnA cÁmArA CoN MuChA EmOCión.";
+    std::string oracion_sin_mayusculas = "había una vez un café que usaba una cámara con mucha emoción.";
 
     FuncionesString::todoMinuscula(oracion_con_mayusculas);
 
     ASSERT_STREQ(oracion_sin_mayusculas.c_str(), oracion_con_mayusculas.c_str());
 }
 
-TEST(utiles, eliminarSignosYPuntuacion)
+TEST(utiles, FuncionesStringEliminarSignosYPuntuacion)
 {
     std::string oracion_con_simbolos_no_caracteres = "y matori dijo: \"me quedan $20,35.-\". habia (mal)gastado el premio -que no habia ganado- en un monton de m&m y demas basuras.";
     std::string oracion_sin_simbolos_no_caracteres = "y matori dijo me quedan 20 35 habia mal gastado el premio que no habia ganado en un monton de m m y demas basuras ";
@@ -612,4 +613,56 @@ TEST(utiles, AsignacionIDs)
     delete id_2;
     delete id_3;
     delete id_4;
+}
+
+
+TEST(utiles, stemming)
+{
+    std::string palabra_a_stemmear_1 = "continuación";
+    std::string palabra_a_stemmear_2 = "continuará";
+    std::string palabra_a_stemmear_3 = "continua";
+    std::string palabra_a_stemmear_4 = "continuamiento";
+
+    std::vector<std::string> palabras_a_stemmear_1 = { palabra_a_stemmear_1, palabra_a_stemmear_2, palabra_a_stemmear_3, palabra_a_stemmear_4 };
+
+    std::string palabra_a_stemmear_5 = "transporte";
+    std::string palabra_a_stemmear_6 = "transportación";
+    std::string palabra_a_stemmear_7 = "transportar";
+    std::string palabra_a_stemmear_8 = "transportamiento";
+
+    std::vector<std::string> palabras_a_stemmear_2 = { palabra_a_stemmear_5, palabra_a_stemmear_6, palabra_a_stemmear_7, palabra_a_stemmear_8 };
+
+    Stemming::stem(palabra_a_stemmear_1);
+    Stemming::stem(palabra_a_stemmear_2);
+    Stemming::stem(palabra_a_stemmear_3);
+    Stemming::stem(palabra_a_stemmear_4);
+
+    Stemming::stem(palabras_a_stemmear_1);
+
+    Stemming::stem(palabra_a_stemmear_5);
+    Stemming::stem(palabra_a_stemmear_6);
+    Stemming::stem(palabra_a_stemmear_7);
+    Stemming::stem(palabra_a_stemmear_8);
+
+    Stemming::stem(palabras_a_stemmear_2);
+
+    ASSERT_EQ(palabra_a_stemmear_1, "continu");
+    ASSERT_EQ(palabra_a_stemmear_2, "continu");
+    ASSERT_EQ(palabra_a_stemmear_3, "continu");
+    ASSERT_EQ(palabra_a_stemmear_4, "continu");
+
+    for (std::vector<std::string>::iterator it = palabras_a_stemmear_1.begin(); it != palabras_a_stemmear_1.end(); it++)
+    {
+        ASSERT_EQ(*it, "continu");
+    }
+
+    ASSERT_EQ(palabra_a_stemmear_5, "transport");
+    ASSERT_EQ(palabra_a_stemmear_6, "transport");
+    ASSERT_EQ(palabra_a_stemmear_7, "transport");
+    ASSERT_EQ(palabra_a_stemmear_8, "transport");
+    
+    for (std::vector<std::string>::iterator it = palabras_a_stemmear_2.begin(); it != palabras_a_stemmear_2.end(); it++)
+    {
+        ASSERT_EQ(*it, "transport");
+    }
 }

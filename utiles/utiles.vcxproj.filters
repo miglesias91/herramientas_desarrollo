@@ -69,6 +69,9 @@
     <ClCompile Include="source\JsonNoEsArray.cpp">
       <Filter>Archivos de código fuente\excepciones</Filter>
     </ClCompile>
+    <ClCompile Include="source\Stemming.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Json.h">
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="include\JsonNoEsArray.h">
       <Filter>Archivos de encabezado\excepciones</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Stemming.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
