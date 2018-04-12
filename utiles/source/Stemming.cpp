@@ -16,6 +16,24 @@ Stemming::~Stemming()
 {
 }
 
+void Stemming::stemUTF8(std::string & string_a_hashear)
+{
+    std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
+    std::wstring word = conv.from_bytes(string_a_hashear.c_str());
+
+    stem_spanish(word);
+
+    string_a_hashear = conv.to_bytes(word);
+}
+
+void Stemming::stemUTF8(std::vector<std::string> & vector_de_string_a_stemmear)
+{
+    for (std::vector<std::string>::iterator it = vector_de_string_a_stemmear.begin(); it != vector_de_string_a_stemmear.end(); it++)
+    {
+        stemUTF8(*it);
+    }
+}
+
 void Stemming::stem(std::string & string_a_hashear)
 {
     wchar_t * unicode_text_buffer = new wchar_t[string_a_hashear.length() + 1];

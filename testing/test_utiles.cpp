@@ -615,7 +615,6 @@ TEST(utiles, AsignacionIDs)
     delete id_4;
 }
 
-
 TEST(utiles, stemming)
 {
     std::string palabra_a_stemmear_1 = "continuación";
@@ -661,6 +660,57 @@ TEST(utiles, stemming)
     ASSERT_EQ(palabra_a_stemmear_7, "transport");
     ASSERT_EQ(palabra_a_stemmear_8, "transport");
     
+    for (std::vector<std::string>::iterator it = palabras_a_stemmear_2.begin(); it != palabras_a_stemmear_2.end(); it++)
+    {
+        ASSERT_EQ(*it, "transport");
+    }
+}
+
+TEST(utiles, stemmingUTF8)
+{
+    std::string palabra_a_stemmear_1 = u8"continuación";
+    std::string palabra_a_stemmear_2 = u8"continuará";
+    std::string palabra_a_stemmear_3 = u8"continua";
+    std::string palabra_a_stemmear_4 = u8"continuamiento";
+
+    std::vector<std::string> palabras_a_stemmear_1 = { palabra_a_stemmear_1, palabra_a_stemmear_2, palabra_a_stemmear_3, palabra_a_stemmear_4 };
+
+    std::string palabra_a_stemmear_5 = u8"transporte";
+    std::string palabra_a_stemmear_6 = u8"transportación";
+    std::string palabra_a_stemmear_7 = u8"transportar";
+    std::string palabra_a_stemmear_8 = u8"transportamiento";
+
+    std::vector<std::string> palabras_a_stemmear_2 = { palabra_a_stemmear_5, palabra_a_stemmear_6, palabra_a_stemmear_7, palabra_a_stemmear_8 };
+
+    Stemming::stemUTF8(palabra_a_stemmear_1);
+    Stemming::stemUTF8(palabra_a_stemmear_2);
+    Stemming::stemUTF8(palabra_a_stemmear_3);
+    Stemming::stemUTF8(palabra_a_stemmear_4);
+
+    Stemming::stemUTF8(palabras_a_stemmear_1);
+
+    Stemming::stemUTF8(palabra_a_stemmear_5);
+    Stemming::stemUTF8(palabra_a_stemmear_6);
+    Stemming::stemUTF8(palabra_a_stemmear_7);
+    Stemming::stemUTF8(palabra_a_stemmear_8);
+
+    Stemming::stemUTF8(palabras_a_stemmear_2);
+
+    ASSERT_EQ(palabra_a_stemmear_1, "continu");
+    ASSERT_EQ(palabra_a_stemmear_2, "continu");
+    ASSERT_EQ(palabra_a_stemmear_3, "continu");
+    ASSERT_EQ(palabra_a_stemmear_4, "continu");
+
+    for (std::vector<std::string>::iterator it = palabras_a_stemmear_1.begin(); it != palabras_a_stemmear_1.end(); it++)
+    {
+        ASSERT_EQ(*it, "continu");
+    }
+
+    ASSERT_EQ(palabra_a_stemmear_5, "transport");
+    ASSERT_EQ(palabra_a_stemmear_6, "transport");
+    ASSERT_EQ(palabra_a_stemmear_7, "transport");
+    ASSERT_EQ(palabra_a_stemmear_8, "transport");
+
     for (std::vector<std::string>::iterator it = palabras_a_stemmear_2.begin(); it != palabras_a_stemmear_2.end(); it++)
     {
         ASSERT_EQ(*it, "transport");

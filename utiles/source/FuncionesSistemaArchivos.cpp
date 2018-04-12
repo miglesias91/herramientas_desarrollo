@@ -18,13 +18,21 @@ FuncionesSistemaArchivos::~FuncionesSistemaArchivos()
 {
 }
 
-bool FuncionesSistemaArchivos::escribir(std::string path, std::vector<unsigned char> contenido)
+bool FuncionesSistemaArchivos::escribir(const std::string & path, const std::string & contenido)
 {
-	// TO DO
-	return false;
+    std::ofstream archivo(path);
+
+    if (false == archivo.good())
+    {
+        throw herramientas::utiles::excepciones::ImposibleAbrirArchivo(path);
+    }
+
+    archivo << contenido;
+
+    return true;
 }
 
-bool FuncionesSistemaArchivos::leer(std::string path, std::string & contenido)
+bool FuncionesSistemaArchivos::leer(const std::string &  path, std::string & contenido)
 {
     std::ifstream archivo(path);
 

@@ -18,6 +18,10 @@ public:
     Stemming();
     virtual ~Stemming();
 
+    static void stemUTF8(std::string & string_a_hashear);
+
+    static void stemUTF8(std::vector<std::string> & vector_de_string_a_stemmear);
+
     static void stem(std::string & string_a_stemmear);
 
     static void stem(std::vector<std::string> & vector_de_string_a_stemmear);
