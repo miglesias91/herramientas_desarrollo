@@ -1,8 +1,10 @@
 
+#define GTEST_LANG_CXX11 1
+
 // gtest
 #include <gtest/gtest.h>
 
-#ifdef DEBUG | _DEBUG
+#ifdef DEBUG || _DEBUG
 // vld
 #include <vld.h>
 #endif
