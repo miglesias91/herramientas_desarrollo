@@ -629,6 +629,33 @@ TEST(utiles, stemming)
     std::string palabra_a_stemmear_7 = "transportar";
     std::string palabra_a_stemmear_8 = "transportamiento";
 
+    std::string aborto = "aborto";
+    Stemming::stem(aborto);
+
+    std::string podemos = "podemos";
+    Stemming::stem(podemos);
+
+    std::string kirchnerismo = "kirchnerismo";
+    Stemming::stem(kirchnerismo);
+
+    std::string cambiemos = "cambiemos";
+    Stemming::stem(cambiemos);
+
+    std::string perez = "perez";
+    Stemming::stem(perez);
+
+    std::string macri = "macri";
+    Stemming::stem(macri);
+
+    std::string vidal = "vidal";
+    Stemming::stem(vidal);
+
+    std::string vida = "vida";
+    Stemming::stem(vida);
+
+    std::string video = "video";
+    Stemming::stem(video);
+
     std::vector<std::string> palabras_a_stemmear_2 = { palabra_a_stemmear_5, palabra_a_stemmear_6, palabra_a_stemmear_7, palabra_a_stemmear_8 };
 
     Stemming::stem(palabra_a_stemmear_1);
