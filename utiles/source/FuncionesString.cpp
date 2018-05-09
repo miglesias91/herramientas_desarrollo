@@ -3,6 +3,7 @@
 // stl
 #include <algorithm>
 #include <sstream>
+#include <iterator>
 #include <iomanip>
 
 using namespace herramientas::utiles;
@@ -22,7 +23,7 @@ std::string FuncionesString::toString(double numero, unsigned int cantidad_de_de
     return stream.str();
 }
 
-std::string FuncionesString::unir(std::vector<std::string> strings_a_unir, std::string separador)
+std::string FuncionesString::unir(std::vector<std::string> strings_a_unir, std::string separador, std::string separador_final)
 {
     if (0 == strings_a_unir.size())
     {
