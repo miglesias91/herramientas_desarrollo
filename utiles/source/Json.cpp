@@ -196,6 +196,21 @@ std::string Json::jsonString()
     return sstream.str();
 }
 
+std::string Json::jsonStringLindo()
+{
+    std::stringstream sstream;
+    rapidjson::OStreamWrapper osw(sstream);
+
+    rapidjson::PrettyWriter<rapidjson::OStreamWrapper> writer(osw);
+    writer.SetMaxDecimalPlaces(this->cantidad_maxima_decimales);
+
+    this->getValor()->Accept(writer);
+
+    writer.Flush();
+
+    return sstream.str();
+}
+
 Json * Json::clonar()
 {
     return new Json(this->jsonString());

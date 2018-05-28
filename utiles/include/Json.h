@@ -63,6 +63,8 @@ public:
 
     virtual std::string jsonString();
 
+    virtual std::string jsonStringLindo();
+
     // SETTERS
 
     virtual void setValor(rapidjson::Value* valor);

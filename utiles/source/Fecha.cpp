@@ -14,7 +14,7 @@ std::vector<std::string> Fecha::nombres_meses = { "enero", "febrero", "marzo", "
 
 // CONSTRUCTORES
 
-Fecha::Fecha(std::string etiqueta) : dia(0), mes(0), anio(0), etiqueta(etiqueta)
+Fecha::Fecha(std::string etiqueta) : dia(0), mes(0), anio(0), horas(0), minutos(0), segundos(0), etiqueta(etiqueta)
 {
 }
 
@@ -42,6 +42,9 @@ Fecha Fecha::getFechaActual()
     fecha_actual.setAnio(tm.tm_year + 1900);
     fecha_actual.setMes(tm.tm_mon + 1);
     fecha_actual.setDia(tm.tm_mday);
+    fecha_actual.setHoras(tm.tm_hour);
+    fecha_actual.setMinutos(tm.tm_min);
+    fecha_actual.setSegundos(tm.tm_sec);
 
     return fecha_actual;
 }
