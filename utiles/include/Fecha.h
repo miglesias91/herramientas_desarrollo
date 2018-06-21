@@ -69,6 +69,8 @@ public:
 
     // METODOS
 
+    static bool parsear(const std::string & string_fecha, const std::string & formato, Fecha * fecha);
+
     static Fecha parsearFormatoAAAAMMDD(std::string string_fecha, std::string separador = "");
     
     static Fecha parsearFormatoAAAAMMDDHHmmSS(std::string string_fecha, std::string separador_dia = "", std::string separador_dia_hora = "", std::string separador_hora = "");

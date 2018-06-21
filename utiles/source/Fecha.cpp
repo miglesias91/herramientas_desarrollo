@@ -222,6 +222,28 @@ void Fecha::setSegundos(unsigned int segundos)
 
 // METODOS
 
+bool herramientas::utiles::Fecha::parsear(const std::string & string_fecha, const std::string & formato, Fecha * fecha) {
+
+    std::stringstream stream_fecha(string_fecha);
+
+    std::tm t = {};
+    stream_fecha >> std::get_time(&t, formato.c_str());
+
+    if (stream_fecha.fail()) {
+        return false;
+    }
+
+    fecha->setAnio(t.tm_year + 1900);
+    fecha->setMes(t.tm_mon + 1);
+    fecha->setDia(t.tm_mday);
+
+    fecha->setHoras(t.tm_hour);
+    fecha->setMinutos(t.tm_min);
+    fecha->setSegundos(t.tm_sec);
+
+    return true;
+}
+
 Fecha Fecha::parsearFormatoAAAAMMDD(std::string string_fecha, std::string separador)
 {
     if (separador.size() > 0)

@@ -57,7 +57,7 @@ unsigned int FuncionesString::reemplazarOcurrencias(std::string & string_a_modif
 {
     unsigned int cantidad_ocurrencias_reemplazadas = 0;
 
-    for (size_t posicion_ocurrencia = 0; ; posicion_ocurrencia += ocurrencia_a_modificar.length())
+    for (size_t posicion_ocurrencia = 0; ; posicion_ocurrencia)
     {
         posicion_ocurrencia = string_a_modificar.find(ocurrencia_a_modificar, posicion_ocurrencia);
 

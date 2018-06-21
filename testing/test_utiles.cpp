@@ -391,6 +391,31 @@ TEST(utiles, FuncionesStringToString)
     ASSERT_EQ(string_numero_cuatro_decimales, FuncionesString::toString(numero, 4));
 }
 
+TEST(utiles, fecha_parsear) {
+
+    std::string fecha_formato_rss("Wed, 20 Jun 2018 19:06:46 +0000");
+    std::string fecha_formato_atom("2018-06-20T18:46:00-03:00");
+
+    Fecha fecha_rss, fecha_atom;
+
+    Fecha::parsear(fecha_formato_rss, "%a, %d %b %Y %H:%M:%S", &fecha_rss);
+    Fecha::parsear(fecha_formato_atom, "%Y-%m-%dT%H:%M:%S", &fecha_atom);
+
+    ASSERT_EQ(2018, fecha_rss.getAnio());
+    ASSERT_EQ(06, fecha_rss.getMes());
+    ASSERT_EQ(20, fecha_rss.getDia());
+    ASSERT_EQ(19, fecha_rss.getHoras());
+    ASSERT_EQ(06, fecha_rss.getMinutos());
+    ASSERT_EQ(46, fecha_rss.getSegundos());
+
+    ASSERT_EQ(2018, fecha_atom.getAnio());
+    ASSERT_EQ(06, fecha_atom.getMes());
+    ASSERT_EQ(20, fecha_atom.getDia());
+    ASSERT_EQ(18, fecha_atom.getHoras());
+    ASSERT_EQ(46, fecha_atom.getMinutos());
+    ASSERT_EQ(00, fecha_atom.getSegundos());
+}
+
 TEST(utiles, FechaParsearAAAAMMDD)
 {
     std::string string_fecha_sin_separador = "20180102";

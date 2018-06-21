@@ -25,7 +25,7 @@ std::string aBase64(std::string tira_de_bytes_como_string)
     return utility::conversions::to_utf8string(bytes_decodificados);
 }
 
-TEST(Protocolos, obtenerTokenDeAccesoCorrectamente)
+TEST(Protocolos, DISABLED_obtenerTokenDeAccesoCorrectamente)
 {
     OAuth2Consumidor oauth2_consumidor_valido("aXPpXInb16k0jKIswOYuUS3ly", "MhuDBpN9EtnafrIUHvJEbleJ3WKiFCSBIulwRVNvZTWoXGs2eV");
 
