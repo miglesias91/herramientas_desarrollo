@@ -27,29 +27,29 @@ public:
 
     static Fecha getFechaActual();
 
-	unsigned int getDia();
-	unsigned int getMes();
-	unsigned int getAnio();
-    unsigned int getHoras();
-    unsigned int getMinutos();
-    unsigned int getSegundos();
+	unsigned int getDia() const;
+	unsigned int getMes() const;
+	unsigned int getAnio() const;
+    unsigned int getHoras() const;
+    unsigned int getMinutos() const;
+    unsigned int getSegundos() const;
 
-	std::string getStringDia();
-	std::string getStringMes();
-	std::string getStringAnio();
-    std::string getStringHoras();
-    std::string getStringMinutos();
-    std::string getStringSegundos();
+	std::string getStringDia() const;
+	std::string getStringMes() const;
+	std::string getStringAnio() const;
+    std::string getStringHoras() const;
+    std::string getStringMinutos() const;
+    std::string getStringSegundos() const;
 
-    std::string getNombreMes();
+    std::string getNombreMes() const;
 
-    std::string getStringDDMMAAAA(std::string separador = "");
+    std::string getStringDDMMAAAA(std::string separador = "") const;
 
-    std::string getStringDDmesAAAA(std::string separador = "");
+    std::string getStringDDmesAAAA(std::string separador = "") const;
 
-    std::string getStringAAAAMMDD(std::string separador = "");
+    std::string getStringAAAAMMDD(std::string separador = "") const;
     
-    std::string getStringAAAAMMDDHHmmSS(std::string separador_dia = "", std::string separador_dia_hora = "", std::string separador_hora = "");
+    std::string getStringAAAAMMDDHHmmSS(std::string separador_dia = "", std::string separador_dia_hora = "", std::string separador_hora = "") const;
 
 	// SETTERS
 
@@ -70,25 +70,21 @@ public:
     // METODOS
 
     static bool parsear(const std::string & string_fecha, const std::string & formato, Fecha * fecha);
-
     static Fecha parsearFormatoAAAAMMDD(std::string string_fecha, std::string separador = "");
-    
     static Fecha parsearFormatoAAAAMMDDHHmmSS(std::string string_fecha, std::string separador_dia = "", std::string separador_dia_hora = "", std::string separador_hora = "");
-
     static Fecha parsearFormatoDDmesAAAA(std::string string_fecha, std::string separador = "");
-
     static Fecha parsearFormatoDDMMAAAA(std::string string_fecha, std::string separador = "");
 
     // CONSULTAS
 
     // OPERADORES
 
-    bool operator<(Fecha & fecha_a_comparar);
-    bool operator>(Fecha & fecha_a_comparar);
-    bool operator<=(Fecha & fecha_a_comparar);
-    bool operator>=(Fecha & fecha_a_comparar);
-    bool operator==(Fecha & fecha_a_comparar);
-    bool operator!=(Fecha & fecha_a_comparar);
+    bool operator<(const Fecha & fecha_a_comparar) const;
+    bool operator>(const Fecha & fecha_a_comparar) const;
+    bool operator<=(const Fecha & fecha_a_comparar) const;
+    bool operator>=(const Fecha & fecha_a_comparar) const;
+    bool operator==(const Fecha & fecha_a_comparar) const;
+    bool operator!=(const Fecha & fecha_a_comparar) const;
 
 private:
 

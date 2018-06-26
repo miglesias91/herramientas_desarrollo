@@ -8,32 +8,21 @@
 // funciones string
 #include <utiles/include/FuncionesString.h>
 
-using namespace herramientas::utiles;
+namespace herramientas::utiles {
 
 std::vector<std::string> Fecha::nombres_meses = { "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre" };
 
 // CONSTRUCTORES
 
-Fecha::Fecha(std::string etiqueta) : dia(0), mes(0), anio(0), horas(0), minutos(0), segundos(0), etiqueta(etiqueta)
-{
-}
+Fecha::Fecha(std::string etiqueta) : dia(0), mes(0), anio(0), horas(0), minutos(0), segundos(0), etiqueta(etiqueta) {}
+Fecha::Fecha(unsigned int dia, unsigned int mes, unsigned int anio, std::string etiqueta) : dia(dia), mes(mes), anio(anio), horas(0), minutos(0), segundos(0), etiqueta(etiqueta) {}
+Fecha::Fecha(unsigned int dia, unsigned int mes, unsigned int anio, unsigned int horas, unsigned int minutos, unsigned int segundos, std::string etiqueta) : dia(dia), mes(mes), anio(anio), horas(horas), minutos(minutos), segundos(segundos), etiqueta(etiqueta) {}
 
-Fecha::Fecha(unsigned int dia, unsigned int mes, unsigned int anio, std::string etiqueta) : dia(dia), mes(mes), anio(anio), horas(0), minutos(0), segundos(0), etiqueta(etiqueta)
-{
-}
-
-Fecha::Fecha(unsigned int dia, unsigned int mes, unsigned int anio, unsigned int horas, unsigned int minutos, unsigned int segundos, std::string etiqueta) : dia(dia), mes(mes), anio(anio), horas(horas), minutos(minutos), segundos(segundos), etiqueta(etiqueta)
-{
-}
-
-Fecha::~Fecha()
-{
-}
+Fecha::~Fecha() {}
 
 // GETTERS
 
-Fecha Fecha::getFechaActual()
-{
+Fecha Fecha::getFechaActual() {
     time_t tiempo = std::time(nullptr);
     tm tm;
     localtime_s(&tm, &tiempo);
@@ -49,38 +38,31 @@ Fecha Fecha::getFechaActual()
     return fecha_actual;
 }
 
-unsigned int Fecha::getDia()
-{
+unsigned int Fecha::getDia() const {
 	return this->dia;
 }
 
-unsigned int Fecha::getMes()
-{
+unsigned int Fecha::getMes() const {
 	return this->mes;
 }
 
-unsigned int Fecha::getAnio()
-{
+unsigned int Fecha::getAnio() const {
 	return this->anio;
 }
 
-unsigned int Fecha::getHoras()
-{
+unsigned int Fecha::getHoras() const {
     return this->horas;
 }
 
-unsigned int Fecha::getMinutos()
-{
+unsigned int Fecha::getMinutos() const {
     return this->minutos;
 }
 
-unsigned int Fecha::getSegundos()
-{
+unsigned int Fecha::getSegundos() const {
     return this->segundos;
 }
 
-std::string Fecha::getStringDia()
-{
+std::string Fecha::getStringDia() const {
     char buffer[10];
 
     sprintf_s(buffer, "%02d", this->dia);
@@ -88,8 +70,7 @@ std::string Fecha::getStringDia()
 	return std::string(buffer);
 }
 
-std::string Fecha::getStringMes()
-{
+std::string Fecha::getStringMes() const {
     char buffer[10];
 
     sprintf_s(buffer, "%02d", this->mes);
@@ -97,8 +78,7 @@ std::string Fecha::getStringMes()
     return std::string(buffer);
 }
 
-std::string Fecha::getStringAnio()
-{
+std::string Fecha::getStringAnio() const {
     char buffer[10];
 
     sprintf_s(buffer, "%04d", this->anio);
@@ -106,8 +86,7 @@ std::string Fecha::getStringAnio()
     return std::string(buffer);
 }
 
-std::string Fecha::getStringHoras()
-{
+std::string Fecha::getStringHoras() const {
     char buffer[10];
 
     sprintf_s(buffer, "%02d", this->horas);
@@ -115,8 +94,7 @@ std::string Fecha::getStringHoras()
     return std::string(buffer);
 }
 
-std::string Fecha::getStringMinutos()
-{
+std::string Fecha::getStringMinutos() const {
     char buffer[10];
 
     sprintf_s(buffer, "%02d", this->minutos);
@@ -124,8 +102,7 @@ std::string Fecha::getStringMinutos()
     return std::string(buffer);
 }
 
-std::string Fecha::getStringSegundos()
-{
+std::string Fecha::getStringSegundos() const {
     char buffer[10];
 
     sprintf_s(buffer, "%02d", this->segundos);
@@ -133,28 +110,23 @@ std::string Fecha::getStringSegundos()
     return std::string(buffer);
 }
 
-std::string Fecha::getNombreMes()
-{
+std::string Fecha::getNombreMes() const {
     return nombres_meses[this->mes - 1];
 }
 
-std::string Fecha::getStringDDMMAAAA(std::string separador)
-{
+std::string Fecha::getStringDDMMAAAA(std::string separador) const {
     return this->getStringDia() + separador + this->getStringMes() + separador + this->getStringAnio();
 }
 
-std::string Fecha::getStringAAAAMMDD(std::string separador)
-{
+std::string Fecha::getStringAAAAMMDD(std::string separador) const {
     return this->getStringAnio() + separador + this->getStringMes() + separador + this->getStringDia();
 }
 
-std::string Fecha::getStringAAAAMMDDHHmmSS(std::string separador_dia, std::string separador_dia_hora, std::string separador_hora)
-{
+std::string Fecha::getStringAAAAMMDDHHmmSS(std::string separador_dia, std::string separador_dia_hora, std::string separador_hora) const {
     return this->getStringAnio() + separador_dia + this->getStringMes() + separador_dia + this->getStringDia() + separador_dia_hora + this->getStringHoras() + separador_hora + this->getStringMinutos() + separador_hora + this->getStringSegundos();
 }
 
-std::string Fecha::getStringDDmesAAAA(std::string separador)
-{
+std::string Fecha::getStringDDmesAAAA(std::string separador) const {
     return this->getStringDia() + separador + this->getNombreMes() + separador + this->getStringAnio();
 }
 
@@ -371,7 +343,7 @@ Fecha Fecha::parsearFormatoDDMMAAAA(std::string string_fecha, std::string separa
 
 // OPERADORES
 
-bool Fecha::operator<(Fecha & fecha_a_comparar)
+bool Fecha::operator<(const Fecha & fecha_a_comparar) const
 {
     std::string string_esta_fecha = this->getStringAAAAMMDDHHmmSS();
     std::string string_fecha_a_comparar = fecha_a_comparar.getStringAAAAMMDDHHmmSS();
@@ -379,7 +351,7 @@ bool Fecha::operator<(Fecha & fecha_a_comparar)
     return string_esta_fecha < string_fecha_a_comparar;
 }
 
-bool Fecha::operator>(Fecha & fecha_a_comparar)
+bool Fecha::operator>(const Fecha & fecha_a_comparar) const
 {
     std::string string_esta_fecha = this->getStringAAAAMMDDHHmmSS();
     std::string string_fecha_a_comparar = fecha_a_comparar.getStringAAAAMMDDHHmmSS();
@@ -387,7 +359,7 @@ bool Fecha::operator>(Fecha & fecha_a_comparar)
     return string_esta_fecha > string_fecha_a_comparar;
 }
 
-bool Fecha::operator<=(Fecha & fecha_a_comparar)
+bool Fecha::operator<=(const Fecha & fecha_a_comparar) const
 {
     std::string string_esta_fecha = this->getStringAAAAMMDDHHmmSS();
     std::string string_fecha_a_comparar = fecha_a_comparar.getStringAAAAMMDDHHmmSS();
@@ -395,7 +367,7 @@ bool Fecha::operator<=(Fecha & fecha_a_comparar)
     return string_esta_fecha <= string_fecha_a_comparar;
 }
 
-bool Fecha::operator>=(Fecha & fecha_a_comparar)
+bool Fecha::operator>=(const Fecha & fecha_a_comparar) const
 {
     std::string string_esta_fecha = this->getStringAAAAMMDDHHmmSS();
     std::string string_fecha_a_comparar = fecha_a_comparar.getStringAAAAMMDDHHmmSS();
@@ -403,7 +375,7 @@ bool Fecha::operator>=(Fecha & fecha_a_comparar)
     return string_esta_fecha >= string_fecha_a_comparar;
 }
 
-bool Fecha::operator==(Fecha & fecha_a_comparar)
+bool Fecha::operator==(const Fecha & fecha_a_comparar) const
 {
     std::string string_esta_fecha = this->getStringAAAAMMDDHHmmSS();
     std::string string_fecha_a_comparar = fecha_a_comparar.getStringAAAAMMDDHHmmSS();
@@ -411,10 +383,12 @@ bool Fecha::operator==(Fecha & fecha_a_comparar)
     return string_esta_fecha == string_fecha_a_comparar;
 }
 
-bool Fecha::operator!=(Fecha & fecha_a_comparar)
+bool Fecha::operator!=(const Fecha & fecha_a_comparar) const
 {
     std::string string_esta_fecha = this->getStringAAAAMMDDHHmmSS();
     std::string string_fecha_a_comparar = fecha_a_comparar.getStringAAAAMMDDHHmmSS();
 
     return string_esta_fecha != string_fecha_a_comparar;
+}
+
 }
