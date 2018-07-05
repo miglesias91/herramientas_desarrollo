@@ -15,26 +15,26 @@ public:
     FuncionesString();
     virtual ~FuncionesString();
 
-    static std::string toString(double numero, unsigned int cantidad_de_decimales = 2);
+    static std::string toString(const double_t & numero, const uint32_t & cantidad_de_decimales = 2);
 
-    static std::string unir(std::vector<std::string> strings_a_unir, std::string separador = "", std::string separador_final = "");
+    static std::string unir(const std::vector<std::string> & strings_a_unir, const std::string & separador = "", const std::string & separador_final = "");
 
     // parametro 'separador' tiene que ser un string de 1 SOLO CARACTER.
-    static std::vector<std::string> separar(std::string string_a_separar, std::string separador = " ");
+    static std::vector<std::string> separar(const std::string & string_a_separar, const std::string & separador = " ");
 
-    static unsigned int reemplazarOcurrencias(std::string & string_a_modificar, std::string ocurrencia_a_reemplazar, std::string reemplazo);
+    static uint32_t reemplazarOcurrencias(std::string & string_a_modificar, const std::string & ocurrencia_a_reemplazar, const std::string & reemplazo);
 
-    static unsigned int eliminarOcurrencias(std::string & string_a_modificar, std::string ocurrencia_a_eliminar);
+    static uint32_t eliminarOcurrencias(std::string & string_a_modificar, std::string ocurrencia_a_eliminar);
 
     static bool todoMinuscula(std::string & string_a_modificar);
 
-    static unsigned int eliminarSignosYPuntuacion(std::string & string_a_modificar);
+    static uint32_t eliminarSignosYPuntuacion(std::string & string_a_modificar);
 
     // reemplaza los caracteres de control "\n", "\t", "\r", "\a" por un espacio en blanco:
-    static unsigned int eliminarCaracteresDeControl(std::string & string_a_modificar);
+    static uint32_t eliminarCaracteresDeControl(std::string & string_a_modificar);
 
     // reemplaza 2 o mas espacios por 1 solo espacio.
-    static unsigned int eliminarEspaciosRedundantes(std::string & string_a_modificar);
+    static uint32_t eliminarEspaciosRedundantes(std::string & string_a_modificar);
 
     static bool empiezaCon(const std::string & string_a_chequear, const std::string & string_a_buscar);
 };

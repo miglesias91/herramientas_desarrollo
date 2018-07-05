@@ -14,23 +14,23 @@ class GestorIDs
 {
 public:
 
-	GestorIDs(unsigned long long int id_mas_alto = 1);
+	GestorIDs(uint64_t id_mas_alto = 1);
 	virtual ~GestorIDs();
 
 	// GETTERS
 
 	ID* nuevoID();
 	
-	unsigned long long int getIdActual();
+	uint64_t getIdActual();
 
 	// SETTERS
 
-	void setIdActual(unsigned long long int id_mas_alto);
+	void setIdActual(uint64_t id_mas_alto);
 
 private:
 
 	// 0 <= id_mas_alto < 18.446744.073709.551616
-	unsigned long long int id_mas_alto;
+	uint64_t id_mas_alto;
 };
 
 };

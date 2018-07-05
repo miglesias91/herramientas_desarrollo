@@ -8,7 +8,7 @@ ID::ID()
 {
 }
 
-ID::ID(unsigned long long int id) : id(id)
+ID::ID(uint64_t id) : id(id)
 {
 }
 
@@ -18,7 +18,7 @@ ID::~ID()
 
 // METODOS
 
-unsigned long long int ID::numero()
+uint64_t ID::numero()
 {
 	return this->id;
 }

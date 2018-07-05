@@ -15,16 +15,16 @@ public:
     IHashable();
     virtual ~IHashable();
 
-    virtual unsigned long long int hashcode() = 0;
+    virtual uint64_t hashcode() = 0;
 
-    static unsigned long long int hashear(std::string string_a_hashear);
+    static uint64_t hashear(std::string string_a_hashear);
 
-    static unsigned long long int hashear(unsigned int uint_a_hashear);
+    static uint64_t hashear(uint32_t uint_a_hashear);
 
 private:
 
     static std::hash<std::string> hasher_string;
-    static std::hash<unsigned int> hasher_uint;
+    static std::hash<uint32_t> hasher_uint;
 
 };
 

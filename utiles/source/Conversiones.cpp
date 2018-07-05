@@ -16,7 +16,7 @@ Conversiones::~Conversiones()
 
 std::string Conversiones::string2base64(std::string tira_de_bytes_como_string)
 {
-    unsigned int tamanio = tira_de_bytes_como_string.size() + 1;
+    uint32_t tamanio = tira_de_bytes_como_string.size() + 1;
     unsigned char* tira_bytes = new unsigned char[tamanio];
 
     strcpy_s(reinterpret_cast<char*>(tira_bytes), tamanio, tira_de_bytes_como_string.c_str());
@@ -38,7 +38,7 @@ std::string herramientas::utiles::Conversiones::utf82iso8859_1(std::string a_con
     if (in == NULL)
         return out;
 
-    unsigned int codepoint;
+    uint32_t codepoint;
     while (*in != 0)
     {
         unsigned char ch = static_cast<unsigned char>(*in);

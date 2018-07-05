@@ -90,10 +90,10 @@ public:
     /// \return Devuelve un stringstream con el parametro de entrada agregado
     std::stringstream& operator << (int n);
 
-    /// \brief Operador << para unsigned int
-    /// \param[in] n valor unsigned int
+    /// \brief Operador << para uint32_t
+    /// \param[in] n valor uint32_t
     /// \return Devuelve un stringstream con el parametro de entrada agregado
-    std::stringstream& operator << (unsigned int n);
+    std::stringstream& operator << (uint32_t n);
 
     /// \brief Operador << para long
     /// \param[in] n valor long

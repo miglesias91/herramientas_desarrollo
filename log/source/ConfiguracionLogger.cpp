@@ -57,7 +57,7 @@ std::string ConfiguracionLogger::getNombreLogger()
     return this->nombre_logger;
 }
 
-unsigned long long int ConfiguracionLogger::getTamanioColaAsync()
+uint64_t ConfiguracionLogger::getTamanioColaAsync()
 {
     return this->tamanio_cola_async;
 }

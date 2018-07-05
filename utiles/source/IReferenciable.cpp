@@ -15,18 +15,18 @@ bool IReferenciable::estaReferenciado()
     return false;
 }
 
-unsigned int IReferenciable::cantidadReferencias()
+uint32_t IReferenciable::cantidadReferencias()
 {
     return this->cantidad_referencias;
 }
 
-unsigned int IReferenciable::sumarReferencia()
+uint32_t IReferenciable::sumarReferencia()
 {
     this->cantidad_referencias++;
     return this->cantidad_referencias;
 }
 
-unsigned int IReferenciable::restarReferencia()
+uint32_t IReferenciable::restarReferencia()
 {
     this->cantidad_referencias--;
     return this->cantidad_referencias;

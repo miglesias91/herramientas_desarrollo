@@ -1,5 +1,7 @@
 #pragma once
 
+// types
+#include <cstdint>
 
 namespace herramientas
 {
@@ -13,15 +15,15 @@ public:
 
     bool estaReferenciado();
 
-    unsigned int cantidadReferencias();
+    uint32_t cantidadReferencias();
 
-    unsigned int sumarReferencia();
+    uint32_t sumarReferencia();
 
-    unsigned int restarReferencia();
+    uint32_t restarReferencia();
 
 private:
 
-    unsigned int cantidad_referencias;
+    uint32_t cantidad_referencias;
 };
 };
 };

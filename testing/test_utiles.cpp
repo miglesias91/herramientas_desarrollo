@@ -28,11 +28,11 @@ TEST(utiles, GettersYSettersJson)
     contenido->agregarAtributoValor("peso", peso_nuevo);
     contenido->agregarAtributoValor("es_retweet", true);
 
-    unsigned long long int id_periodo = contenido->getAtributoValorUint("id_periodo");
-    unsigned long long int id_reporte = contenido->getAtributoValorUint("id_reporte");
-    std::vector<unsigned long long int> ids_conceptos = contenido->getAtributoArrayUint("ids_conceptos");
-    std::vector<unsigned long long int> ids_medios = contenido->getAtributoArrayUint("ids_medios");
-    std::vector<unsigned long long int> ids_secciones = contenido->getAtributoArrayUint("ids_secciones");
+    uint64_t id_periodo = contenido->getAtributoValorUint("id_periodo");
+    uint64_t id_reporte = contenido->getAtributoValorUint("id_reporte");
+    std::vector<uint64_t> ids_conceptos = contenido->getAtributoArrayUint("ids_conceptos");
+    std::vector<uint64_t> ids_medios = contenido->getAtributoArrayUint("ids_medios");
+    std::vector<uint64_t> ids_secciones = contenido->getAtributoArrayUint("ids_secciones");
     std::vector<Json*> tweets = json->getAtributoArrayJson("tweets");
     float peso = contenido->getAtributoValorFloat("peso");
     bool es_retweet = contenido->getAtributoValorBool("es_retweet");
@@ -271,7 +271,7 @@ TEST(utiles, FuncionesStringReemplazarOcurrencias)
 {
     std::string string_a_modificar = "el puerco esta en la pocilga.";
 
-    unsigned int cantidad_de_ocurrencias = FuncionesString::reemplazarOcurrencias(string_a_modificar, "la pocilga", "el rebaño");
+    uint32_t cantidad_de_ocurrencias = FuncionesString::reemplazarOcurrencias(string_a_modificar, "la pocilga", "el rebaño");
 
     ASSERT_EQ(1, cantidad_de_ocurrencias);
     ASSERT_STREQ("el puerco esta en el rebaño.", string_a_modificar.c_str());
@@ -293,7 +293,7 @@ TEST(utiles, FuncionesStringEliminarOcurrencias)
 {
     std::string string_a_modificar = "el puerco esta en el barro.";
 
-    unsigned int cantidad_de_ocurrencias = FuncionesString::eliminarOcurrencias(string_a_modificar, " barro");
+    uint32_t cantidad_de_ocurrencias = FuncionesString::eliminarOcurrencias(string_a_modificar, " barro");
 
     ASSERT_EQ(1, cantidad_de_ocurrencias);
     ASSERT_STREQ("el puerco esta en el.", string_a_modificar.c_str());
@@ -336,7 +336,7 @@ TEST(utiles, FuncionesStringEliminarCaracteresDeControl)
     std::string string_a_modificar = "\tel puerco esta en el barro.\nel zorro no sabe donde ir.\rel pato hace cuak.\a";
     std::string string_modificado = " el puerco esta en el barro. el zorro no sabe donde ir. el pato hace cuak. ";
 
-    unsigned int cantidad_de_caracteres_de_control_eliminados = FuncionesString::eliminarCaracteresDeControl(string_a_modificar);
+    uint32_t cantidad_de_caracteres_de_control_eliminados = FuncionesString::eliminarCaracteresDeControl(string_a_modificar);
     
     ASSERT_EQ(4, cantidad_de_caracteres_de_control_eliminados);
     ASSERT_STREQ(string_modificado.c_str(), string_a_modificar.c_str());
@@ -347,7 +347,7 @@ TEST(utiles, FuncionesStringEliminarEspaciosRedundantes)
     std::string string_a_modificar = "   el      puerco    esta en    el barro.     el zorro   no     sabe   donde  ir.   el    pato  hace   cuak.     ";
     std::string string_modificado = " el puerco esta en el barro. el zorro no sabe donde ir. el pato hace cuak. ";
 
-    unsigned int cantidad_de_espacios_redundantes_eliminados = FuncionesString::eliminarEspaciosRedundantes(string_a_modificar);
+    uint32_t cantidad_de_espacios_redundantes_eliminados = FuncionesString::eliminarEspaciosRedundantes(string_a_modificar);
 
     ASSERT_EQ(38, cantidad_de_espacios_redundantes_eliminados);
     ASSERT_STREQ(string_modificado.c_str(), string_a_modificar.c_str());
@@ -519,6 +519,49 @@ TEST(utiles, FechaParsearDDMMAAAA)
     ASSERT_EQ(0, fecha_invalida.getDia());
 }
 
+TEST(utiles, fecha_restar_y_sumar_tiempos) {
+    Fecha fecha_1(10, 2, 2018, 20, 40, 50);
+    Fecha fecha_2(1, 1, 2018, 0, 0, 0);
+
+    std::chrono::hours dos_horas(2);
+    std::chrono::minutes dos_minutos(2);
+    std::chrono::seconds dos_segundos(2);
+
+    fecha_1 -= dos_horas;
+    fecha_1 -= dos_minutos;
+    fecha_1 -= dos_segundos;
+
+    ASSERT_EQ(18, fecha_1.getHoras());
+    ASSERT_EQ(38, fecha_1.getMinutos());
+    ASSERT_EQ(48, fecha_1.getSegundos());
+
+    fecha_1 += dos_horas;
+    fecha_1 += dos_minutos;
+    fecha_1 += dos_segundos;
+
+    ASSERT_EQ(20, fecha_1.getHoras());
+    ASSERT_EQ(40, fecha_1.getMinutos());
+    ASSERT_EQ(50, fecha_1.getSegundos());
+
+    fecha_2 -= dos_segundos;
+
+    ASSERT_EQ(2017, fecha_2.getAnio());
+    ASSERT_EQ(12, fecha_2.getMes());
+    ASSERT_EQ(31, fecha_2.getDia());
+    ASSERT_EQ(23, fecha_2.getHoras());
+    ASSERT_EQ(59, fecha_2.getMinutos());
+    ASSERT_EQ(58, fecha_2.getSegundos());
+
+    fecha_2 += dos_segundos;
+
+    ASSERT_EQ(2018, fecha_2.getAnio());
+    ASSERT_EQ(1, fecha_2.getMes());
+    ASSERT_EQ(1, fecha_2.getDia());
+    ASSERT_EQ(0, fecha_2.getHoras());
+    ASSERT_EQ(0, fecha_2.getMinutos());
+    ASSERT_EQ(0, fecha_2.getSegundos());
+}
+
 TEST(utiles, FechaArmarAAAAMMDD)
 {
     Fecha fecha_1(1, 2, 2018);
@@ -602,7 +645,7 @@ TEST(utiles, AsignacionIDs)
 {
     GestorIDs gestor_ids;
 
-    unsigned long long int id_actual = gestor_ids.getIdActual();
+    uint64_t id_actual = gestor_ids.getIdActual();
 
     ASSERT_EQ(1, id_actual);
 

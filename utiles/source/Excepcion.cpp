@@ -79,7 +79,7 @@ std::stringstream& Excepcion::operator<<(int n)
     return this->mensaje;
 }
 
-std::stringstream& Excepcion::operator<<(unsigned int n)
+std::stringstream& Excepcion::operator<<(uint32_t n)
 {
     this->mensaje << n;
     return this->mensaje;

@@ -51,14 +51,14 @@ std::string Logger::getNombre()
 
 spdlog::level::level_enum Logger::getNivelLog()
 {
-    unsigned int nivel = std::distance(nombres_niveles.begin(), std::find(nombres_niveles.begin(), nombres_niveles.end(), this->configuracion->getNivelLog()));
+    uint32_t nivel = std::distance(nombres_niveles.begin(), std::find(nombres_niveles.begin(), nombres_niveles.end(), this->configuracion->getNivelLog()));
 
     return spdlog::level::level_enum(nivel);
 }
 
 spdlog::level::level_enum Logger::getNivelFlush()
 {
-    unsigned int nivel = std::distance(nombres_niveles.begin(), std::find(nombres_niveles.begin(), nombres_niveles.end(), this->configuracion->getNivelFlush()));
+    uint32_t nivel = std::distance(nombres_niveles.begin(), std::find(nombres_niveles.begin(), nombres_niveles.end(), this->configuracion->getNivelFlush()));
 
     return spdlog::level::level_enum(nivel);
 }

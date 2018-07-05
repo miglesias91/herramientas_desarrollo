@@ -26,7 +26,7 @@ public:
     // CONFIGURACIONES
 
     std::string getNombreLogger();
-    unsigned long long int  getTamanioColaAsync();
+    uint64_t  getTamanioColaAsync();
     bool getAgruparPorFecha();
     std::string getNivelLog();
     std::string getNivelFlush();
@@ -46,7 +46,7 @@ public:
 private:
 
     std::string nombre_logger;
-    unsigned long long int tamanio_cola_async;
+    uint64_t tamanio_cola_async;
     bool agrupar_por_fecha;
     std::string nivel_log;
     std::string nivel_flush;

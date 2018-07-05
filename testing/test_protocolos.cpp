@@ -11,7 +11,7 @@ using namespace herramientas::protocolos;
 
 std::string aBase64(std::string tira_de_bytes_como_string)
 {
-    unsigned int tamanio = tira_de_bytes_como_string.size() + 1;
+    uint32_t tamanio = tira_de_bytes_como_string.size() + 1;
     unsigned char* tira_bytes = new unsigned char[tamanio];
 
     strcpy_s(reinterpret_cast<char*>(tira_bytes), tamanio, tira_de_bytes_como_string.c_str());

@@ -2,6 +2,7 @@
 
 // stl
 #include <string>
+#include <chrono>
 #include <vector>
 
 namespace herramientas
@@ -15,11 +16,11 @@ public:
 
 	// CONSTRUCTORES
 
-	Fecha(std::string etiqueta = "");
+	Fecha(const std::string & etiqueta = "");
 
-	Fecha(unsigned int dia, unsigned int mes, unsigned int anio, std::string etiqueta = "");
+	Fecha(const uint32_t & dia, const uint32_t & mes, const uint32_t & anio, const std::string & etiqueta = "");
 
-    Fecha(unsigned int dia, unsigned int mes, unsigned int anio, unsigned int horas, unsigned int minutos, unsigned int segundos, std::string etiqueta = "");
+    Fecha(const uint32_t & dia, const uint32_t & mes, const uint32_t & anio, const uint32_t & horas, const uint32_t & minutos, const uint32_t & segundos, const std::string & etiqueta = "");
 
 	virtual ~Fecha();
 
@@ -27,12 +28,12 @@ public:
 
     static Fecha getFechaActual();
 
-	unsigned int getDia() const;
-	unsigned int getMes() const;
-	unsigned int getAnio() const;
-    unsigned int getHoras() const;
-    unsigned int getMinutos() const;
-    unsigned int getSegundos() const;
+	uint32_t getDia() const;
+	uint32_t getMes() const;
+	uint32_t getAnio() const;
+    uint32_t getHoras() const;
+    uint32_t getMinutos() const;
+    uint32_t getSegundos() const;
 
 	std::string getStringDia() const;
 	std::string getStringMes() const;
@@ -43,37 +44,37 @@ public:
 
     std::string getNombreMes() const;
 
-    std::string getStringDDMMAAAA(std::string separador = "") const;
+    std::string getStringDDMMAAAA(const std::string & separador = "") const;
 
-    std::string getStringDDmesAAAA(std::string separador = "") const;
+    std::string getStringDDmesAAAA(const std::string & separador = "") const;
 
-    std::string getStringAAAAMMDD(std::string separador = "") const;
+    std::string getStringAAAAMMDD(const std::string & separador = "") const;
     
-    std::string getStringAAAAMMDDHHmmSS(std::string separador_dia = "", std::string separador_dia_hora = "", std::string separador_hora = "") const;
+    std::string getStringAAAAMMDDHHmmSS(const std::string & separador_dia = "", const std::string & separador_dia_hora = "", const std::string & separador_hora = "") const;
 
 	// SETTERS
 
-	void setDia(std::string dia);
-	void setMes(std::string mes);
-	void setAnio(std::string anio);
-    void setHoras(std::string dia);
-    void setMinutos(std::string mes);
-    void setSegundos(std::string anio);
+	void setDia(const std::string & dia);
+	void setMes(const std::string & mes);
+	void setAnio(const std::string & anio);
+    void setHoras(const std::string & dia);
+    void setMinutos(const std::string & mes);
+    void setSegundos(const std::string & anio);
 
-	void setDia(unsigned int dia);
-	void setMes(unsigned int mes);
-	void setAnio(unsigned int anio);
-    void setHoras(unsigned int dia);
-    void setMinutos(unsigned int mes);
-    void setSegundos(unsigned int anio);
+	void setDia(const uint32_t & dia);
+	void setMes(const uint32_t & mes);
+	void setAnio(const uint32_t & anio);
+    void setHoras(const uint32_t & dia);
+    void setMinutos(const uint32_t & mes);
+    void setSegundos(const uint32_t & anio);
 
     // METODOS
 
     static bool parsear(const std::string & string_fecha, const std::string & formato, Fecha * fecha);
-    static Fecha parsearFormatoAAAAMMDD(std::string string_fecha, std::string separador = "");
-    static Fecha parsearFormatoAAAAMMDDHHmmSS(std::string string_fecha, std::string separador_dia = "", std::string separador_dia_hora = "", std::string separador_hora = "");
-    static Fecha parsearFormatoDDmesAAAA(std::string string_fecha, std::string separador = "");
-    static Fecha parsearFormatoDDMMAAAA(std::string string_fecha, std::string separador = "");
+    static Fecha parsearFormatoAAAAMMDD(const std::string & string_fecha, const std::string & separador = "");
+    static Fecha parsearFormatoAAAAMMDDHHmmSS(const std::string & string_fecha, const std::string & separador_dia = "", const std::string & separador_dia_hora = "", const std::string & separador_hora = "");
+    static Fecha parsearFormatoDDmesAAAA(const std::string & string_fecha, const std::string & separador = "");
+    static Fecha parsearFormatoDDMMAAAA(const std::string & string_fecha, const std::string & separador = "");
 
     // CONSULTAS
 
@@ -86,19 +87,26 @@ public:
     bool operator==(const Fecha & fecha_a_comparar) const;
     bool operator!=(const Fecha & fecha_a_comparar) const;
 
+    bool operator-=(const std::chrono::hours & horas);
+    bool operator+=(const std::chrono::hours & horas);
+    bool operator-=(const std::chrono::minutes & minutos);
+    bool operator+=(const std::chrono::minutes & minutos);
+    bool operator-=(const std::chrono::seconds & segundos);
+    bool operator+=(const std::chrono::seconds & segundos);
+
 private:
 
     static std::vector<std::string> nombres_meses;
 
     std::string etiqueta;
 
-	unsigned int dia;
-	unsigned int mes;
-	unsigned int anio;
+	uint32_t dia;
+	uint32_t mes;
+	uint32_t anio;
 
-    unsigned int horas;
-    unsigned int minutos;
-    unsigned int segundos;
+    uint32_t horas;
+    uint32_t minutos;
+    uint32_t segundos;
 
 };
 

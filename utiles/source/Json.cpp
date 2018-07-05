@@ -81,7 +81,7 @@ void Json::agregarAtributoValor(std::string clave, std::string valor)
     this->valor->AddMember(tag, json_valor, *alocador);
 }
 
-void Json::agregarAtributoValor(std::string clave, unsigned long long int valor)
+void Json::agregarAtributoValor(std::string clave, uint64_t valor)
 {
     rapidjson::Document::AllocatorType* alocador = &this->documento_alocador->GetAllocator();
 
@@ -90,7 +90,7 @@ void Json::agregarAtributoValor(std::string clave, unsigned long long int valor)
     this->valor->AddMember(tag, json_valor, *alocador);
 }
 
-void Json::agregarAtributoValor(std::string clave, unsigned int valor)
+void Json::agregarAtributoValor(std::string clave, uint32_t valor)
 {
     rapidjson::Document::AllocatorType* alocador = &this->documento_alocador->GetAllocator();
 
@@ -117,15 +117,15 @@ void Json::agregarAtributoValor(std::string clave, bool valor)
     this->valor->AddMember(tag, json_valor, *alocador);
 }
 
-void Json::agregarAtributoArray(std::string clave, std::vector<unsigned long long int> array_valores)
+void Json::agregarAtributoArray(std::string clave, std::vector<uint64_t> array_valores)
 {
     rapidjson::Document::AllocatorType* alocador = &this->documento_alocador->GetAllocator();
 
     rapidjson::Value json_valores(rapidjson::kArrayType);
 
-    for (std::vector<unsigned long long int>::iterator it = array_valores.begin(); it != array_valores.end(); it++)
+    for (std::vector<uint64_t>::iterator it = array_valores.begin(); it != array_valores.end(); it++)
     {
-        unsigned long long int valor = (*it);
+        uint64_t valor = (*it);
         json_valores.PushBack(valor, *alocador);
     }
 
@@ -218,14 +218,14 @@ Json * Json::clonar()
 
 // GETTERS
 
-unsigned long long int Json::getAtributoValorUint(std::string clave)
+uint64_t Json::getAtributoValorUint(std::string clave)
 {
     if (false == this->contieneAtributo(clave))
     {
         throw excepciones::JsonNoExisteClave(clave + " (uint)");
     }
 
-    unsigned long long int valor = (*this->valor)[clave.c_str()].GetUint64();
+    uint64_t valor = (*this->valor)[clave.c_str()].GetUint64();
 
     return valor;
 }
@@ -290,9 +290,9 @@ Json * Json::getAtributoValorJson(std::string clave)
     return json;
 }
 
-std::vector<unsigned long long int> Json::getAtributoArrayUint(std::string clave)
+std::vector<uint64_t> Json::getAtributoArrayUint(std::string clave)
 {
-    std::vector<unsigned long long int> valores;
+    std::vector<uint64_t> valores;
 
     rapidjson::Value* vector = NULL;
 
@@ -322,7 +322,7 @@ std::vector<unsigned long long int> Json::getAtributoArrayUint(std::string clave
 
     for (rapidjson::Value::ValueIterator it = vector->Begin(); it != vector->End(); it++)
     {
-        unsigned long long int valor = it->GetUint64();
+        uint64_t valor = it->GetUint64();
         valores.push_back(valor);
     }
 
@@ -426,7 +426,7 @@ void Json::setValor(rapidjson::Value * valor)
     this->valor = valor;
 }
 
-void Json::setCantidadMaximaDecimales(unsigned int cantidad_maxima_decimales)
+void Json::setCantidadMaximaDecimales(uint32_t cantidad_maxima_decimales)
 {
     this->cantidad_maxima_decimales = cantidad_maxima_decimales;
 }

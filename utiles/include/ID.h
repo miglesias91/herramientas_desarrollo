@@ -18,10 +18,10 @@ class ID
 public:
 
 	ID();
-	ID(unsigned long long int id);
+	ID(uint64_t id);
 	virtual ~ID();
 
-	unsigned long long int numero();
+	uint64_t numero();
 
     ID * copia();
 
@@ -31,7 +31,7 @@ public:
 
 private:
 
-	unsigned long long int id;
+	uint64_t id;
 
 	friend class GestorIDs;
 };
