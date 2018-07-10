@@ -25,6 +25,7 @@ public:
 
     // CONFIGURACIONES
 
+    bool getActivado();
     std::string getNombreLogger();
     uint64_t  getTamanioColaAsync();
     bool getAgruparPorFecha();
@@ -35,6 +36,7 @@ public:
 
     // TAGS
 
+    std::string tagActivado();
     std::string tagNombreLogger();
     std::string tagTamanioColaAsync();
     std::string tagAgruparPorFecha();
@@ -45,6 +47,7 @@ public:
 
 private:
 
+    bool activado;
     std::string nombre_logger;
     uint64_t tamanio_cola_async;
     bool agrupar_por_fecha;

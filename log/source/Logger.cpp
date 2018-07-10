@@ -9,6 +9,10 @@ std::vector<std::string> Logger::nombres_niveles = SPDLOG_LEVEL_NAMES;
 
 Logger::Logger(std::vector<SalidaLogger*> salidas, ConfiguracionLogger * configuracion) : salidas(salidas), configuracion(configuracion)
 {
+    if (false == this->configuracion->getActivado()) {
+        return;
+    }
+
     std::vector<spdlog::sink_ptr> sinks;
 
     for (std::vector<SalidaLogger*>::iterator it = this->salidas.begin(); it != this->salidas.end(); it++)
@@ -35,10 +39,10 @@ Logger::~Logger()
     this->info("LIBERO LOGGER");
     spdlog::drop(this->configuracion->getNombreLogger());
 
-    if (NULL != this->configuracion)
+    if (nullptr != this->configuracion)
     {
         delete this->configuracion;
-        this->configuracion = NULL;
+        this->configuracion = nullptr;
     }
 }
 
@@ -67,34 +71,40 @@ spdlog::level::level_enum Logger::getNivelFlush()
 
 // METODOS
 
-void Logger::marca(std::string mensaje)
-{
-    this->logger_ptr->trace(mensaje);
+void Logger::marca(const std::string & mensaje) {
+    if(this->configuracion->getActivado()) {
+        this->logger_ptr->trace(mensaje);
+    }
 }
 
-void Logger::debug(std::string mensaje)
-{
-    this->logger_ptr->debug(mensaje);
+void Logger::debug(const std::string & mensaje) {
+    if(this->configuracion->getActivado()) {
+        this->logger_ptr->debug(mensaje);
+    }
 }
 
-void Logger::info(std::string mensaje)
-{
-    this->logger_ptr->info(mensaje);
+void Logger::info(const std::string & mensaje) {
+    if(this->configuracion->getActivado()) {
+        this->logger_ptr->info(mensaje);
+    }
 }
 
-void Logger::advertencia(std::string mensaje)
-{
-    this->logger_ptr->warn(mensaje);
+void Logger::advertencia(const std::string & mensaje) {
+    if(this->configuracion->getActivado()) {
+        this->logger_ptr->warn(mensaje);
+    }
 }
 
-void Logger::error(std::string mensaje)
-{
-    this->logger_ptr->error(mensaje);
+void Logger::error(const std::string & mensaje) {
+    if(this->configuracion->getActivado()) {
+        this->logger_ptr->error(mensaje);
+    }
 }
 
-void Logger::critico(std::string mensaje)
-{
-    this->logger_ptr->critical(mensaje);
+void Logger::critico(const std::string & mensaje) {
+    if(this->configuracion->getActivado()) {
+        this->logger_ptr->critical(mensaje);
+    }
 }
 
 // CONSULTAS

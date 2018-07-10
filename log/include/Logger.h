@@ -30,12 +30,12 @@ public:
 
     // METODOS
 
-    void marca(std::string mensaje);
-    void debug(std::string mensaje);
-    void info(std::string mensaje);
-    void advertencia(std::string mensaje);
-    void error(std::string mensaje);
-    void critico(std::string mensaje);
+    void marca(const std::string & mensaje);
+    void debug(const std::string & mensaje);
+    void info(const std::string & mensaje);
+    void advertencia(const std::string & mensaje);
+    void error(const std::string & mensaje);
+    void critico(const std::string & mensaje);
 
     // CONSULTAS
 

@@ -39,6 +39,7 @@ void ConfiguracionLogger::leerConfiguracion(std::string path_archivo_configuraci
 
     herramientas::utiles::Json * config_log_json = config_json.getAtributoValorJson("log");
 
+    this->activado = config_log_json->getAtributoValorBool(ConfiguracionLogger::tagActivado());
     this->nombre_logger = config_log_json->getAtributoValorString(ConfiguracionLogger::tagNombreLogger());
     this->tamanio_cola_async = config_log_json->getAtributoValorUint(ConfiguracionLogger::tagTamanioColaAsync());
     this->nivel_log = config_log_json->getAtributoValorString(ConfiguracionLogger::tagNivelLog().c_str());
@@ -51,6 +52,11 @@ void ConfiguracionLogger::leerConfiguracion(std::string path_archivo_configuraci
 }
 
 // CONFIGURACIONES
+
+bool ConfiguracionLogger::getActivado()
+{
+    return this->activado;
+}
 
 std::string ConfiguracionLogger::getNombreLogger()
 {
@@ -100,6 +106,11 @@ std::vector<std::string> ConfiguracionLogger::getSalidas()
 }
 
 // TAGS
+
+std::string ConfiguracionLogger::tagActivado()
+{
+    return "activado";
+}
 
 std::string ConfiguracionLogger::tagNombreLogger()
 {

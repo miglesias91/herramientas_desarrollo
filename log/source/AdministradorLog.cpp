@@ -28,9 +28,14 @@ AdministradorLog::~AdministradorLog()
 Logger * AdministradorLog::iniciarNuevo(std::string path_configuracion)
 {
     // levanto config
-
     ConfiguracionLogger * config = new ConfiguracionLogger(path_configuracion);
     std::string nombre_logger = config->getNombreLogger();
+
+    if (false == config->getActivado()) {
+        mapa_loggers[nombre_logger] = new Logger({}, config);
+        return mapa_loggers[nombre_logger];
+    }
+
 
     if (loggerIniciado(nombre_logger))
     {
