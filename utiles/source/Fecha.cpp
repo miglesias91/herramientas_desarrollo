@@ -8,7 +8,7 @@
 // funciones string
 #include <utiles/include/FuncionesString.h>
 
-namespace herramientas::utiles {
+namespace herramientas { namespace utiles {
 
 std::vector<std::string> Fecha::nombres_meses = { "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre" };
 
@@ -548,4 +548,5 @@ bool Fecha::operator+=(const std::chrono::seconds & segundos) {
     return false;
 }
 
+}
 }
