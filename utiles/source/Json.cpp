@@ -309,7 +309,8 @@ std::vector<uint64_t> Json::getAtributoArrayUint(std::string clave)
     {
         if (false == this->contieneAtributo(clave))
         {
-            throw excepciones::JsonNoExisteClave(clave + " (array uint)");
+            return valores;
+            //throw excepciones::JsonNoExisteClave(clave + " (array uint)");
         }
 
         vector = &(*this->valor)[clave.c_str()];
@@ -348,7 +349,8 @@ std::vector<std::string> Json::getAtributoArrayString(std::string clave)
     {
         if (false == this->contieneAtributo(clave))
         {
-            throw excepciones::JsonNoExisteClave(clave + " (array string)");
+            return valores;
+            //throw excepciones::JsonNoExisteClave(clave + " (array string)");
         }
 
         vector = &(*this->valor)[clave.c_str()];
@@ -371,7 +373,7 @@ std::vector<std::string> Json::getAtributoArrayString(std::string clave)
 std::vector<Json*> Json::getAtributoArrayJson(std::string clave)
 {
     std::vector<Json*> valores;
-    
+
     rapidjson::Value* vector = NULL;
 
     if (clave.empty())
@@ -387,7 +389,8 @@ std::vector<Json*> Json::getAtributoArrayJson(std::string clave)
     {
         if (false == this->contieneAtributo(clave))
         {
-            throw excepciones::JsonNoExisteClave(clave + " (array json)");
+            //throw excepciones::JsonNoExisteClave(clave + " (array json)");
+            return valores;
         }
 
         vector = &(*this->valor)[clave.c_str()];
