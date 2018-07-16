@@ -3,7 +3,6 @@
 // stl
 #include <iomanip>
 #include <sstream>
-#include <time.h>
 
 // funciones string
 #include <utiles/include/FuncionesString.h>
@@ -343,6 +342,22 @@ Fecha Fecha::parsearFormatoDDMMAAAA(const std::string & string_fecha, const std:
     }
 
     return Fecha(dia, mes, anio);
+}
+
+Fecha Fecha::parsear(const std::chrono::system_clock::time_point & segundos_desde_epoca) {
+    time_t tiempo = std::chrono::system_clock::to_time_t(segundos_desde_epoca);
+    struct tm t = *localtime(&tiempo);
+
+    Fecha parseada;
+    parseada.setAnio(t.tm_year + 1900);
+    parseada.setMes(t.tm_mon + 1);
+    parseada.setDia(t.tm_mday);
+
+    parseada.setHoras(t.tm_hour);
+    parseada.setMinutos(t.tm_min);
+    parseada.setSegundos(t.tm_sec);
+
+    return parseada;
 }
 
 // CONSULTAS

@@ -4,6 +4,7 @@
 #include <string>
 #include <chrono>
 #include <vector>
+#include <time.h>
 
 namespace herramientas
 {
@@ -75,6 +76,8 @@ public:
     static Fecha parsearFormatoAAAAMMDDHHmmSS(const std::string & string_fecha, const std::string & separador_dia = "", const std::string & separador_dia_hora = "", const std::string & separador_hora = "");
     static Fecha parsearFormatoDDmesAAAA(const std::string & string_fecha, const std::string & separador = "");
     static Fecha parsearFormatoDDMMAAAA(const std::string & string_fecha, const std::string & separador = "");
+
+    static Fecha parsear(const std::chrono::system_clock::time_point & segundos);
 
     // CONSULTAS
 
