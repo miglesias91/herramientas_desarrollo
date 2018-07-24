@@ -2,6 +2,7 @@
 
 // stl
 #include <algorithm>
+#include <filesystem>
 #include <fstream>
 #include <sstream>
 
@@ -50,11 +51,9 @@ bool FuncionesSistemaArchivos::leer(const std::string &  path, std::string & con
 
 bool FuncionesSistemaArchivos::eliminar(std::string path)
 {
-    if (0 == std::remove(path.c_str()))
+    if (0 == std::experimental::filesystem::remove(path.c_str()))
     {
         return true;
     }
     return false;
 }
-
-
