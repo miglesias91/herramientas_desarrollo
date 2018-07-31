@@ -132,6 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\Conversiones.h" />
+    <ClInclude Include="include\csv.h" />
     <ClInclude Include="include\Excepcion.h" />
     <ClInclude Include="include\Fecha.h" />
     <ClInclude Include="include\FuncionesSistemaArchivos.h" />
@@ -151,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Conversiones.cpp" />
+    <ClCompile Include="source\csv.cpp" />
     <ClCompile Include="source\Excepcion.cpp" />
     <ClCompile Include="source\Fecha.cpp" />
     <ClCompile Include="source\FuncionesSistemaArchivos.cpp" />

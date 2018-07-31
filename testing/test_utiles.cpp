@@ -14,6 +14,7 @@
 #include <utiles/include/ID.h>
 #include <utiles/include/GestorIDs.h>
 #include <utiles/include/Stemming.h>
+#include <utiles/include/csv.h>
 
 using namespace herramientas::utiles;
 
@@ -813,4 +814,36 @@ TEST(utiles, stemmingUTF8)
     {
         ASSERT_EQ(*it, "transport");
     }
+}
+
+TEST(utiles, sumar_csv) {
+    herramientas::utiles::csv doc({ "columna1", "columna2", "columna3" });
+    doc.agregar({ "item11", "item12", "item13" });
+    doc.agregar({ "item21", "item22", "item23" });
+    doc.agregar({ "item31", "item32", "item33" });
+    doc.agregar({ "item41", "item42", "item43" });
+
+    herramientas::utiles::csv doc2({ "columna1", "columna2", "columna3" });
+    doc2.agregar({ "item51", "item52", "item53" });
+    doc2.agregar({ "item61", "item62", "item63" });
+    doc2.agregar({ "item71", "item72", "item73" });
+    doc2.agregar({ "item81", "item82", "item83" });
+
+    doc += doc2;
+
+    ASSERT_EQ( 8, doc.filas().size() );
+}
+
+TEST(utiles, exportar_csv) {
+    herramientas::utiles::csv doc({"columna1", "columna2", "columna3"});
+
+    doc.agregar({ "item11", "item12", "item13" });
+    doc.agregar({ "item21", "item22", "item23" });
+    doc.agregar({ "item31", "item32", "item33" });
+    doc.agregar({ "item41", "item42", "item43" });
+
+    std::ofstream salida("test.csv");
+    doc.exportar(salida);
+
+    std::experimental::filesystem::remove("test.csv");
 }
