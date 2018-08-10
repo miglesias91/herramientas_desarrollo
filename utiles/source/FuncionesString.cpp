@@ -144,3 +144,39 @@ bool FuncionesString::empiezaCon(const std::string & string_a_chequear, const st
 {
     return string_a_buscar.length() <= string_a_chequear.length() && std::equal(string_a_buscar.begin(), string_a_buscar.end(), string_a_chequear.begin());
 }
+
+uint32_t FuncionesString::eliminar_tildes(std::string * string_a_modificar) {
+    uint32_t cantidad_de_tildes_reemplazadas = 0;
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, "á", "a");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, "é", "e");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, "í", "i");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, "ó", "o");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, "ú", "u");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, "ý", "y");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, "Á", "a");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, "É", "e");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, "Í", "i");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, "Ó", "o");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, "Ú", "u");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, "Ý", "y");
+    
+    return cantidad_de_tildes_reemplazadas;
+}
+
+uint32_t FuncionesString::eliminar_tildes_utf8(std::string * string_a_modificar) {
+    uint32_t cantidad_de_tildes_reemplazadas = 0;
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, u8"á", "a");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, u8"é", "e");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, u8"í", "i");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, u8"ó", "o");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, u8"ú", "u");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, u8"ý", "y");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, u8"Á", "a");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, u8"É", "e");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, u8"Í", "i");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, u8"Ó", "o");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, u8"Ú", "u");
+    cantidad_de_tildes_reemplazadas += reemplazarOcurrencias(*string_a_modificar, u8"Ý", "y");
+
+    return cantidad_de_tildes_reemplazadas;
+}

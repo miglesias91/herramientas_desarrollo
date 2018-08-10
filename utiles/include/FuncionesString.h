@@ -37,6 +37,12 @@ public:
     static uint32_t eliminarEspaciosRedundantes(std::string & string_a_modificar);
 
     static bool empiezaCon(const std::string & string_a_chequear, const std::string & string_a_buscar);
+
+    // elimina las tildes del string.
+    static uint32_t eliminar_tildes(std::string * string_a_modificar);
+
+    // elimina las tildes del string en formato utf8.
+    static uint32_t eliminar_tildes_utf8(std::string * string_a_modificar);
 };
 
 };
