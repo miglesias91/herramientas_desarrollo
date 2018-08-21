@@ -88,9 +88,21 @@ bool FuncionesString::todoMinuscula(std::string & string_a_modificar)
     return true;
 }
 
-uint32_t FuncionesString::eliminarSignosYPuntuacion(std::string & string_a_modificar)
+uint32_t FuncionesString::eliminarSignosYPuntuacion(std::string & string_a_modificar, const std::vector<std::string> & caracteres_a_mantener)
 {
     std::vector<std::string> signos_y_puntuacion = { "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~" };
+    std::vector<std::string> caracteres_a_mantener_ordenados = caracteres_a_mantener;
+
+    if (caracteres_a_mantener.size()) {  // si hay caracters a sacar, entonces los saco.
+        std::vector<std::string> signos_y_puntuacion_a_sacar = {};
+
+        std::sort(signos_y_puntuacion.begin(), signos_y_puntuacion.end());
+        std::sort(caracteres_a_mantener_ordenados.begin(), caracteres_a_mantener_ordenados.end());
+
+        std::set_difference(signos_y_puntuacion.begin(), signos_y_puntuacion.end(), caracteres_a_mantener_ordenados.begin(), caracteres_a_mantener_ordenados.end(),
+            std::inserter(signos_y_puntuacion_a_sacar, signos_y_puntuacion_a_sacar.begin()));
+        signos_y_puntuacion = signos_y_puntuacion_a_sacar;
+    }
 
     uint32_t cantidad_de_signos_y_puntuaciones_eliminados = 0;
     for (std::vector<std::string>::iterator it_signo = signos_y_puntuacion.begin(); it_signo != signos_y_puntuacion.end(); it_signo++)

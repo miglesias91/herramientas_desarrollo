@@ -333,6 +333,13 @@ TEST(utiles, FuncionesStringEliminarSignosYPuntuacion)
     FuncionesString::eliminarSignosYPuntuacion(oracion_con_simbolos_no_caracteres);
 
     ASSERT_STREQ(oracion_con_simbolos_no_caracteres.c_str(), oracion_sin_simbolos_no_caracteres.c_str());
+
+    oracion_con_simbolos_no_caracteres = "y matori dijo: \"me quedan $20,35.-\". habia (mal)gastado el premio -que no habia ganado- en un monton de m&m y demas basuras.";
+    oracion_sin_simbolos_no_caracteres = "y matori dijo: me quedan 20 35 - habia mal gastado el premio -que no habia ganado- en un monton de m m y demas basuras ";
+
+    FuncionesString::eliminarSignosYPuntuacion(oracion_con_simbolos_no_caracteres, {"-", ":"});
+
+    ASSERT_STREQ(oracion_con_simbolos_no_caracteres.c_str(), oracion_sin_simbolos_no_caracteres.c_str());
 }
 
 TEST(utiles, FuncionesStringEliminarCaracteresDeControl)

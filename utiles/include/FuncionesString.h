@@ -28,7 +28,7 @@ public:
 
     static bool todoMinuscula(std::string & string_a_modificar);
 
-    static uint32_t eliminarSignosYPuntuacion(std::string & string_a_modificar);
+    static uint32_t eliminarSignosYPuntuacion(std::string & string_a_modificar, const std::vector<std::string> & caracteres_a_mantener = {});
 
     // reemplaza los caracteres de control "\n", "\t", "\r", "\a" por un espacio en blanco:
     static uint32_t eliminarCaracteresDeControl(std::string & string_a_modificar);
