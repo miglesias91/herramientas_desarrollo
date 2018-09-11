@@ -1,5 +1,5 @@
-// gtest
-#include <gtest/gtest.h>
+// catch2
+#include <catch.hpp>
 
 // cpprest
 #include <cpprest/http_client.h>
@@ -25,11 +25,10 @@ std::string aBase64(std::string tira_de_bytes_como_string)
     return utility::conversions::to_utf8string(bytes_decodificados);
 }
 
-TEST(Protocolos, DISABLED_obtenerTokenDeAccesoCorrectamente)
-{
+TEST_CASE("obtener_token", "protocolos[.]") {
     OAuth2Consumidor oauth2_consumidor_valido("aXPpXInb16k0jKIswOYuUS3ly", "MhuDBpN9EtnafrIUHvJEbleJ3WKiFCSBIulwRVNvZTWoXGs2eV");
 
     bool se_obtuvo_token_de_consumidor_valido = OAuth2::solicitarTokenAcceso(&oauth2_consumidor_valido, "https://api.twitter.com");
 
-    ASSERT_EQ(true, se_obtuvo_token_de_consumidor_valido);
+    REQUIRE(true == se_obtuvo_token_de_consumidor_valido);
 }

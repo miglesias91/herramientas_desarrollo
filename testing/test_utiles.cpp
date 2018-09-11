@@ -1,8 +1,8 @@
 // stl
 #include <filesystem>
 
-// gtest
-#include <gtest/gtest.h>
+// catch2
+#include <catch.hpp>
 
 // cpprestsdk
 #include <cpprest/http_client.h>
@@ -18,8 +18,7 @@
 
 using namespace herramientas::utiles;
 
-TEST(utiles, GettersYSettersJson)
-{
+TEST_CASE("getters_y_setters_json", "utiles") {
     Json* json = new Json("{\"etiqueta\":\"primavera_2017\",\"contenido\":{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18]},\"tweets\":[{\"id_tweet\":1},{\"id_tweet\":2},{\"id_tweet\":3}]}");
 
     std::string etiqueta = json->getAtributoValorString("etiqueta");
@@ -69,41 +68,40 @@ TEST(utiles, GettersYSettersJson)
     delete json;
     delete contenido;
 
-    ASSERT_EQ(true, existe);
-    ASSERT_EQ(false, no_existe);
-    ASSERT_EQ(false, es_array);
-    ASSERT_EQ(true, excepcion_atrapada);
+    REQUIRE(true == existe);
+    REQUIRE(false == no_existe);
+    REQUIRE(false == es_array);
+    REQUIRE(true == excepcion_atrapada);
 
-    ASSERT_STREQ("primavera_2017", etiqueta.c_str());
+    REQUIRE("primavera_2017" == etiqueta.c_str());
 
-    ASSERT_EQ(peso_nuevo, peso);
+    REQUIRE(peso_nuevo == peso);
 
-    ASSERT_STREQ("{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18]}", json_original.c_str());
+    REQUIRE("{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18]}" == json_original.c_str());
 
-    ASSERT_STREQ("{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18],\"peso\":3.4567,\"es_retweet\":true}", json_sin_modificar.c_str());
+    REQUIRE("{\"id_periodo\":2,\"id_reporte\":3,\"ids_conceptos\":[6,10,14],\"ids_medios\":[15,16],\"ids_secciones\":[17,18],\"peso\":3.4567,\"es_retweet\":true}" == json_sin_modificar.c_str());
 
-    ASSERT_STREQ("{\"id_tweet\":1}", json_tweets_1.c_str());
+    REQUIRE("{\"id_tweet\":1}" == json_tweets_1.c_str());
 
-    ASSERT_STREQ("{\"id_tweet\":2}", json_tweets_2.c_str());
+    REQUIRE("{\"id_tweet\":2}" == json_tweets_2.c_str());
 
-    ASSERT_STREQ("{\"id_tweet\":3}", json_tweets_3.c_str());
+    REQUIRE("{\"id_tweet\":3}" == json_tweets_3.c_str());
 
-    ASSERT_EQ(2, id_periodo);
-    ASSERT_EQ(3, id_reporte);
+    REQUIRE(2 == id_periodo);
+    REQUIRE(3 == id_reporte);
 
-    ASSERT_EQ(6, ids_conceptos[0]);
-    ASSERT_EQ(10, ids_conceptos[1]);
-    ASSERT_EQ(14, ids_conceptos[2]);
+    REQUIRE(6 == ids_conceptos[0]);
+    REQUIRE(10 == ids_conceptos[1]);
+    REQUIRE(14 == ids_conceptos[2]);
 
-    ASSERT_EQ(15, ids_medios[0]);
-    ASSERT_EQ(16, ids_medios[1]);
+    REQUIRE(15 == ids_medios[0]);
+    REQUIRE(16 == ids_medios[1]);
 
-    ASSERT_EQ(17, ids_secciones[0]);
-    ASSERT_EQ(18, ids_secciones[1]);
+    REQUIRE(17 == ids_secciones[0]);
+    REQUIRE(18 == ids_secciones[1]);
 }
 
-TEST(utiles, GettersYSettersJsonArray)
-{
+TEST_CASE("getters_y_setters_json_array", "utiles") {
     Json* json = new Json("[{\"id_tweet\":1},{\"id_tweet\":2},{\"id_tweet\":3}]");
 
     bool es_array = json->esArray();
@@ -123,13 +121,13 @@ TEST(utiles, GettersYSettersJsonArray)
 
     tweets.clear();
 
-    ASSERT_EQ(true, es_array);
+    REQUIRE(true == es_array);
 
-    ASSERT_STREQ("{\"id_tweet\":1}", json_tweets_1.c_str());
+    REQUIRE("{\"id_tweet\":1}" == json_tweets_1.c_str());
 
-    ASSERT_STREQ("{\"id_tweet\":2}", json_tweets_2.c_str());
+    REQUIRE("{\"id_tweet\":2}" == json_tweets_2.c_str());
 
-    ASSERT_STREQ("{\"id_tweet\":3}", json_tweets_3.c_str());
+    REQUIRE("{\"id_tweet\":3}" == json_tweets_3.c_str());
 
     Json * json_1 = new Json("{\"id_tweet\":1}");
     Json * json_2 = new Json("{\"id_tweet\":2}");
@@ -166,13 +164,13 @@ TEST(utiles, GettersYSettersJsonArray)
         excepcion_no_existe_array = true;
     }
 
-    ASSERT_EQ(true, atributo_es_array);
-    ASSERT_EQ(false, no_es_array);
+    REQUIRE(true == atributo_es_array);
+    REQUIRE(false == no_es_array);
 
-    ASSERT_EQ(true, excepcion_no_es_array);
-    ASSERT_EQ(true, excepcion_no_existe_array);
+    REQUIRE(true == excepcion_no_es_array);
+    REQUIRE(true == excepcion_no_existe_array);
 
-    ASSERT_EQ("{\"tweets\":[{\"id_tweet\":1},{\"id_tweet\":2},{\"id_tweet\":3}]}", json_array->jsonString());
+    REQUIRE("{\"tweets\":[{\"id_tweet\":1},{\"id_tweet\":2},{\"id_tweet\":3}]}" == json_array->jsonString());
 
     delete json_1;
     delete json_2;
@@ -181,9 +179,8 @@ TEST(utiles, GettersYSettersJsonArray)
     delete json_array;
 }
 
+TEST_CASE("getters_y_setters_codificaciones", "utiles") {
 
-TEST(utiles, GettersYSettersCodificaciones)
-{
 //    ******** NOTA ********
 //        cuando le pasamos al Json un code unit (codigo en formato unicode de la forma '\uXXXX'), rapidjson lo procesa internamente en formato UTF8, es decir que
 //        lo traduce a sus caracteres correspondientes. Por eso cuando recuperamos un valor como String, en la posicion de codeunit vamos a ver la secuencia de caracteres
@@ -208,11 +205,10 @@ TEST(utiles, GettersYSettersCodificaciones)
 
     std::string correcto = "JerusalÃ©n: suenan sirenas de alarma en el sur de Israel tras el disparo de un cohete desde Gazaâ€¦ https://t.co/eqSJm9AkQB";
 
-    ASSERT_STREQ(correcto.c_str(), json_tweets_1.c_str());
+    REQUIRE(correcto == json_tweets_1);
 }
 
-TEST(utiles, FuncionesStringUnir)
-{
+TEST_CASE("string_unir", "utiles") {
     std::vector<std::string> strings_a_unir_vacio;
     std::vector<std::string> strings_a_unir_1 = { "" };
     std::vector<std::string> strings_a_unir_2 = { "", "" };
@@ -227,15 +223,15 @@ TEST(utiles, FuncionesStringUnir)
     std::string string_unido_5 = FuncionesString::unir(strings_a_unir_4);
     std::string string_unido_vacio = FuncionesString::unir(strings_a_unir_vacio, "; ");
 
-    ASSERT_EQ("", string_unido_vacio);
-    ASSERT_EQ("", string_unido_1);
-    ASSERT_EQ(", ", string_unido_2);
-    ASSERT_EQ("hola", string_unido_3);
-    ASSERT_EQ("hola; como; estas; amigo", string_unido_4);
-    ASSERT_EQ("holacomoestasamigo", string_unido_5);
+    REQUIRE("" == string_unido_vacio);
+    REQUIRE("" == string_unido_1);
+    REQUIRE(", " == string_unido_2);
+    REQUIRE("hola" == string_unido_3);
+    REQUIRE("hola; como; estas; amigo" == string_unido_4);
+    REQUIRE("holacomoestasamigo" == string_unido_5);
 }
-TEST(utiles, FuncionesStringSeparar)
-{
+
+TEST_CASE("string_separar", "utiles") {
     std::string string_a_separar_1 = "hola,como,estas,amigo";
     std::string string_a_separar_2 = "hola,como,estas,,amigo";
     std::string string_a_separar_3 = "hola,como,estas,amigo,";
@@ -255,155 +251,146 @@ TEST(utiles, FuncionesStringSeparar)
     std::vector<std::string> tokens_7 = FuncionesString::separar(string_a_separar_7, ",");
     std::vector<std::string> tokens_8 = FuncionesString::separar(string_a_separar_8, ",");
 
-    ASSERT_STREQ("amigo", tokens_1[3].c_str());
-    ASSERT_STREQ("amigo", tokens_2[4].c_str());
-    ASSERT_STREQ("amigo", tokens_3[3].c_str());
-    ASSERT_STREQ("amigo", tokens_4[4].c_str());
-    ASSERT_STREQ("amigo", tokens_5[4].c_str());
+    REQUIRE("amigo" == tokens_1[3].c_str());
+    REQUIRE("amigo" == tokens_2[4].c_str());
+    REQUIRE("amigo" == tokens_3[3].c_str());
+    REQUIRE("amigo" == tokens_4[4].c_str());
+    REQUIRE("amigo" == tokens_5[4].c_str());
 
-    ASSERT_STREQ("¾", tokens_6[1].c_str());
-    ASSERT_STREQ("VULGAR FRACTION THREE QUARTERS", tokens_6[3].c_str());
+    REQUIRE("¾" == tokens_6[1].c_str());
+    REQUIRE("VULGAR FRACTION THREE QUARTERS" == tokens_6[3].c_str());
 
-    ASSERT_STREQ("ä", tokens_7[1].c_str());
-    ASSERT_STREQ("LATIN SMALL LETTER A WITH DIAERESIS", tokens_7[3].c_str());
+    REQUIRE("ä" == tokens_7[1].c_str());
+    REQUIRE("LATIN SMALL LETTER A WITH DIAERESIS" == tokens_7[3].c_str());
 
-    ASSERT_STREQ("«", tokens_8[1].c_str());
-    ASSERT_STREQ("LEFT-POINTING DOUBLE ANGLE QUOTATION MARK", tokens_8[3].c_str());
+    REQUIRE("«" == tokens_8[1].c_str());
+    REQUIRE("LEFT-POINTING DOUBLE ANGLE QUOTATION MARK" == tokens_8[3].c_str());
 }
 
-TEST(utiles, FuncionesStringReemplazarOcurrencias)
-{
+TEST_CASE("string_reemplazar", "utiles") {
     std::string string_a_modificar = "el puerco esta en la pocilga.";
 
     uint32_t cantidad_de_ocurrencias = FuncionesString::reemplazarOcurrencias(string_a_modificar, "la pocilga", "el rebaño");
 
-    ASSERT_EQ(1, cantidad_de_ocurrencias);
-    ASSERT_STREQ("el puerco esta en el rebaño.", string_a_modificar.c_str());
+    REQUIRE(1 == cantidad_de_ocurrencias);
+    REQUIRE("el puerco esta en el rebaño." == string_a_modificar.c_str());
 
     cantidad_de_ocurrencias = FuncionesString::reemplazarOcurrencias(string_a_modificar, "el", "un");
 
-    ASSERT_EQ(2, cantidad_de_ocurrencias);
-    ASSERT_STREQ("un puerco esta en un rebaño.", string_a_modificar.c_str());
+    REQUIRE(2 == cantidad_de_ocurrencias);
+    REQUIRE("un puerco esta en un rebaño." == string_a_modificar.c_str());
 
     std::string string_utf8_a_modificar = u8"me tomo un café.";
 
     cantidad_de_ocurrencias = FuncionesString::reemplazarOcurrencias(string_utf8_a_modificar, u8"é", "e");
 
-    ASSERT_EQ(1, cantidad_de_ocurrencias);
-    ASSERT_STREQ("me tomo un cafe.", string_utf8_a_modificar.c_str());
+    REQUIRE(1 == cantidad_de_ocurrencias);
+    REQUIRE("me tomo un cafe." == string_utf8_a_modificar.c_str());
 }
 
-TEST(utiles, FuncionesStringEliminarOcurrencias)
-{
+TEST_CASE("string_eliminar", "utiles") {
     std::string string_a_modificar = "el puerco esta en el barro.";
 
     uint32_t cantidad_de_ocurrencias = FuncionesString::eliminarOcurrencias(string_a_modificar, " barro");
 
-    ASSERT_EQ(1, cantidad_de_ocurrencias);
-    ASSERT_STREQ("el puerco esta en el.", string_a_modificar.c_str());
+    REQUIRE(1 == cantidad_de_ocurrencias);
+    REQUIRE("el puerco esta en el." == string_a_modificar.c_str());
 
     cantidad_de_ocurrencias = FuncionesString::eliminarOcurrencias(string_a_modificar, "el");
 
-    ASSERT_EQ(2, cantidad_de_ocurrencias);
-    ASSERT_STREQ(" puerco esta en .", string_a_modificar.c_str());
+    REQUIRE(2 == cantidad_de_ocurrencias);
+    REQUIRE(" puerco esta en ." == string_a_modificar.c_str());
 
     std::string string_utf8_a_modificar = u8"me tomo un café.";
 
     cantidad_de_ocurrencias = FuncionesString::eliminarOcurrencias(string_utf8_a_modificar, u8" café");
 
-    ASSERT_EQ(1, cantidad_de_ocurrencias);
-    ASSERT_STREQ("me tomo un.", string_utf8_a_modificar.c_str());
+    REQUIRE(1 == cantidad_de_ocurrencias);
+    REQUIRE("me tomo un." == string_utf8_a_modificar.c_str());
 }
 
-TEST(utiles, FuncionesStringTodoMinuscula)
-{
+TEST_CASE("string_minuscula", "utiles") {
     std::string oracion_con_mayusculas = "HabÍa uNa veZ un CafÉ qUE uSaBa UnA cÁmArA CoN MuChA EmOCión.";
     std::string oracion_sin_mayusculas = "había una vez un café que usaba una cámara con mucha emoción.";
 
     FuncionesString::todoMinuscula(oracion_con_mayusculas);
 
-    ASSERT_STREQ(oracion_sin_mayusculas.c_str(), oracion_con_mayusculas.c_str());
+    REQUIRE(oracion_sin_mayusculas == oracion_con_mayusculas);
 }
 
-TEST(utiles, FuncionesStringEliminarSignosYPuntuacion)
-{
+TEST_CASE("string_eliminar_signos_y_puntuacion", "utiles") {
     std::string oracion_con_simbolos_no_caracteres = "y matori dijo: \"me quedan $20,35.-\". habia (mal)gastado el premio -que no habia ganado- en un monton de m&m y demas basuras.";
     std::string oracion_sin_simbolos_no_caracteres = "y matori dijo me quedan 20 35 habia mal gastado el premio que no habia ganado en un monton de m m y demas basuras ";
 
     FuncionesString::eliminarSignosYPuntuacion(oracion_con_simbolos_no_caracteres);
 
-    ASSERT_STREQ(oracion_con_simbolos_no_caracteres.c_str(), oracion_sin_simbolos_no_caracteres.c_str());
+    REQUIRE(oracion_con_simbolos_no_caracteres == oracion_sin_simbolos_no_caracteres);
 
     oracion_con_simbolos_no_caracteres = "y matori dijo: \"me quedan $20,35.-\". habia (mal)gastado el premio -que no habia ganado- en un monton de m&m y demas basuras.";
     oracion_sin_simbolos_no_caracteres = "y matori dijo: me quedan 20 35 - habia mal gastado el premio -que no habia ganado- en un monton de m m y demas basuras ";
 
     FuncionesString::eliminarSignosYPuntuacion(oracion_con_simbolos_no_caracteres, {"-", ":"});
 
-    ASSERT_STREQ(oracion_con_simbolos_no_caracteres.c_str(), oracion_sin_simbolos_no_caracteres.c_str());
+    REQUIRE(oracion_con_simbolos_no_caracteres == oracion_sin_simbolos_no_caracteres);
 }
 
-TEST(utiles, FuncionesStringEliminarCaracteresDeControl)
-{
+TEST_CASE("string_eliminar_caracteres_control", "utiles") {
     std::string string_a_modificar = "\tel puerco esta en el barro.\nel zorro no sabe donde ir.\rel pato hace cuak.\a";
     std::string string_modificado = " el puerco esta en el barro. el zorro no sabe donde ir. el pato hace cuak. ";
 
     uint32_t cantidad_de_caracteres_de_control_eliminados = FuncionesString::eliminarCaracteresDeControl(string_a_modificar);
     
-    ASSERT_EQ(4, cantidad_de_caracteres_de_control_eliminados);
-    ASSERT_STREQ(string_modificado.c_str(), string_a_modificar.c_str());
+    REQUIRE(4 == cantidad_de_caracteres_de_control_eliminados);
+    REQUIRE(string_modificado == string_a_modificar);
 }
 
-TEST(utiles, FuncionesStringEliminarEspaciosRedundantes)
-{
+TEST_CASE("string_eliminar_espacios_redundantes", "utiles") {
     std::string string_a_modificar = "   el      puerco    esta en    el barro.     el zorro   no     sabe   donde  ir.   el    pato  hace   cuak.     ";
     std::string string_modificado = " el puerco esta en el barro. el zorro no sabe donde ir. el pato hace cuak. ";
 
     uint32_t cantidad_de_espacios_redundantes_eliminados = FuncionesString::eliminarEspaciosRedundantes(string_a_modificar);
 
-    ASSERT_EQ(38, cantidad_de_espacios_redundantes_eliminados);
-    ASSERT_STREQ(string_modificado.c_str(), string_a_modificar.c_str());
+    REQUIRE(38 == cantidad_de_espacios_redundantes_eliminados);
+    REQUIRE(string_modificado == string_a_modificar);
 }
 
-TEST(utiles, FuncionesStringEmpiezaCon)
-{
+TEST_CASE("string_empieza_con", "utiles") {
     std::string string_a_consultar = "hola como estas?";
     std::string string_a_buscar = "hola com";
 
-    ASSERT_EQ(true, FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
+    REQUIRE(true == FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
 
     string_a_buscar = "chau";
 
-    ASSERT_EQ(false, FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
+    REQUIRE(false == FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
 
     string_a_buscar = "como";
 
-    ASSERT_EQ(false, FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
+    REQUIRE(false == FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
 
     string_a_buscar = "como estas?";
 
-    ASSERT_EQ(false, FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
+    REQUIRE(false == FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
 
     string_a_buscar = "hola como estas?";
 
-    ASSERT_EQ(true, FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
+    REQUIRE(true == FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
 
     string_a_buscar = "hola como estas? todo bien?";
 
-    ASSERT_EQ(false, FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
+    REQUIRE(false == FuncionesString::empiezaCon(string_a_consultar, string_a_buscar));
 }
 
-TEST(utiles, FuncionesStringToString)
-{
+TEST_CASE("string_convertir", "utiles") {
     double numero = 12345.6789101112;
     std::string string_numero_dos_decimales = "12345.68";
     std::string string_numero_cuatro_decimales = "12345.6789";
 
-    ASSERT_EQ(string_numero_dos_decimales, FuncionesString::toString(numero));
-    ASSERT_EQ(string_numero_cuatro_decimales, FuncionesString::toString(numero, 4));
+    REQUIRE(string_numero_dos_decimales == FuncionesString::toString(numero));
+    REQUIRE(string_numero_cuatro_decimales == FuncionesString::toString(numero, 4));
 }
 
-TEST(utiles, fecha_parsear) {
-
+TEST_CASE("fecha_parsear", "utiles") {
     std::string fecha_formato_rss("Wed, 20 Jun 2018 19:06:46 +0000");
     std::string fecha_formato_atom("2018-06-20T18:46:00-03:00");
 
@@ -412,23 +399,22 @@ TEST(utiles, fecha_parsear) {
     Fecha::parsear(fecha_formato_rss, "%a, %d %b %Y %H:%M:%S", &fecha_rss);
     Fecha::parsear(fecha_formato_atom, "%Y-%m-%dT%H:%M:%S", &fecha_atom);
 
-    ASSERT_EQ(2018, fecha_rss.getAnio());
-    ASSERT_EQ(06, fecha_rss.getMes());
-    ASSERT_EQ(20, fecha_rss.getDia());
-    ASSERT_EQ(19, fecha_rss.getHoras());
-    ASSERT_EQ(06, fecha_rss.getMinutos());
-    ASSERT_EQ(46, fecha_rss.getSegundos());
+    REQUIRE(2018 == fecha_rss.getAnio());
+    REQUIRE(06 == fecha_rss.getMes());
+    REQUIRE(20 == fecha_rss.getDia());
+    REQUIRE(19 == fecha_rss.getHoras());
+    REQUIRE(06 == fecha_rss.getMinutos());
+    REQUIRE(46 == fecha_rss.getSegundos());
 
-    ASSERT_EQ(2018, fecha_atom.getAnio());
-    ASSERT_EQ(06, fecha_atom.getMes());
-    ASSERT_EQ(20, fecha_atom.getDia());
-    ASSERT_EQ(18, fecha_atom.getHoras());
-    ASSERT_EQ(46, fecha_atom.getMinutos());
-    ASSERT_EQ(00, fecha_atom.getSegundos());
+    REQUIRE(2018 == fecha_atom.getAnio());
+    REQUIRE(06 == fecha_atom.getMes());
+    REQUIRE(20 == fecha_atom.getDia());
+    REQUIRE(18 == fecha_atom.getHoras());
+    REQUIRE(46 == fecha_atom.getMinutos());
+    REQUIRE(00 == fecha_atom.getSegundos());
 }
 
-TEST(utiles, FechaParsearAAAAMMDD)
-{
+TEST_CASE("fecha_parsear_AAAAMMDD", "utiles") {
     std::string string_fecha_sin_separador = "20180102";
     std::string string_fecha_con_separador = "2018 01 02";
     std::string string_fecha_invalida = "2018 14 02";
@@ -437,21 +423,20 @@ TEST(utiles, FechaParsearAAAAMMDD)
     Fecha fecha_con_separador = Fecha::parsearFormatoAAAAMMDD(string_fecha_con_separador, " ");
     Fecha fecha_invalida = Fecha::parsearFormatoAAAAMMDD(string_fecha_invalida, " ");
 
-    ASSERT_EQ(2018, fecha_sin_separador.getAnio());
-    ASSERT_EQ(2018, fecha_con_separador.getAnio());
-    ASSERT_EQ(0, fecha_invalida.getAnio());
+    REQUIRE(2018 == fecha_sin_separador.getAnio());
+    REQUIRE(2018 == fecha_con_separador.getAnio());
+    REQUIRE(0 == fecha_invalida.getAnio());
 
-    ASSERT_EQ(01, fecha_sin_separador.getMes());
-    ASSERT_EQ(01, fecha_con_separador.getMes());
-    ASSERT_EQ(0, fecha_invalida.getMes());
+    REQUIRE(01 == fecha_sin_separador.getMes());
+    REQUIRE(01 == fecha_con_separador.getMes());
+    REQUIRE(0 == fecha_invalida.getMes());
 
-    ASSERT_EQ(02, fecha_sin_separador.getDia());
-    ASSERT_EQ(02, fecha_con_separador.getDia());
-    ASSERT_EQ(0, fecha_invalida.getDia());
+    REQUIRE(02 == fecha_sin_separador.getDia());
+    REQUIRE(02 == fecha_con_separador.getDia());
+    REQUIRE(0 == fecha_invalida.getDia());
 }
 
-TEST(utiles, FechaParsearAAAAMMDDHHmmSS)
-{
+TEST_CASE("fecha_parsear_AAAAMMDDHHmmSS", "utiles") {
     std::string string_fecha_sin_separador = "20180102235959";
     std::string string_fecha_con_separador = "2018 01 02-22:58:57";
     std::string string_fecha_invalida = "2018 12 0224-60-59";
@@ -460,27 +445,26 @@ TEST(utiles, FechaParsearAAAAMMDDHHmmSS)
     Fecha fecha_con_separador = Fecha::parsearFormatoAAAAMMDDHHmmSS(string_fecha_con_separador, " ", "-", ":");
     Fecha fecha_invalida = Fecha::parsearFormatoAAAAMMDDHHmmSS(string_fecha_invalida, " ", "", "-");
 
-    ASSERT_EQ(2018, fecha_sin_separador.getAnio());
-    ASSERT_EQ(2018, fecha_con_separador.getAnio());
-    ASSERT_EQ(23, fecha_sin_separador.getHoras());
-    ASSERT_EQ(22, fecha_con_separador.getHoras());
-    ASSERT_EQ(0, fecha_invalida.getAnio());
+    REQUIRE(2018 == fecha_sin_separador.getAnio());
+    REQUIRE(2018 == fecha_con_separador.getAnio());
+    REQUIRE(23 == fecha_sin_separador.getHoras());
+    REQUIRE(22 == fecha_con_separador.getHoras());
+    REQUIRE(0 == fecha_invalida.getAnio());
 
-    ASSERT_EQ(01, fecha_sin_separador.getMes());
-    ASSERT_EQ(01, fecha_con_separador.getMes());
-    ASSERT_EQ(59, fecha_sin_separador.getMinutos());
-    ASSERT_EQ(58, fecha_con_separador.getMinutos());
-    ASSERT_EQ(0, fecha_invalida.getMes());
+    REQUIRE(01 == fecha_sin_separador.getMes());
+    REQUIRE(01 == fecha_con_separador.getMes());
+    REQUIRE(59 == fecha_sin_separador.getMinutos());
+    REQUIRE(58 == fecha_con_separador.getMinutos());
+    REQUIRE(0 == fecha_invalida.getMes());
 
-    ASSERT_EQ(02, fecha_sin_separador.getDia());
-    ASSERT_EQ(02, fecha_con_separador.getDia());
-    ASSERT_EQ(59, fecha_sin_separador.getSegundos());
-    ASSERT_EQ(57, fecha_con_separador.getSegundos());
-    ASSERT_EQ(0, fecha_invalida.getDia());
+    REQUIRE(02 == fecha_sin_separador.getDia());
+    REQUIRE(02 == fecha_con_separador.getDia());
+    REQUIRE(59 == fecha_sin_separador.getSegundos());
+    REQUIRE(57 == fecha_con_separador.getSegundos());
+    REQUIRE(0 == fecha_invalida.getDia());
 }
 
-TEST(utiles, FechaParsearDDmesAAAA)
-{
+TEST_CASE("fecha_parsear_DDmesAAAA", "utiles") {
     std::string string_fecha_sin_separador_1 = "02enero2018";
     std::string string_fecha_sin_separador_2 = "02diciembre2018";
     std::string string_fecha_con_separador = "02 enero 2018";
@@ -491,24 +475,23 @@ TEST(utiles, FechaParsearDDmesAAAA)
     Fecha fecha_con_separador = Fecha::parsearFormatoDDmesAAAA(string_fecha_con_separador, " ");
     Fecha fecha_invalida = Fecha::parsearFormatoDDmesAAAA(string_fecha_invalida, " ");
 
-    ASSERT_EQ(2018, fecha_sin_separador_1.getAnio());
-    ASSERT_EQ(2018, fecha_sin_separador_2.getAnio());
-    ASSERT_EQ(2018, fecha_con_separador.getAnio());
-    ASSERT_EQ(0, fecha_invalida.getAnio());
+    REQUIRE(2018 == fecha_sin_separador_1.getAnio());
+    REQUIRE(2018 == fecha_sin_separador_2.getAnio());
+    REQUIRE(2018 == fecha_con_separador.getAnio());
+    REQUIRE(0 == fecha_invalida.getAnio());
 
-    ASSERT_EQ(01, fecha_sin_separador_1.getMes());
-    ASSERT_EQ(12, fecha_sin_separador_2.getMes());
-    ASSERT_EQ(01, fecha_con_separador.getMes());
-    ASSERT_EQ(0, fecha_invalida.getMes());
+    REQUIRE(01 == fecha_sin_separador_1.getMes());
+    REQUIRE(12 == fecha_sin_separador_2.getMes());
+    REQUIRE(01 == fecha_con_separador.getMes());
+    REQUIRE(0 == fecha_invalida.getMes());
 
-    ASSERT_EQ(02, fecha_sin_separador_1.getDia());
-    ASSERT_EQ(02, fecha_sin_separador_2.getDia());
-    ASSERT_EQ(02, fecha_con_separador.getDia());
-    ASSERT_EQ(0, fecha_invalida.getDia());
+    REQUIRE(02 == fecha_sin_separador_1.getDia());
+    REQUIRE(02 == fecha_sin_separador_2.getDia());
+    REQUIRE(02 == fecha_con_separador.getDia());
+    REQUIRE(0 == fecha_invalida.getDia());
 }
 
-TEST(utiles, FechaParsearDDMMAAAA)
-{
+TEST_CASE("fecha_parsear_DDMMAAAA", "utiles") {
     std::string string_fecha_sin_separador = "02012018";
     std::string string_fecha_con_separador = "02 01 2018";
     std::string string_fecha_invalida = "33 01 2018";
@@ -517,20 +500,20 @@ TEST(utiles, FechaParsearDDMMAAAA)
     Fecha fecha_con_separador = Fecha::parsearFormatoDDMMAAAA(string_fecha_con_separador, " ");
     Fecha fecha_invalida = Fecha::parsearFormatoDDMMAAAA(string_fecha_invalida, " ");
 
-    ASSERT_EQ(2018, fecha_sin_separador.getAnio());
-    ASSERT_EQ(2018, fecha_con_separador.getAnio());
-    ASSERT_EQ(0, fecha_invalida.getAnio());
+    REQUIRE(2018 == fecha_sin_separador.getAnio());
+    REQUIRE(2018 == fecha_con_separador.getAnio());
+    REQUIRE(0 == fecha_invalida.getAnio());
 
-    ASSERT_EQ(01, fecha_sin_separador.getMes());
-    ASSERT_EQ(01, fecha_con_separador.getMes());
-    ASSERT_EQ(0, fecha_invalida.getMes());
+    REQUIRE(01 == fecha_sin_separador.getMes());
+    REQUIRE(01 == fecha_con_separador.getMes());
+    REQUIRE(0 == fecha_invalida.getMes());
 
-    ASSERT_EQ(02, fecha_sin_separador.getDia());
-    ASSERT_EQ(02, fecha_con_separador.getDia());
-    ASSERT_EQ(0, fecha_invalida.getDia());
+    REQUIRE(02 == fecha_sin_separador.getDia());
+    REQUIRE(02 == fecha_con_separador.getDia());
+    REQUIRE(0 == fecha_invalida.getDia());
 }
 
-TEST(utiles, fecha_restar_y_sumar_tiempos) {
+TEST_CASE("fecha_restar_y_sumar_tiempos", "utiles") {
     Fecha fecha_1(10, 2, 2018, 20, 40, 50);
     Fecha fecha_2(1, 1, 2018, 0, 0, 0);
 
@@ -542,151 +525,145 @@ TEST(utiles, fecha_restar_y_sumar_tiempos) {
     fecha_1 -= dos_minutos;
     fecha_1 -= dos_segundos;
 
-    ASSERT_EQ(18, fecha_1.getHoras());
-    ASSERT_EQ(38, fecha_1.getMinutos());
-    ASSERT_EQ(48, fecha_1.getSegundos());
+    REQUIRE(18 == fecha_1.getHoras());
+    REQUIRE(38 == fecha_1.getMinutos());
+    REQUIRE(48 == fecha_1.getSegundos());
 
     fecha_1 += dos_horas;
     fecha_1 += dos_minutos;
     fecha_1 += dos_segundos;
 
-    ASSERT_EQ(20, fecha_1.getHoras());
-    ASSERT_EQ(40, fecha_1.getMinutos());
-    ASSERT_EQ(50, fecha_1.getSegundos());
+    REQUIRE(20 == fecha_1.getHoras());
+    REQUIRE(40 == fecha_1.getMinutos());
+    REQUIRE(50 == fecha_1.getSegundos());
 
     fecha_2 -= dos_segundos;
 
-    ASSERT_EQ(2017, fecha_2.getAnio());
-    ASSERT_EQ(12, fecha_2.getMes());
-    ASSERT_EQ(31, fecha_2.getDia());
-    ASSERT_EQ(23, fecha_2.getHoras());
-    ASSERT_EQ(59, fecha_2.getMinutos());
-    ASSERT_EQ(58, fecha_2.getSegundos());
+    REQUIRE(2017 == fecha_2.getAnio());
+    REQUIRE(12 == fecha_2.getMes());
+    REQUIRE(31 == fecha_2.getDia());
+    REQUIRE(23 == fecha_2.getHoras());
+    REQUIRE(59 == fecha_2.getMinutos());
+    REQUIRE(58 == fecha_2.getSegundos());
 
     fecha_2 += dos_segundos;
 
-    ASSERT_EQ(2018, fecha_2.getAnio());
-    ASSERT_EQ(1, fecha_2.getMes());
-    ASSERT_EQ(1, fecha_2.getDia());
-    ASSERT_EQ(0, fecha_2.getHoras());
-    ASSERT_EQ(0, fecha_2.getMinutos());
-    ASSERT_EQ(0, fecha_2.getSegundos());
+    REQUIRE(2018 == fecha_2.getAnio());
+    REQUIRE(1 == fecha_2.getMes());
+    REQUIRE(1 == fecha_2.getDia());
+    REQUIRE(0 == fecha_2.getHoras());
+    REQUIRE(0 == fecha_2.getMinutos());
+    REQUIRE(0 == fecha_2.getSegundos());
 }
 
-TEST(utiles, FechaArmarAAAAMMDD)
-{
+TEST_CASE("fecha_armar_AAAAMMDD", "utiles") {
     Fecha fecha_1(1, 2, 2018);
     Fecha fecha_2(10, 2, 2018);
     Fecha fecha_3(1, 12, 2018);
     Fecha fecha_4(10, 12, 2018);
 
-    ASSERT_EQ("20180201", fecha_1.getStringAAAAMMDD());
-    ASSERT_EQ("20180210", fecha_2.getStringAAAAMMDD());
-    ASSERT_EQ("20181201", fecha_3.getStringAAAAMMDD());
-    ASSERT_EQ("20181210", fecha_4.getStringAAAAMMDD());
+    REQUIRE("20180201" == fecha_1.getStringAAAAMMDD());
+    REQUIRE("20180210" == fecha_2.getStringAAAAMMDD());
+    REQUIRE("20181201" == fecha_3.getStringAAAAMMDD());
+    REQUIRE("20181210" == fecha_4.getStringAAAAMMDD());
 }
 
-TEST(utiles, FechaArmarAAAAMMDDHHmmSS)
-{
+TEST_CASE("fecha_armar_AAAAMMDDHHmmSS", "utiles") {
     Fecha fecha_1(1, 2, 2018, 23, 59, 59);
     Fecha fecha_2(10, 2, 2018, 00, 00, 00);
     Fecha fecha_3(1, 12, 2018, 12, 13, 14);
     Fecha fecha_4(10, 12, 2018, 14, 13, 12);
 
-    ASSERT_EQ("20180201235959", fecha_1.getStringAAAAMMDDHHmmSS());
-    ASSERT_EQ("20180210000000", fecha_2.getStringAAAAMMDDHHmmSS());
-    ASSERT_EQ("20181201121314", fecha_3.getStringAAAAMMDDHHmmSS());
-    ASSERT_EQ("20181210141312", fecha_4.getStringAAAAMMDDHHmmSS());
+    REQUIRE("20180201235959" == fecha_1.getStringAAAAMMDDHHmmSS());
+    REQUIRE("20180210000000" == fecha_2.getStringAAAAMMDDHHmmSS());
+    REQUIRE("20181201121314" == fecha_3.getStringAAAAMMDDHHmmSS());
+    REQUIRE("20181210141312" == fecha_4.getStringAAAAMMDDHHmmSS());
 }
 
-TEST(utiles, FechaArmarDDmesAAAA)
-{
+TEST_CASE("fecha_armar_DDmesAAAA", "utiles") {
     Fecha fecha_1(1, 2, 2018);
     Fecha fecha_2(10, 2, 2018);
     Fecha fecha_3(1, 12, 2018);
     Fecha fecha_4(10, 12, 2018);
 
-    ASSERT_EQ("01febrero2018", fecha_1.getStringDDmesAAAA());
-    ASSERT_EQ("10febrero2018", fecha_2.getStringDDmesAAAA());
-    ASSERT_EQ("01diciembre2018", fecha_3.getStringDDmesAAAA());
-    ASSERT_EQ("10diciembre2018", fecha_4.getStringDDmesAAAA());
+    REQUIRE("01febrero2018" == fecha_1.getStringDDmesAAAA());
+    REQUIRE("10febrero2018" == fecha_2.getStringDDmesAAAA());
+    REQUIRE("01diciembre2018" == fecha_3.getStringDDmesAAAA());
+    REQUIRE("10diciembre2018" == fecha_4.getStringDDmesAAAA());
 }
 
-TEST(utiles, FechaArmarDDMMAAAA)
-{
+TEST_CASE("fecha_armar_DDMMAAAA", "utiles") {
     Fecha fecha_1(1, 2, 2018);
     Fecha fecha_2(10, 2, 2018);
     Fecha fecha_3(1, 12, 2018);
     Fecha fecha_4(10, 12, 2018);
 
-    ASSERT_EQ("01022018", fecha_1.getStringDDMMAAAA());
-    ASSERT_EQ("10022018", fecha_2.getStringDDMMAAAA());
-    ASSERT_EQ("01122018", fecha_3.getStringDDMMAAAA());
-    ASSERT_EQ("10122018", fecha_4.getStringDDMMAAAA());
+    REQUIRE("01022018" == fecha_1.getStringDDMMAAAA());
+    REQUIRE("10022018" == fecha_2.getStringDDMMAAAA());
+    REQUIRE("01122018" == fecha_3.getStringDDMMAAAA());
+    REQUIRE("10122018" == fecha_4.getStringDDMMAAAA());
 }
 
-TEST(utiles, FechaOperadoresSobrecargados)
-{
+TEST_CASE("fecha_operadores_sobrecargados", "utiles") {
     Fecha fecha_1(1, 1, 2018, 23, 59, 59);
     Fecha fecha_2(1, 1, 2018, 23, 59 ,59);
     Fecha fecha_3(1, 1, 2017, 23, 59, 59);
     Fecha fecha_4(1, 1, 2017, 22, 59, 59);
 
-    ASSERT_EQ(true, fecha_1 == fecha_2);
-    ASSERT_EQ(false, fecha_1 != fecha_2);
-    ASSERT_EQ(true, fecha_1 <= fecha_2);
-    ASSERT_EQ(true, fecha_1 >= fecha_2);
-    ASSERT_EQ(false, fecha_1 < fecha_2);
-    ASSERT_EQ(false, fecha_1 > fecha_2);
+    REQUIRE(true == (fecha_1 == fecha_2));
+    REQUIRE(false == (fecha_1 != fecha_2));
+    REQUIRE(true == fecha_1 <= fecha_2);
+    REQUIRE(true == fecha_1 >= fecha_2);
+    REQUIRE(false == fecha_1 < fecha_2);
+    REQUIRE(false == fecha_1 > fecha_2);
 
-    ASSERT_EQ(false, fecha_1 == fecha_3);
-    ASSERT_EQ(true, fecha_1 != fecha_3);
-    ASSERT_EQ(false, fecha_1 <= fecha_3);
-    ASSERT_EQ(true, fecha_1 >= fecha_3);
-    ASSERT_EQ(false, fecha_1 < fecha_3);
-    ASSERT_EQ(true, fecha_1 > fecha_3);
+    REQUIRE(false == (fecha_1 == fecha_3));
+    REQUIRE(true == (fecha_1 != fecha_3));
+    REQUIRE(false == fecha_1 <= fecha_3);
+    REQUIRE(true == fecha_1 >= fecha_3);
+    REQUIRE(false == fecha_1 < fecha_3);
+    REQUIRE(true == fecha_1 > fecha_3);
 
-    ASSERT_EQ(false, fecha_3 <= fecha_4);
-    ASSERT_EQ(true, fecha_3 >= fecha_4);
-    ASSERT_EQ(false, fecha_3 < fecha_4);
-    ASSERT_EQ(true, fecha_3 > fecha_4);
+    REQUIRE(false == fecha_3 <= fecha_4);
+    REQUIRE(true == fecha_3 >= fecha_4);
+    REQUIRE(false == fecha_3 < fecha_4);
+    REQUIRE(true == fecha_3 > fecha_4);
 }
 
-TEST(utiles, AsignacionIDs)
-{
+TEST_CASE("asignacion_ids", "utiles") {
     GestorIDs gestor_ids;
 
     uint64_t id_actual = gestor_ids.getIdActual();
 
-    ASSERT_EQ(1, id_actual);
+    REQUIRE(1 == id_actual);
 
     ID * id_1 = gestor_ids.nuevoID();
     ID * id_2 = gestor_ids.nuevoID();
 
-    ASSERT_EQ(1, id_1->numero());
-    ASSERT_EQ("1", id_1->string());
+    REQUIRE(1 == id_1->numero());
+    REQUIRE("1" == id_1->string());
 
-    ASSERT_EQ(2, id_2->numero());
-    ASSERT_EQ("2", id_2->string());
+    REQUIRE(2 == id_2->numero());
+    REQUIRE("2" == id_2->string());
 
     id_actual = gestor_ids.getIdActual();
 
-    ASSERT_EQ(3, id_actual);
+    REQUIRE(3 == id_actual);
 
     gestor_ids.setIdActual(150);
 
     id_actual = gestor_ids.getIdActual();
 
-    ASSERT_EQ(150, id_actual);
+    REQUIRE(150 == id_actual);
 
     ID * id_3 = gestor_ids.nuevoID();
     ID * id_4 = gestor_ids.nuevoID();
 
-    ASSERT_EQ(150, id_3->numero());
-    ASSERT_EQ("150", id_3->string());
+    REQUIRE(150 == id_3->numero());
+    REQUIRE("150" == id_3->string());
 
-    ASSERT_EQ(151, id_4->numero());
-    ASSERT_EQ("151", id_4->string());
+    REQUIRE(151 == id_4->numero());
+    REQUIRE("151" == id_4->string());
 
     delete id_1;
     delete id_2;
@@ -694,8 +671,7 @@ TEST(utiles, AsignacionIDs)
     delete id_4;
 }
 
-TEST(utiles, stemming)
-{
+TEST_CASE("steeming", "utiles") {
     std::string palabra_a_stemmear_1 = "continuación";
     std::string palabra_a_stemmear_2 = "continuará";
     std::string palabra_a_stemmear_3 = "continua";
@@ -751,29 +727,28 @@ TEST(utiles, stemming)
 
     Stemming::stem(palabras_a_stemmear_2);
 
-    ASSERT_EQ(palabra_a_stemmear_1, "continu");
-    ASSERT_EQ(palabra_a_stemmear_2, "continu");
-    ASSERT_EQ(palabra_a_stemmear_3, "continu");
-    ASSERT_EQ(palabra_a_stemmear_4, "continu");
+    REQUIRE(palabra_a_stemmear_1 == "continu");
+    REQUIRE(palabra_a_stemmear_2 == "continu");
+    REQUIRE(palabra_a_stemmear_3 == "continu");
+    REQUIRE(palabra_a_stemmear_4 == "continu");
 
     for (std::vector<std::string>::iterator it = palabras_a_stemmear_1.begin(); it != palabras_a_stemmear_1.end(); it++)
     {
-        ASSERT_EQ(*it, "continu");
+        REQUIRE(*it == "continu");
     }
 
-    ASSERT_EQ(palabra_a_stemmear_5, "transport");
-    ASSERT_EQ(palabra_a_stemmear_6, "transport");
-    ASSERT_EQ(palabra_a_stemmear_7, "transport");
-    ASSERT_EQ(palabra_a_stemmear_8, "transport");
+    REQUIRE(palabra_a_stemmear_5 == "transport");
+    REQUIRE(palabra_a_stemmear_6 == "transport");
+    REQUIRE(palabra_a_stemmear_7 == "transport");
+    REQUIRE(palabra_a_stemmear_8 == "transport");
     
     for (std::vector<std::string>::iterator it = palabras_a_stemmear_2.begin(); it != palabras_a_stemmear_2.end(); it++)
     {
-        ASSERT_EQ(*it, "transport");
+        REQUIRE(*it == "transport");
     }
 }
 
-TEST(utiles, stemmingUTF8)
-{
+TEST_CASE("stemming_utf8", "utiles") {
     std::string palabra_a_stemmear_1 = u8"continuación";
     std::string palabra_a_stemmear_2 = u8"continuará";
     std::string palabra_a_stemmear_3 = u8"continua";
@@ -802,28 +777,28 @@ TEST(utiles, stemmingUTF8)
 
     Stemming::stemUTF8(palabras_a_stemmear_2);
 
-    ASSERT_EQ(palabra_a_stemmear_1, "continu");
-    ASSERT_EQ(palabra_a_stemmear_2, "continu");
-    ASSERT_EQ(palabra_a_stemmear_3, "continu");
-    ASSERT_EQ(palabra_a_stemmear_4, "continu");
+    REQUIRE(palabra_a_stemmear_1 == "continu");
+    REQUIRE(palabra_a_stemmear_2 == "continu");
+    REQUIRE(palabra_a_stemmear_3 == "continu");
+    REQUIRE(palabra_a_stemmear_4 == "continu");
 
     for (std::vector<std::string>::iterator it = palabras_a_stemmear_1.begin(); it != palabras_a_stemmear_1.end(); it++)
     {
-        ASSERT_EQ(*it, "continu");
+        REQUIRE(*it == "continu");
     }
 
-    ASSERT_EQ(palabra_a_stemmear_5, "transport");
-    ASSERT_EQ(palabra_a_stemmear_6, "transport");
-    ASSERT_EQ(palabra_a_stemmear_7, "transport");
-    ASSERT_EQ(palabra_a_stemmear_8, "transport");
+    REQUIRE(palabra_a_stemmear_5 == "transport");
+    REQUIRE(palabra_a_stemmear_6 == "transport");
+    REQUIRE(palabra_a_stemmear_7 == "transport");
+    REQUIRE(palabra_a_stemmear_8 == "transport");
 
     for (std::vector<std::string>::iterator it = palabras_a_stemmear_2.begin(); it != palabras_a_stemmear_2.end(); it++)
     {
-        ASSERT_EQ(*it, "transport");
+        REQUIRE(*it == "transport");
     }
 }
 
-TEST(utiles, sumar_csv) {
+TEST_CASE("sumar_csv", "utiles") {
     herramientas::utiles::csv doc({ "columna1", "columna2", "columna3" });
     doc.agregar({ "item11", "item12", "item13" });
     doc.agregar({ "item21", "item22", "item23" });
@@ -838,10 +813,10 @@ TEST(utiles, sumar_csv) {
 
     doc += doc2;
 
-    ASSERT_EQ( 8, doc.filas().size() );
+    REQUIRE( 8 == doc.filas().size() );
 }
 
-TEST(utiles, exportar_csv) {
+TEST_CASE("exportar_csv", "utiles") {
     herramientas::utiles::csv doc({"columna1", "columna2", "columna3"});
 
     doc.agregar({ "item11", "item12", "item13" });

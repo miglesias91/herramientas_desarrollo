@@ -1,5 +1,5 @@
-// gtest
-#include <gtest/gtest.h>
+// catch2
+#include <catch.hpp>
 
 // log
 #include <log/include/AdministradorLog.h>
@@ -7,8 +7,7 @@
 
 using namespace herramientas::log;
 
-TEST(log, CrearEscribirYCerrar)
-{
+TEST_CASE("crear_escribir_cerrar", "log") {
     Logger * logger = AdministradorLog::iniciarNuevo("log_testing.json");
 
     logger->marca("marca: se supone que se tiene que registrar.");
@@ -21,8 +20,7 @@ TEST(log, CrearEscribirYCerrar)
     AdministradorLog::liberarTodo();
 }
 
-TEST(log, CrearDosIguales)
-{
+TEST_CASE("dos_iguales", "log") {
     Logger * logger = AdministradorLog::iniciarNuevo("log_testing.json");
 
     try
@@ -31,7 +29,7 @@ TEST(log, CrearDosIguales)
     }
     catch (excepciones::LoggerIniciadoPreviamente & e)
     {
-        ASSERT_EQ(true, true);
+        REQUIRE(true == true);
     }
 
     logger->marca("marca2: se supone que se tiene que registrar.");
@@ -45,8 +43,7 @@ TEST(log, CrearDosIguales)
 }
 
 
-TEST(log, VariosLoggerAUnaMismaSalida)
-{
+TEST_CASE("varios_logger_una_salida", "log") {
     Logger * logger = AdministradorLog::iniciarNuevo("log_testing.json");
     Logger * logger_2 = AdministradorLog::iniciarNuevo("log_testing_2.json");
 
