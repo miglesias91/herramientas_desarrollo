@@ -36,6 +36,10 @@ public:
     // reemplaza 2 o mas espacios por 1 solo espacio.
     static uint32_t eliminarEspaciosRedundantes(std::string & string_a_modificar);
 
+    static uint32_t recortar(std::string *string_a_recortar, const std::string &caracteres_de_corte = "\t\n\v\f\r ");
+    static uint32_t recortar_derecha(std::string *string_a_recortar, const std::string &caracteres_de_corte = "\t\n\v\f\r ");
+    static uint32_t recortar_izquierda(std::string *string_a_recortar, const std::string &caracteres_de_corte = "\t\n\v\f\r ");
+
     static bool empiezaCon(const std::string & string_a_chequear, const std::string & string_a_buscar);
 
     // elimina las tildes del string.

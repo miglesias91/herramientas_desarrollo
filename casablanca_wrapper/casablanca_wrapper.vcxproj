@@ -128,14 +128,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\HTTPRespuesta.h" />
-    <ClInclude Include="include\HTTPCliente.h" />
-    <ClInclude Include="include\HTTPSolicitud.h" />
+    <ClInclude Include="include\respuesta.h" />
+    <ClInclude Include="include\cliente.h" />
+    <ClInclude Include="include\solicitud.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\HTTPRespuesta.cpp" />
-    <ClCompile Include="source\HTTPCliente.cpp" />
-    <ClCompile Include="source\HTTPSolicitud.cpp" />
+    <ClCompile Include="source\respuesta.cpp" />
+    <ClCompile Include="source\cliente.cpp" />
+    <ClCompile Include="source\solicitud.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

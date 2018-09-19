@@ -152,6 +152,22 @@ uint32_t FuncionesString::eliminarEspaciosRedundantes(std::string & string_a_mod
     return cantidad_de_espacios_redundantes_eliminados;
 }
 
+uint32_t FuncionesString::recortar(std::string * string_a_recortar, const std::string & caracteres_de_corte) {
+    return recortar_derecha(string_a_recortar, caracteres_de_corte) + recortar_izquierda(string_a_recortar, caracteres_de_corte);
+}
+
+uint32_t FuncionesString::recortar_derecha(std::string * string_a_recortar, const std::string & caracteres_de_corte) {
+    uint32_t largo_inicial = string_a_recortar->size();
+    string_a_recortar->erase(0, string_a_recortar->find_first_not_of(caracteres_de_corte));
+    return largo_inicial - string_a_recortar->size();
+}
+
+uint32_t FuncionesString::recortar_izquierda(std::string * string_a_recortar, const std::string & caracteres_de_corte) {
+    uint32_t largo_inicial = string_a_recortar->size();
+    string_a_recortar->erase(string_a_recortar->find_last_not_of(caracteres_de_corte) + 1);
+    return largo_inicial - string_a_recortar->size();
+}
+
 bool FuncionesString::empiezaCon(const std::string & string_a_chequear, const std::string & string_a_buscar)
 {
     return string_a_buscar.length() <= string_a_chequear.length() && std::equal(string_a_buscar.begin(), string_a_buscar.end(), string_a_chequear.begin());

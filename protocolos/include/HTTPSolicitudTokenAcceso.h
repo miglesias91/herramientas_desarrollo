@@ -4,14 +4,14 @@
 #include <string>
 
 // casablanca wrapper
-#include <casablanca_wrapper/include/HTTPSolicitud.h>
+#include <casablanca_wrapper/include/solicitud.h>
 
 namespace herramientas
 {
 namespace protocolos
 {
 
-class HTTPSolicitudTokenAcceso : public herramientas::cpprest::HTTPSolicitud
+class HTTPSolicitudTokenAcceso : public herramientas::cpprest::solicitud
 {
 public:
 	HTTPSolicitudTokenAcceso(std::string clave_publica, std::string clave_privada);

@@ -6,27 +6,31 @@
 using namespace herramientas::protocolos;
 
 HTTPSolicitudTokenAcceso::HTTPSolicitudTokenAcceso(std::string clave_publica, std::string clave_privada) :
-    clave_publica(clave_publica), clave_privada(clave_privada), token_acceso(""), HTTPSolicitud()
+    clave_publica(clave_publica), clave_privada(clave_privada), token_acceso(""), solicitud()
 {
     std::string claves_concatenadas = clave_publica + ":" + clave_privada;
     std::string claves_concatenadas_codificadas_en_base64 = herramientas::utiles::Conversiones::string2base64(claves_concatenadas);
     std::string header_claves_codificadas = "Basic " + claves_concatenadas_codificadas_en_base64;
 
+    this->nuevo_encabezado("Authorization", header_claves_codificadas);
+    this->nuevo_encabezado("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+    this->cuerpo("grant_type=client_credentials");
+    this->uri("/oauth2/token");
+    this->metodo(POST);
+
     // armo la solicitud para el token de acceso
-    web::http::http_request * http_solicitud_token_acceso = new web::http::http_request();
+    //web::http::http_request * http_solicitud_token_acceso = new web::http::http_request();
 
-    http_solicitud_token_acceso->headers().add(L"Authorization", utility::conversions::to_string_t(header_claves_codificadas));
-    http_solicitud_token_acceso->headers().add(L"Content-Type", L"application/x-www-form-urlencoded;charset=UTF-8");
-    http_solicitud_token_acceso->set_body(L"grant_type=client_credentials");
-    http_solicitud_token_acceso->set_request_uri(L"/oauth2/token");
-    http_solicitud_token_acceso->set_method(web::http::methods::POST);
+    //http_solicitud_token_acceso->headers().add(L"Authorization", utility::conversions::to_string_t(header_claves_codificadas));
+    //http_solicitud_token_acceso->headers().add(L"Content-Type", L"application/x-www-form-urlencoded;charset=UTF-8");
+    //http_solicitud_token_acceso->set_body(L"grant_type=client_credentials");
+    //http_solicitud_token_acceso->set_request_uri(L"/oauth2/token");
+    //http_solicitud_token_acceso->set_method(web::http::methods::POST);
 
-    this->setSolicitud(http_solicitud_token_acceso);
+    //this->solicitud(http_solicitud_token_acceso);
 }
 
-HTTPSolicitudTokenAcceso::~HTTPSolicitudTokenAcceso()
-{
-}
+HTTPSolicitudTokenAcceso::~HTTPSolicitudTokenAcceso() {}
 
 // GETTERS
 

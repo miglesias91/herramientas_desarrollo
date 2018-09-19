@@ -1,19 +1,14 @@
 
-#define GTEST_LANG_CXX11 1
-
-// gtest
-#include <gtest/gtest.h>
-
-#ifdef DEBUG || _DEBUG
+#if defined(DEBUG) || defined(_DEBUG)
 // vld
 #include <vld.h>
 #endif
 
-int main(int argc, char **argv)
-{
-	::testing::InitGoogleTest(&argc, argv);
+#define CATCH_CONFIG_RUNNER
+#include <catch.hpp>
 
-	int result = RUN_ALL_TESTS();
+int main(int argc, char **argv) {
+    int result = Catch::Session().run(argc, argv);
 
 	std::getchar();
 
