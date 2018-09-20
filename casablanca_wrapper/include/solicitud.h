@@ -19,7 +19,7 @@ public:
     static const std::array<std::string, 4> nombres_metodos;
     static const std::array<web::http::method, 4> metodos_web;
 
-    enum metodos { GET = 0, POST = 1, PUT = 2, DELETE = 3 };
+    enum metodos { GET = 0, POST = 1, PUT = 2, DEL = 3 };
 
 	solicitud();
 	virtual ~solicitud();
