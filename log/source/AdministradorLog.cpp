@@ -7,7 +7,7 @@ using namespace herramientas::log;
 #include <iostream>
 
 // log
-#include <log/include/LoggerIniciadoPreviamente.h>
+//#include <log/include/LoggerIniciadoPreviamente.h>
 
 std::unordered_map<std::string, Logger*> AdministradorLog::mapa_loggers;
 std::unordered_map<std::string, SalidaLogger*> AdministradorLog::mapa_salidas;
@@ -41,7 +41,7 @@ Logger * AdministradorLog::iniciarNuevo(std::string path_configuracion)
     {
         delete config;
 
-        throw excepciones::LoggerIniciadoPreviamente(nombre_logger);
+        //throw excepciones::LoggerIniciadoPreviamente(nombre_logger);
     }
 
     // creo y guardo las salidas. si ya existen, las recupero.

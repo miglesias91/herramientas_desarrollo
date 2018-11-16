@@ -33,9 +33,6 @@
     <ClInclude Include="include\SalidaLogger.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="include\LoggerIniciadoPreviamente.h">
-      <Filter>Archivos de encabezado\excepciones</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\AdministradorLog.cpp">
@@ -49,9 +46,6 @@
     </ClCompile>
     <ClCompile Include="source\SalidaLogger.cpp">
       <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="source\LoggerIniciadoPreviamente.cpp">
-      <Filter>Archivos de código fuente\excepciones</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

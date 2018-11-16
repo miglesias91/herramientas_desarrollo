@@ -3,7 +3,7 @@
 
 // log
 #include <log/include/AdministradorLog.h>
-#include <log/include/LoggerIniciadoPreviamente.h>
+//#include <log/include/LoggerIniciadoPreviamente.h>
 
 using namespace herramientas::log;
 
@@ -27,7 +27,8 @@ TEST_CASE("dos_iguales", "log") {
     {
         Logger * logger_duplicado = AdministradorLog::iniciarNuevo("log_testing.json");
     }
-    catch (excepciones::LoggerIniciadoPreviamente & e)
+    //catch (excepciones::LoggerIniciadoPreviamente & e)
+    catch (std::exception & e)
     {
         REQUIRE(true == true);
     }
